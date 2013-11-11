@@ -28,5 +28,4 @@ public class Solusi {
     public void setIsiSolusi(String isiSolusi) {
         this.isiSolusi = isiSolusi;
     }
-    
 }
