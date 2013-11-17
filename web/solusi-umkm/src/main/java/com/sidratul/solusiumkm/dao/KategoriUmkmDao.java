@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface KategoriUmkmDao {
     
-    public List<KategoriUmkm> getAllKategoriUMKM();
+    public List<KategoriUmkm> getAllKategoriUmkm();
     
-    public void saveKategoriUMKM(KategoriUmkm kategoriUMKM);
+    public void saveKategoriUmkm(KategoriUmkm kategoriUMKM);
     
-    public KategoriUmkm getKategoriUMKMById(Integer id);
+    public KategoriUmkm getKategoriUmkmById(Integer id);
     
-    public void deleteKategoriUMKM(Integer id);
+    public void deleteKategoriUmkm(Integer id);
 }

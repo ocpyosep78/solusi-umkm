@@ -8,4 +8,8 @@ public interface UmkmDao {
     public List<Umkm> getAllUmkm();
     
     public void saveUmkm(Umkm umkm) throws DuplicateKeyException;
+    
+    public Umkm getUmkmById(Integer id);
+    
+    public void deleteUmkm(Integer id);
 }
