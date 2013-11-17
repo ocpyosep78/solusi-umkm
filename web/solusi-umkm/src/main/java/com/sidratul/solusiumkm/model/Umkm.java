@@ -1,11 +1,11 @@
 package com.sidratul.solusiumkm.model;
 
-public class UMKM {
+public class Umkm {
     private Integer idUMKM;
     private String namaUMKM;
     private String pemilikUMKM;
     private String detailProduk;
-    private KategoriUMKM ku;
+    private KategoriUmkm ku;
     private String visi;
     private String misi;
     private String alamat;
@@ -44,11 +44,11 @@ public class UMKM {
         this.detailProduk = detailProduk;
     }
 
-    public KategoriUMKM getKu() {
+    public KategoriUmkm getKu() {
         return ku;
     }
 
-    public void setKu(KategoriUMKM ku) {
+    public void setKu(KategoriUmkm ku) {
         this.ku = ku;
     }
 

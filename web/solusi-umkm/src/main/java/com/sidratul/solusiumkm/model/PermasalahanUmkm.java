@@ -1,8 +1,8 @@
 package com.sidratul.solusiumkm.model;
 
-public class PermasalahanUMKM {
+public class PermasalahanUmkm {
     private Integer idPermasalahanUMKM;
-    private UMKM umkm;
+    private Umkm umkm;
     private Permasalahan permasalahan;
 
     public Integer getIdPermasalahanUMKM() {
@@ -13,11 +13,11 @@ public class PermasalahanUMKM {
         this.idPermasalahanUMKM = idPermasalahanUMKM;
     }
 
-    public UMKM getUmkm() {
+    public Umkm getUmkm() {
         return umkm;
     }
 
-    public void setUmkm(UMKM umkm) {
+    public void setUmkm(Umkm umkm) {
         this.umkm = umkm;
     }
 

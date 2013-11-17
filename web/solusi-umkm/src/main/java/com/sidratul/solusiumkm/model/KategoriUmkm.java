@@ -1,6 +1,6 @@
 package com.sidratul.solusiumkm.model;
 
-public class KategoriUMKM {
+public class KategoriUmkm {
     private Integer idKategoriUMKM;
     private String kategoriUMKM;
 

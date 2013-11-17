@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 public class Produk {
     private Integer idProduk;
-    private UMKM umkm;
+    private Umkm umkm;
     private String kodeProduk;
     private String namaProduk;
     private BigDecimal harga;
@@ -26,11 +26,11 @@ public class Produk {
         this.idProduk = idProduk;
     }
 
-    public UMKM getUmkm() {
+    public Umkm getUmkm() {
         return umkm;
     }
 
-    public void setUmkm(UMKM umkm) {
+    public void setUmkm(Umkm umkm) {
         this.umkm = umkm;
     }
 
