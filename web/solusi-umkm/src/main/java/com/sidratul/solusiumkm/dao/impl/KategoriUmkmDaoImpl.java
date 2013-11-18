@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.stereotype.Repository;
 
-@Repository("KategoriUmkmDao")
+@Repository("kategoriUmkmDao")
 public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
     
     private static final String SQL_GETALL_KATEGORI = "SELECT * FROM `KATEGORI_UMKM`";

@@ -2,7 +2,7 @@ package com.sidratul.solusiumkm.model;
 
 public class Umkm {
     private Integer idUmkm;
-    private String UmkmId;
+    private String umkmId;
     private String namaUmkm;
     private String pemilikUmkm;
     private String detailProduk;
@@ -22,11 +22,11 @@ public class Umkm {
     }
 
     public String getUmkmId() {
-        return UmkmId;
+        return umkmId;
     }
 
-    public void setUmkmId(String UmkmId) {
-        this.UmkmId = UmkmId;
+    public void setUmkmId(String umkmId) {
+        this.umkmId = umkmId;
     }
 
     public String getNamaUmkm() {
