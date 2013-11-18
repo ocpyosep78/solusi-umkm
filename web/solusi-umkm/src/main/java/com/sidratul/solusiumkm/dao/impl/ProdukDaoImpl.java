@@ -76,11 +76,16 @@ public class ProdukDaoImpl implements ProdukDao{
     }
 
     public Produk getProdukById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(id==null){
+            return null;
+        }else{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYID, new ProdukParameterizedRowMapper(), id);
+            return produk;
+        }
     }
 
     public void deleteProduk(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_DELETE_PRODUK,id);
     }
     
 }

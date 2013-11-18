@@ -102,6 +102,6 @@ public class UmkmDaoImpl implements UmkmDao{
     }
 
     public void deleteUmkm(Integer id) {
-        jdbcTemplate.update(SQL_DELETE_UMKM);
+        jdbcTemplate.update(SQL_DELETE_UMKM,id);
     }
 }
