@@ -1,39 +1,48 @@
 package com.sidratul.solusiumkm.model;
 
 public class Umkm {
-    private Integer idUMKM;
-    private String namaUMKM;
-    private String pemilikUMKM;
+    private Integer idUmkm;
+    private String UmkmId;
+    private String namaUmkm;
+    private String pemilikUmkm;
     private String detailProduk;
-    private KategoriUmkm ku;
+    private KategoriUmkm kategoriUmkm;
     private String visi;
     private String misi;
     private String alamat;
     private String noTelp;
     private String email;
 
-    public Integer getIdUMKM() {
-        return idUMKM;
+    public Integer getIdUmkm() {
+        return idUmkm;
     }
 
-    public void setIdUMKM(Integer idUMKM) {
-        this.idUMKM = idUMKM;
+    public void setIdUmkm(Integer idUmkm) {
+        this.idUmkm = idUmkm;
     }
 
-    public String getNamaUMKM() {
-        return namaUMKM;
+    public String getUmkmId() {
+        return UmkmId;
     }
 
-    public void setNamaUMKM(String namaUMKM) {
-        this.namaUMKM = namaUMKM;
+    public void setUmkmId(String UmkmId) {
+        this.UmkmId = UmkmId;
     }
 
-    public String getPemilikUMKM() {
-        return pemilikUMKM;
+    public String getNamaUmkm() {
+        return namaUmkm;
     }
 
-    public void setPemilikUMKM(String pemilikUMKM) {
-        this.pemilikUMKM = pemilikUMKM;
+    public void setNamaUmkm(String namaUmkm) {
+        this.namaUmkm = namaUmkm;
+    }
+
+    public String getPemilikUmkm() {
+        return pemilikUmkm;
+    }
+
+    public void setPemilikUmkm(String pemilikUmkm) {
+        this.pemilikUmkm = pemilikUmkm;
     }
 
     public String getDetailProduk() {
@@ -44,12 +53,12 @@ public class Umkm {
         this.detailProduk = detailProduk;
     }
 
-    public KategoriUmkm getKu() {
-        return ku;
+    public KategoriUmkm getKategoriUmkm() {
+        return kategoriUmkm;
     }
 
-    public void setKu(KategoriUmkm ku) {
-        this.ku = ku;
+    public void setKategoriUmkm(KategoriUmkm kategoriUmkm) {
+        this.kategoriUmkm = kategoriUmkm;
     }
 
     public String getVisi() {
@@ -91,6 +100,5 @@ public class Umkm {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
 }
