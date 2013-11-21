@@ -1,13 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sidratul.solusiumkm.dao;
 
-/**
- *
- * @author sidratul
- */
+import com.sidratul.solusiumkm.model.DetailPermasalahan;
+import java.util.List;
+
 public interface DetailPermasalahanDao {
+    public List<DetailPermasalahan> getAllDetailPermasalahan();
     
+    public void saveDetailPermasalahan(DetailPermasalahan detailPermasalahan);
+    
+    public DetailPermasalahan getDetailPermasalahanById(Integer id);
+    
+    public void deleteDetailPermasalahan(Integer id);
 }
