@@ -14,9 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository("kategoriUmkmDao")
 public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
     
-    private static final String SQL_GETALL_KATEGORI = "SELECT * FROM `KATEGORI_UMKM`";
-    private static final String SQL_GETKATEGORI_BYID = "SELECT * FROM `KATEGORI_UMKM` where ID_KATEGORI_UMKM=?";
-    private static final String SQL_DELETE_KATEGORI_BYID = "DELETE FROM `KATEGORI_UMKM` where ID_KATEGORI_UMKM=?";
+    private static final String SQL_GETALL_KATEGORI = "SELECT * FROM `kategori_umkm`";
+    private static final String SQL_GETKATEGORI_BYID = "SELECT * FROM `kategori_umkm` where id=?";
+    private static final String SQL_DELETE_KATEGORI_BYID = "DELETE FROM `kategori_umkm` where ID=?";
     private static final String SQL_UPDATE_KATEGORI = "UPDATE `KATEGORI_UMKM` SET `KATEGORI_UMKM` = ? WHERE "
             + "ID_KATEGORI_UMKM = ?";
     private static final String SQL_INSERT_KATEGORI = "INSERT INTO `KATEGORI_UMKM`(`KATEGORI_UMKM`)VALUES(?);";
@@ -28,8 +28,8 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
 
         public KategoriUmkm mapRow(ResultSet rs, int i) throws SQLException {
             KategoriUmkm kategoriUmkm= new KategoriUmkm();
-            kategoriUmkm.setIdKategoriUMKM(rs.getInt("ID_KATEGORI_UMKM"));
-            kategoriUmkm.setKategoriUMKM(rs.getString("KATEGORI_UMKM"));
+            kategoriUmkm.setId(rs.getInt("id"));
+            kategoriUmkm.setJenisUmkm(rs.getString("jenis_umkm"));
             
             return kategoriUmkm;
         }
@@ -45,14 +45,14 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
         return kategoriUmkms;
     }
 
-    public void saveKategoriUmkm(KategoriUmkm kategoriUMKM) {
-        if(kategoriUMKM.getIdKategoriUMKM()!=null){
+    public void saveKategoriUmkm(KategoriUmkm kategoriUmkm) {
+        if(kategoriUmkm.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_KATEGORI, new Object[]{
-                kategoriUMKM.getIdKategoriUMKM(),
-                kategoriUMKM.getKategoriUMKM()
+                kategoriUmkm.getJenisUmkm(),
+                kategoriUmkm.getId()
             });
         }else{
-            jdbcTemplate.update(SQL_INSERT_KATEGORI, kategoriUMKM.getKategoriUMKM());
+            jdbcTemplate.update(SQL_INSERT_KATEGORI, kategoriUmkm.getJenisUmkm());
         }
     }
 
@@ -68,5 +68,4 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
     public void deleteKategoriUmkm(Integer id){
         jdbcTemplate.update(SQL_DELETE_KATEGORI_BYID,id);
     }
-    
 }

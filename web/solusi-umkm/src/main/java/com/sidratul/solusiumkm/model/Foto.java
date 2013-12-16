@@ -1,41 +1,42 @@
 package com.sidratul.solusiumkm.model;
 
+import java.util.Date;
+
 public class Foto {
-    private Integer idFoto;
-    private String namaFoto;
-    private String keterangan;
-    private Long ukuranFoto;
+    private Integer id;
+    private String namaFile;
+    private Date tglUpload;
+    private String keteranganFoto;
 
-    public Integer getIdFoto() {
-        return idFoto;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdFoto(Integer idFoto) {
-        this.idFoto = idFoto;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNamaFoto() {
-        return namaFoto;
+    public String getNamaFile() {
+        return namaFile;
     }
 
-    public void setNamaFoto(String namaFoto) {
-        this.namaFoto = namaFoto;
+    public void setNamaFile(String namaFile) {
+        this.namaFile = namaFile;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public Date getTglUpload() {
+        return tglUpload;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public void setTglUpload(Date tglUpload) {
+        this.tglUpload = tglUpload;
     }
 
-    public Long getUkuranFoto() {
-        return ukuranFoto;
+    public String getKeteranganFoto() {
+        return keteranganFoto;
     }
 
-    public void setUkuranFoto(Long ukuranFoto) {
-        this.ukuranFoto = ukuranFoto;
+    public void setKeteranganFoto(String keteranganFoto) {
+        this.keteranganFoto = keteranganFoto;
     }
-    
 }

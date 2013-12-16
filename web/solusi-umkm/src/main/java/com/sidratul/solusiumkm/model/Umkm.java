@@ -1,32 +1,26 @@
 package com.sidratul.solusiumkm.model;
 
 public class Umkm {
-    private Integer idUmkm;
-    private String umkmId;
+    private Integer id;
+    private String kodeUmkm;
     private String namaUmkm;
     private String pemilikUmkm;
-    private String detailProduk;
     private KategoriUmkm kategoriUmkm;
-    private String visi;
-    private String misi;
-    private String alamat;
-    private String noTelp;
-    private String email;
 
-    public Integer getIdUmkm() {
-        return idUmkm;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdUmkm(Integer idUmkm) {
-        this.idUmkm = idUmkm;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUmkmId() {
-        return umkmId;
+    public String getKodeUmkm() {
+        return kodeUmkm;
     }
 
-    public void setUmkmId(String umkmId) {
-        this.umkmId = umkmId;
+    public void setKodeUmkm(String kodeUmkm) {
+        this.kodeUmkm = kodeUmkm;
     }
 
     public String getNamaUmkm() {
@@ -45,20 +39,20 @@ public class Umkm {
         this.pemilikUmkm = pemilikUmkm;
     }
 
-    public String getDetailProduk() {
-        return detailProduk;
-    }
-
-    public void setDetailProduk(String detailProduk) {
-        this.detailProduk = detailProduk;
-    }
-
     public KategoriUmkm getKategoriUmkm() {
         return kategoriUmkm;
     }
 
     public void setKategoriUmkm(KategoriUmkm kategoriUmkm) {
         this.kategoriUmkm = kategoriUmkm;
+    }
+
+    public String getKeteranganUmkm() {
+        return keteranganUmkm;
+    }
+
+    public void setKeteranganUmkm(String keteranganUmkm) {
+        this.keteranganUmkm = keteranganUmkm;
     }
 
     public String getVisi() {
@@ -100,5 +94,11 @@ public class Umkm {
     public void setEmail(String email) {
         this.email = email;
     }
+    private String keteranganUmkm;
+    private String visi;
+    private String misi;
+    private String alamat;
+    private String noTelp;
+    private String email;
 
 }

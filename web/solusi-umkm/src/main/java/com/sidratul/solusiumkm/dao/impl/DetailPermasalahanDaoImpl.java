@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 public class DetailPermasalahanDaoImpl implements DetailPermasalahanDao{
     
     private static final String SQL_GETALL_DETAILPERMASALAHAN="SELECT * FROM DETAIL_PERMASALAHAN";
+    
     private static final String SQL_GEDETAILPERMASALAHAN_BYID="SELECT * FROM DETAIL_PERMASALAHAN WHERE ID_DETAIL_PERMASALAHAN=?";
     private static final String SQL_DELETE_GEDETAILPERMASALAHAN="DELETE FROM DETAIL_PERMASALAHAN WHERE ID_DETAIL_PERMASALAHAN=?";
     private static final String SQL_UPDATE_GEDETAILPERMASALAHAN="UPDATE `DETAIL_PERMASALAHAN` SET "

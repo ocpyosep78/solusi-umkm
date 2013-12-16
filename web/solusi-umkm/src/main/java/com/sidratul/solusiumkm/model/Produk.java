@@ -1,29 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sidratul.solusiumkm.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
-/**
- *
- * @author sidratul
- */
 public class Produk {
-    private Integer idProduk;
+    private Integer id;
     private Umkm umkm;
+    private KategoriProduk kategoriProduk;
     private String kodeProduk;
     private String namaProduk;
     private BigDecimal harga;
-    private String deskripsi;
+    private String keteranganProduk;
+    private Date tglUpdateProduk;
+    private List<Foto> lfoto;
 
-    public Integer getIdProduk() {
-        return idProduk;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdProduk(Integer idProduk) {
-        this.idProduk = idProduk;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Umkm getUmkm() {
@@ -32,6 +29,14 @@ public class Produk {
 
     public void setUmkm(Umkm umkm) {
         this.umkm = umkm;
+    }
+
+    public KategoriProduk getKategoriProduk() {
+        return kategoriProduk;
+    }
+
+    public void setKategoriProduk(KategoriProduk kategoriProduk) {
+        this.kategoriProduk = kategoriProduk;
     }
 
     public String getKodeProduk() {
@@ -58,12 +63,28 @@ public class Produk {
         this.harga = harga;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public String getKeteranganProduk() {
+        return keteranganProduk;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public void setKeteranganProduk(String keteranganProduk) {
+        this.keteranganProduk = keteranganProduk;
+    }
+
+    public Date getTglUpdateProduk() {
+        return tglUpdateProduk;
+    }
+
+    public void setTglUpdateProduk(Date tglUpdateProduk) {
+        this.tglUpdateProduk = tglUpdateProduk;
+    }
+
+    public List<Foto> getLfoto() {
+        return lfoto;
+    }
+
+    public void setLfoto(List<Foto> lfoto) {
+        this.lfoto = lfoto;
     }
     
 }

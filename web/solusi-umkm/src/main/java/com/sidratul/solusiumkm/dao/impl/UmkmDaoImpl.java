@@ -16,14 +16,15 @@ import org.springframework.stereotype.Repository;
 @Repository("umkmDao")
 public class UmkmDaoImpl implements UmkmDao{
     
-    private static final String SQL_GETALL_UMKM="SELECT * FROM UMKM";
-    private static final String SQL_GETUMKM_BYIDUMKM="SELECT * FROM UMKM where ID_UMKM=?";
-    private static final String SQL_DELETE_UMKM="DELETE FROM UMKM where ID_UMKM=?";
-    private static final String SQL_UPDATE_UMKM="UPDATE `solusi-umkm`.`UMKM` SET "
-            + "`UMKM_ID` = ?, `NAMA_UMKM` = ?, `PEMILIK_UMKM` = ?,`DETAIL_PRODUK_UMKM` = ?,`ID_KATEGORI_UMKM` = ?,`VISI` = ?,`MISI` = ?,`ALAMAT` = ?,`NO_TELP` = ?,`EMAIL` = ? "
-            + "WHERE `ID_UMKM` = ?;";
-    private static final String SQL_INSERT_UMKM="INSERT INTO `UMKM`(`UMKM_ID`,`NAMA_UMKM`,`PEMILIK_UMKM`,`DETAIL_PRODUK_UMKM`,`ID_KATEGORI_UMKM`,`VISI`,`MISI`,`ALAMAT`,`NO_TELP`,`EMAIL`)"
-            + "VALUES(?,?,?,?,?,?,?,?,?,?);";
+    private static final String SQL_GETALL_UMKM="SELECT * FROM umkm";
+    private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where ID=?";
+    private static final String SQL_DELETE_UMKM="DELETE FROM umkm where ID=?";
+    private static final String SQL_UPDATE_UMKM="UPDATE `umkm` SET "
+            + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,`id_kategori_umkm` = ?,"
+            + "`keterangan_umkm` = ?,`visi` = ?,`misi` = ?,`alamat` = ?,`no_telpon` = ?,`email` = ? "
+            + "WHERE `id` = ?";
+    private static final String SQL_INSERT_UMKM="INSERT INTO `solusi-umkm`.`umkm`(`kode_umkm`,`nama_umkm`,`pemilik_umkm`,`id_kategori_umkm`,`keterangan_umkm`,`visi`,`misi`,`alamat`,`no_telpon`,`email`)"
+            + "VALUES(?,?,?,?,?,?,?,?,?)";
     
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
@@ -34,17 +35,19 @@ public class UmkmDaoImpl implements UmkmDao{
 
         public Umkm mapRow(ResultSet rs, int i) throws SQLException {
             Umkm umkm = new Umkm();
-            umkm.setIdUmkm(rs.getInt("ID_UMKM"));
-            umkm.setUmkmId(rs.getString("UMKM_ID"));
-            umkm.setNamaUmkm(rs.getString("NAMA_UMKM"));
-            umkm.setPemilikUmkm(rs.getString("PEMILIK_UMKM"));
-            umkm.setDetailProduk("DETAIL_PRODUK_UMKM");
-            umkm.setKategoriUmkm(kategoriUmkmDao.getKategoriUmkmById(rs.getInt("ID_KATEGORI_UMKM")));
-            umkm.setVisi(rs.getString("VISI"));
-            umkm.setMisi(rs.getString("MISI"));
-            umkm.setAlamat(rs.getString("Alamat"));
-            umkm.setNoTelp(rs.getString("NO_TELP"));
-            umkm.setEmail(rs.getString("EMAIL"));
+            umkm.setId(rs.getInt("id"));
+            umkm.setKodeUmkm(rs.getString("kode_umkm"));
+            umkm.setNamaUmkm(rs.getString("nama_umkm"));
+            umkm.setPemilikUmkm(rs.getString("pemilik_umkm"));
+            
+            umkm.setKategoriUmkm(kategoriUmkmDao.getKategoriUmkmById(rs.getInt("id_kategori_umkm")));
+            
+            umkm.setKeteranganUmkm(rs.getString("keterangan_umkm"));
+            umkm.setVisi(rs.getString("visi"));
+            umkm.setMisi(rs.getString("misi"));
+            umkm.setAlamat(rs.getString("alamat"));
+            umkm.setNoTelp(rs.getString("no_telpon"));
+            umkm.setEmail(rs.getString("email"));
             
             return umkm;
         }
@@ -62,27 +65,27 @@ public class UmkmDaoImpl implements UmkmDao{
     }
     
     public void saveUmkm(Umkm umkm) throws DuplicateKeyException {
-        if(umkm.getIdUmkm()!=null){
+        if(umkm.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_UMKM, new Object[]{
-                umkm.getUmkmId(),
+                umkm.getKodeUmkm(),
                 umkm.getNamaUmkm(),
                 umkm.getPemilikUmkm(),
-                umkm.getDetailProduk(),
-                umkm.getKategoriUmkm().getIdKategoriUMKM(),
+                umkm.getKategoriUmkm().getId(),
+                umkm.getKeteranganUmkm(),
                 umkm.getVisi(),
                 umkm.getMisi(),
                 umkm.getAlamat(),
                 umkm.getNoTelp(),
                 umkm.getEmail(),
-                umkm.getIdUmkm()
+                umkm.getId()
             });
         }else{
             jdbcTemplate.update(SQL_INSERT_UMKM, new Object[]{
-                umkm.getUmkmId(),
+                umkm.getKodeUmkm(),
                 umkm.getNamaUmkm(),
                 umkm.getPemilikUmkm(),
-                umkm.getDetailProduk(),
-                umkm.getKategoriUmkm().getIdKategoriUMKM(),
+                umkm.getKategoriUmkm().getId(),
+                umkm.getKeteranganUmkm(),
                 umkm.getVisi(),
                 umkm.getMisi(),
                 umkm.getAlamat(),
@@ -96,7 +99,7 @@ public class UmkmDaoImpl implements UmkmDao{
         if(id==null){
             return null;
         }else{
-            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYIDUMKM, new UmkmParameterizedRowMapper(),id);
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYID, new UmkmParameterizedRowMapper(),id);
             return umkm;
         }
     }

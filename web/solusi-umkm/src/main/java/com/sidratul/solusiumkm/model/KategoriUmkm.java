@@ -1,23 +1,24 @@
 package com.sidratul.solusiumkm.model;
 
 public class KategoriUmkm {
-    private Integer idKategoriUMKM;
-    private String kategoriUMKM;
+    private Integer id;
+    private String jenisUmkm;
 
-    public Integer getIdKategoriUMKM() {
-        return idKategoriUMKM;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdKategoriUMKM(Integer idKategoriUMKM) {
-        this.idKategoriUMKM = idKategoriUMKM;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getKategoriUMKM() {
-        return kategoriUMKM;
+    public String getJenisUmkm() {
+        return jenisUmkm;
     }
 
-    public void setKategoriUMKM(String kategoriUMKM) {
-        this.kategoriUMKM = kategoriUMKM;
+    public void setJenisUmkm(String jenisUmkm) {
+        this.jenisUmkm = jenisUmkm;
     }
-            
+    
+    
 }
