@@ -2,7 +2,7 @@ package com.sidratul.solusiumkm.model;
 
 public class KategoriProduk {
     private Integer id;
-    private String jenis_kategori_produk;
+    private String jenisProduk;
 
     public Integer getId() {
         return id;
@@ -12,11 +12,12 @@ public class KategoriProduk {
         this.id = id;
     }
 
-    public String getJenis_kategori_produk() {
-        return jenis_kategori_produk;
+    public String getJenisProduk() {
+        return jenisProduk;
     }
 
-    public void setJenis_kategori_produk(String jenis_kategori_produk) {
-        this.jenis_kategori_produk = jenis_kategori_produk;
+    public void setJenisProduk(String jenisProduk) {
+        this.jenisProduk = jenisProduk;
     }
+
 }

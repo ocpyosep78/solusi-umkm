@@ -16,7 +16,7 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
     
     private static final String SQL_GETALL_KATEGORI = "SELECT * FROM `kategori_umkm`";
     private static final String SQL_GETKATEGORI_BYID = "SELECT * FROM `kategori_umkm` where id=?";
-    private static final String SQL_DELETE_KATEGORI_BYID = "DELETE FROM `kategori_umkm` where ID=?";
+    private static final String SQL_DELETE_KATEGORI_BYID = "DELETE FROM `kategori_umkm` where id=?";
     private static final String SQL_UPDATE_KATEGORI = "UPDATE `KATEGORI_UMKM` SET `KATEGORI_UMKM` = ? WHERE "
             + "ID_KATEGORI_UMKM = ?";
     private static final String SQL_INSERT_KATEGORI = "INSERT INTO `KATEGORI_UMKM`(`KATEGORI_UMKM`)VALUES(?);";

@@ -7,7 +7,7 @@ public interface KategoriUmkmDao {
     
     public List<KategoriUmkm> getAllKategoriUmkm();
     
-    public void saveKategoriUmkm(KategoriUmkm kategoriUMKM);
+    public void saveKategoriUmkm(KategoriUmkm kategoriUmkm);
     
     public KategoriUmkm getKategoriUmkmById(Integer id);
     
