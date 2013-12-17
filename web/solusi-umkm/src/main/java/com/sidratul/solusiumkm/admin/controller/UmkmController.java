@@ -19,7 +19,7 @@ public class UmkmController {
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
-    @RequestMapping("/asosiasi")
+    @RequestMapping("/index")
     public void tampilUmkm(ModelMap modelMap){
         List<Umkm> umkms = umkmDao.getAllUmkm();
         modelMap.addAttribute("listUmkm", umkms);
@@ -43,7 +43,7 @@ public class UmkmController {
     public String prosesInputUmkm(@ModelAttribute Umkm umkm ,
     ModelMap modelMap){
         umkmDao.saveUmkm(umkm);
-        return "redirect:asosiasi";
+        return "redirect:index";
     }
     
     
@@ -51,7 +51,7 @@ public class UmkmController {
     public String hapusUmkm(@RequestParam("id") Integer id,
     ModelMap modelMap){
         umkmDao.deleteUmkm(id);
-        return "redirect:asosiasi";
+        return "redirect:index";
     }
     
     
@@ -69,8 +69,6 @@ public class UmkmController {
         if(kategoriUmkm== null){
             kategoriUmkm = new KategoriUmkm();
         }
-        
-        List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
         
         modelMap.addAttribute("kategoriUmkm",kategoriUmkm);
     }
