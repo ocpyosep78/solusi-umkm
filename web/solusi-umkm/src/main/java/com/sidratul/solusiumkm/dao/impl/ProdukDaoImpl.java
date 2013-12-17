@@ -1,7 +1,10 @@
 package com.sidratul.solusiumkm.dao.impl;
 
+import com.sidratul.solusiumkm.dao.FotoDao;
+import com.sidratul.solusiumkm.dao.KategoriProdukDao;
 import com.sidratul.solusiumkm.dao.ProdukDao;
 import com.sidratul.solusiumkm.dao.UmkmDao;
+import com.sidratul.solusiumkm.model.KategoriProduk;
 import com.sidratul.solusiumkm.model.Produk;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,15 +19,19 @@ import org.springframework.stereotype.Repository;
 @Repository("ProdukDao")
 public class ProdukDaoImpl implements ProdukDao{
 
-    private static final String SQL_GETALL_PRODUK="SELECT * FROM `PRODUK`";
-    private static final String SQL_GETPRODUK_BYID="SELECT * FROM `PRODUK` WHERE ID_PRODUK=?";
-    private static final String SQL_DELETE_PRODUK="DELETE FROM `PRODUK` WHERE ID_PRODUK=?";
-    private static final String SQL_UPDATE_PRODUK="UPDATE `PRODUK` SET `ID_UMKM` = ?, `KODE_PRODUK` = ?, `NAMA_PRODUK` = ?, `HARGA` = ?, `DESKRIPSI` = ? "
-            + "WHERE `ID_PRODUK` = ?";
-    private static final String SQL_INSERT_PRODUK="INSERT INTO `solusi-umkm`.`PRODUK`"
-            + "(`ID_UMKM`,`KODE_PRODUK`,`NAMA_PRODUK`,`HARGA`,`DESKRIPSI`)VALUES(?,?,?,?,?);";
+    private static final String SQL_GETALL_PRODUK="SELECT * FROM produk";
+    private static final String SQL_GETPRODUK_BYID="SELECT * FROM produk WHERE id=?";
+    private static final String SQL_DELETE_PRODUK="DELETE FROM produk WHERE id=?";
+    private static final String SQL_UPDATE_PRODUK="UPDATE `produk` SET `id_umkm` = ?,`id_kategori_produk` = ?,"
+            + "`kode_produk` = ?,`nama_produk` = ?,`harga` = ?,`keterangan_produk` = ?,`tgl_update_produk` = ? "
+            + "WHERE `id` = ?";
+    private static final String SQL_INSERT_PRODUK="INSERT INTO `produk`"
+            + "(`id_umkm`,`id_kategori_produk`,`kode_produk`,`nama_produk`,`harga`,`keterangan_produk`,`tgl_update_produk`)"
+            + "VALUES(?,?,?,?,?,?,?)";
 
     @Autowired private UmkmDao umkmDao;
+    @Autowired private KategoriProdukDao kategoriProdukDao;
+    @Autowired private FotoDao fotoDao;
     
     private JdbcTemplate jdbcTemplate;
     
@@ -32,12 +39,15 @@ public class ProdukDaoImpl implements ProdukDao{
 
         public Produk mapRow(ResultSet rs, int i) throws SQLException {
             Produk produk = new Produk();
-            produk.setIdProduk(rs.getInt("ID_PRODUK"));
-            produk.setUmkm(umkmDao.getUmkmById(rs.getInt("ID_UMKM")));
-            produk.setKodeProduk(rs.getString("KODE_PRODUK"));
-            produk.setNamaProduk(rs.getString("NAMA_PRODUK"));
-            produk.setHarga(rs.getBigDecimal("HARGA"));
-            produk.setDeskripsi(rs.getString("DESKRIPSI"));
+            produk.setId(rs.getInt("id"));
+            produk.setUmkm(umkmDao.getUmkmById(rs.getInt("id_umkm")));
+            produk.setKategoriProduk(kategoriProdukDao.getKategoriProdukById(rs.getInt("id_kategori_produk")));
+            produk.setKodeProduk(rs.getString("kode_produk"));
+            produk.setNamaProduk(rs.getString("nama_produks"));
+            produk.setHarga(rs.getBigDecimal("harga"));
+            produk.setKeteranganProduk(rs.getString("keterangan_produk"));
+            produk.setTglUpdateProduk(rs.getDate("tgl_update_produk"));
+            produk.setLfoto(fotoDao.getAllFotoByIdProduk(rs.getInt("id")));
             
             return produk;
         }
@@ -55,22 +65,26 @@ public class ProdukDaoImpl implements ProdukDao{
     }
 
     public void saveProduk(Produk produk) throws DuplicateKeyException {
-        if(produk.getIdProduk()!=null){
+        if(produk.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_PRODUK, new Object[]{
-                produk.getUmkm().getIdUmkm(),
+                produk.getUmkm().getId(),
+                produk.getKategoriProduk().getId(),
                 produk.getKodeProduk(),
                 produk.getNamaProduk(),
                 produk.getHarga(),
-                produk.getDeskripsi(),
-                produk.getIdProduk()
+                produk.getKeteranganProduk(),
+                produk.getTglUpdateProduk(),
+                produk.getId()
             });
         }else{
             jdbcTemplate.update(SQL_INSERT_PRODUK, new Object[]{
-                produk.getUmkm().getIdUmkm(),
+                produk.getUmkm().getId(),
+                produk.getKategoriProduk().getId(),
                 produk.getKodeProduk(),
                 produk.getNamaProduk(),
                 produk.getHarga(),
-                produk.getDeskripsi()
+                produk.getKeteranganProduk(),
+                produk.getTglUpdateProduk()
             });
         }
     }
