@@ -1,0 +1,77 @@
+use `solusi-umkm`;
+
+create table `kategori_umkm`(
+	id int not null auto_increment primary key,
+	jenis_umkm varchar(45) not null
+);
+
+create table `umkm`(
+	id int auto_increment not null primary key,
+	kode_umkm varchar(45) not null unique,
+	nama_umkm varchar(45) not null,
+	pemilik_umkm varchar(45) not null,
+	id_kategori_umkm int not null,
+	keterangan_umkm text,	
+	visi text,
+	misi text,
+	alamat text,
+	no_telpon varchar(25),
+	email varchar(100),
+	foreign key (id_kategori_umkm) references kategori_umkm(id)
+);
+
+create table kategori_produk(
+	id int not null primary key auto_increment,
+	jenis_produk varchar(45) not null
+);
+
+create table produk(
+	id int not null primary key,
+	id_umkm int not null,
+	id_kategori_produk int not null,
+	kode_produk varchar(45) ,
+	nama_produk varchar(45) not null,
+	harga decimal(10,2) not null,
+	keterangan_produk text,
+	tgl_update_produk datetime,
+	foreign key(id_umkm) references umkm(id)
+	foreign key(id_produk) references produk(id)
+);
+
+create table foto(
+	id int not null auto_increment primary key,
+	nama_file text not null,
+	tgl_upload datetime,
+	keterangan_foto text
+);
+
+create table distibusi_foto(
+	id int not null primary key auto_increment,
+	id_produk int not null,
+	id_foto int not null,
+	foreign key(id_produk) references produk(id),
+	foreign key(id_foto) references foto(id)
+);
+
+create table `user`(
+	id int primary key not null auto_increment,
+	username varchar(45) unique not null unique,
+	id_umkm int null,
+	foreign key(id_umkm) references umkm(id)
+);
+
+create table kategori_status_user(
+	id int primary key not null auto_increment,
+	jenis_kategori_user varchar(45) not null
+);
+
+create table `status_user` (
+    id int primary key not null auto_increment,
+    id_kategori_status_user int not null,
+    id_user int not null,
+    password_user varchar(45) not null,
+    nama varchar(45) not null,
+    no_telpon varchar(24),
+    foreign key (id_kategori_status_user) references kategori_status_user (id),
+    foreign key (id_user) references user (id)
+);
