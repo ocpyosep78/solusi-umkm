@@ -1,6 +1,8 @@
 package com.sidratul.solusiumkm.admin.controller;
 
+import com.sidratul.solusiumkm.dao.KategoriUmkmDao;
 import com.sidratul.solusiumkm.dao.UmkmDao;
+import com.sidratul.solusiumkm.model.KategoriUmkm;
 import com.sidratul.solusiumkm.model.Umkm;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/umkm")
 public class UmkmController {
     @Autowired private UmkmDao umkmDao;
+    @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
-    @RequestMapping("/lihat")
+    @RequestMapping("/asosiasi")
     public void tampilUmkm(ModelMap modelMap){
         List<Umkm> umkms = umkmDao.getAllUmkm();
         modelMap.addAttribute("listUmkm", umkms);
     }
     
-    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "/input-umkm",method = RequestMethod.GET)
     public void formInputUmkm(@RequestParam(value = "id",required = false) Integer id,
     ModelMap modelMap){
         Umkm umkm = umkmDao.getUmkmById(id);
@@ -30,21 +33,59 @@ public class UmkmController {
             umkm= new Umkm();
         }
         
+        List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
+        
         modelMap.addAttribute("umkm", umkm);
+        modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
     }
     
-    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/input-umkm",method = RequestMethod.POST)
     public String prosesInputUmkm(@ModelAttribute Umkm umkm ,
     ModelMap modelMap){
         umkmDao.saveUmkm(umkm);
-        return "redirect:lihat";
+        return "redirect:asosiasi";
     }
     
     
-    @RequestMapping("/hapus")
-    public String hapausUmkm(@RequestParam("id") Integer id,
+    @RequestMapping("/hapus-umkm")
+    public String hapusUmkm(@RequestParam("id") Integer id,
     ModelMap modelMap){
         umkmDao.deleteUmkm(id);
-        return "redirect:lihat";
+        return "redirect:asosiasi";
+    }
+    
+    
+//    untuk kategori umkm
+    @RequestMapping("/kategori")
+    public void tampilKategoriUmkm(ModelMap modelMap){
+        List<KategoriUmkm> kategoriUmkms = kategoriUmkmDao.getAllKategoriUmkm();
+        modelMap.addAttribute("listKategoriUmkm", kategoriUmkms);
+    }
+    
+    @RequestMapping(value = "/input-kategori-umkm",method = RequestMethod.GET)
+    public void formInputKategoriUmkm(@RequestParam(value = "id",required = false) Integer id,
+    ModelMap modelMap){
+        KategoriUmkm kategoriUmkm = kategoriUmkmDao.getKategoriUmkmById(id);
+        if(kategoriUmkm== null){
+            kategoriUmkm = new KategoriUmkm();
+        }
+        
+        List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
+        
+        modelMap.addAttribute("kategoriUmkm",kategoriUmkm);
+    }
+    
+    @RequestMapping(value = "/input-kategori-umkm",method = RequestMethod.POST)
+    public String prosesInputKategoriUmkm(@ModelAttribute KategoriUmkm kategoriUmkm ,
+    ModelMap modelMap){
+        kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
+        return "redirect:kategori";
+    }
+    
+    @RequestMapping("/hapus-kategori")
+    public String hapusKategoriUmkm(@RequestParam("id") Integer id,
+    ModelMap modelMap){
+        kategoriUmkmDao.deleteKategoriUmkm(id);
+        return "redirect:kategori";
     }
 }
