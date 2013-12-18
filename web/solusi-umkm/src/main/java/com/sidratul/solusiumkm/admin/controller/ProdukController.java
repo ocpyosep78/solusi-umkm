@@ -60,7 +60,7 @@ public class ProdukController {
         modelMap.addAttribute("listKategoriProduk", kategoriProduks);
     }
     
-    @RequestMapping(value = "/input-kategori-produk",method = RequestMethod.GET)
+    @RequestMapping(value = "/input-kategori",method = RequestMethod.GET)
     public void formInputKategoriProduk(@RequestParam(value = "id",required = false) Integer id,
     ModelMap modelMap){
         KategoriProduk kategoriProduk = kategoriProdukDao.getKategoriProdukById(id);
@@ -71,7 +71,7 @@ public class ProdukController {
         modelMap.addAttribute("kategoriProduk", kategoriProduk);
     }
     
-    @RequestMapping(value = "/input-kategori-produk",method = RequestMethod.POST)
+    @RequestMapping(value = "/input-kategori",method = RequestMethod.POST)
     public String prosesInputKategoriProduk(@ModelAttribute KategoriProduk kategoriProduk,
     ModelMap modelMap){
         kategoriProdukDao.saveKategoriProduk(kategoriProduk);

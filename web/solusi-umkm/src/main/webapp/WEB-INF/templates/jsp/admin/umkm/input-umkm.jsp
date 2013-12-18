@@ -4,7 +4,6 @@
     Author     : sidratul
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,9 +15,17 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <h2>UMKM <small>Input</small></h2>
+            <c:choose>
+                <c:when test="${empty umkm.id}">
+                    <c:set var="ket" value="Input"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="ket" value="Edit"/>
+                </c:otherwise>
+            </c:choose>
+            <h2>UMKM <small>${ket}</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> Input anggota asosiasi UMKM</li>
+              <li class="active"><i class="fa fa-download"></i> ${ket} anggota asosiasi UMKM</li>
             </ol>
         </div>
         

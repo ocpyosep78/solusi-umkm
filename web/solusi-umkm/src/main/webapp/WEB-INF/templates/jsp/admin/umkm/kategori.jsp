@@ -16,11 +16,11 @@
         <div class="col-lg-12">
             <h2>UMKM <small>Index</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Daftar anggota asosiasi UMKM</li>
+              <li class="active"><i class="fa fa-qrcode"></i> Daftar anggota asosiasi UMKM</li>
             </ol>
         </div>
         <c:choose>
-            <c:when test="${empty listUmkm}">
+            <c:when test="${empty listKategoriUmkm}">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                       <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
@@ -28,40 +28,22 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="table-responsive">
+                <div class="table-responsive col-lg-5">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Kode</th>
-                          <th>Nama</th>
-                          <th>Pemilik</th>
                           <th>Kategori</th>
-                          <th>keterangan</th>
-                          <th>visi</th>
-                          <th>misi</th>
-                          <th>alamat</th>
-                          <th>Telepon</th>
-                          <th>Email</th>
                           <th colspan="2"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach items="${listUmkm}" var="lu" varStatus="i" >
+                        <c:forEach items="${listKategoriUmkm}" var="lk" varStatus="i" >
                           <tr>
                               <td>${i.count}</td>
-                              <td>${lu.kodeUmkm}</td>
-                              <td>${lu.namaUmkm}</td>
-                              <td>${lu.pemilikUmkm}</td>
-                              <td>${lu.kategoriUmkm.jenisUmkm}</td>
-                              <td>${lu.keteranganUmkm}</td>
-                              <td>${lu.visi}</td>
-                              <td>${lu.misi}</td>
-                              <td>${lu.alamat}</td>
-                              <td>${lu.noTelp}</td>
-                              <td>${lu.email}</td>
-                              <td><a title="edit" alt="edit" href="input-umkm?id=${lu.id}"><i class="fa fa-edit"></i></a></td>
-                              <td><a title="hapus" alt="hapus" href="hapus-umkm?id=${lu.id}"><i class="fa fa-trash-o"></i></a></td>
+                              <td>${lk.jenisUmkm}</td>
+                              <td><a title="edit" alt="edit" href="input-kategori?id=${lk.id}"><i class="fa fa-edit"></i></a></td>
+                              <td><a title="hapus" alt="hapus" href="hapus-kategori?id=${lk.id}"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>
                       </tbody>

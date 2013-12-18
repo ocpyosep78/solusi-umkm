@@ -62,7 +62,7 @@ public class UmkmController {
         modelMap.addAttribute("listKategoriUmkm", kategoriUmkms);
     }
     
-    @RequestMapping(value = "/input-kategori-umkm",method = RequestMethod.GET)
+    @RequestMapping(value = "/input-kategori",method = RequestMethod.GET)
     public void formInputKategoriUmkm(@RequestParam(value = "id",required = false) Integer id,
     ModelMap modelMap){
         KategoriUmkm kategoriUmkm = kategoriUmkmDao.getKategoriUmkmById(id);
@@ -73,7 +73,7 @@ public class UmkmController {
         modelMap.addAttribute("kategoriUmkm",kategoriUmkm);
     }
     
-    @RequestMapping(value = "/input-kategori-umkm",method = RequestMethod.POST)
+    @RequestMapping(value = "/input-kategori",method = RequestMethod.POST)
     public String prosesInputKategoriUmkm(@ModelAttribute KategoriUmkm kategoriUmkm ,
     ModelMap modelMap){
         kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
