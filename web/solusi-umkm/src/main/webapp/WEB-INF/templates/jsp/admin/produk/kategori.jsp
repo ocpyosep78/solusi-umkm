@@ -14,9 +14,9 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <h2>UMKM <small>Index</small></h2>
+            <h2>Produk <small>kategori</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-qrcode"></i> Daftar anggota asosiasi UMKM</li>
+              <li class="active"><i class="fa fa-qrcode"></i> Kategori produk</li>
             </ol>
         </div>
         <c:choose>

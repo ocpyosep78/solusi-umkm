@@ -25,6 +25,13 @@ public class UmkmController {
         modelMap.addAttribute("listUmkm", umkms);
     }
     
+    @RequestMapping("/detail")
+    public void detailUmkm(@RequestParam("id") Integer id,
+    ModelMap modelMap){
+        Umkm umkm = umkmDao.getUmkmById(id);
+        modelMap.addAttribute("umkm", umkm);
+    }
+    
     @RequestMapping(value = "/input-umkm",method = RequestMethod.GET)
     public void formInputUmkm(@RequestParam(value = "id",required = false) Integer id,
     ModelMap modelMap){

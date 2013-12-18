@@ -24,10 +24,10 @@
                     <c:set var="ket" value="Edit"/>
                 </c:otherwise>
             </c:choose>
-            <h2>UMKM <small> ${ket} Kategori</small>
+            <h2>Produk <small> ${ket} Kategori</small>
             </h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} kategori Produk</li>
+              <li class="active"><i class="fa fa-download"></i> ${ket} kategori produk</li>
             </ol>
         </div>
         
