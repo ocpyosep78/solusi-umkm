@@ -28,7 +28,7 @@ public class KategoriProdukDaoImpl implements KategoriProdukDao{
         public KategoriProduk mapRow(ResultSet rs, int i) throws SQLException {
             KategoriProduk kategoriProduk= new KategoriProduk();
             kategoriProduk.setId(rs.getInt("id"));
-            kategoriProduk.setJenisProduk(rs.getString("jenis_kategori_produk"));
+            kategoriProduk.setJenisProduk(rs.getString("jenis_produk"));
             
             return kategoriProduk;
         }

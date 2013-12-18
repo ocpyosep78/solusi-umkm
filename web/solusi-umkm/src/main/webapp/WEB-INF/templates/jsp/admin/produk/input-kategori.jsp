@@ -17,7 +17,7 @@
     <body>
         <div class="col-lg-12">
             <c:choose>
-                <c:when test="${empty kategoriUmkm.id}">
+                <c:when test="${empty kategoriProduk.id}">
                     <c:set var="ket" value="Input"/>
                 </c:when>
                 <c:otherwise>
@@ -27,16 +27,16 @@
             <h2>UMKM <small> ${ket} Kategori</small>
             </h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} kategori UMKM</li>
+              <li class="active"><i class="fa fa-download"></i> ${ket} kategori Produk</li>
             </ol>
         </div>
         
-        <sf:form class="form-horizontal" role="form" modelAttribute="kategoriUmkm" action="input-kategori">
+        <sf:form class="form-horizontal" role="form" modelAttribute="kategoriProduk" action="input-kategori">
             <sf:hidden path="id"/>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Jenis UMKM</label>
+              <label class="col-sm-2 control-label">Jenis Kategori</label>
               <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM"/>
+                  <sf:input type="text" class="form-control" path="jenisProduk" placeholder="jenis kategori"/>
               </div>
             </div>
             

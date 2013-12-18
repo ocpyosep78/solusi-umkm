@@ -43,7 +43,7 @@ public class ProdukDaoImpl implements ProdukDao{
             produk.setUmkm(umkmDao.getUmkmById(rs.getInt("id_umkm")));
             produk.setKategoriProduk(kategoriProdukDao.getKategoriProdukById(rs.getInt("id_kategori_produk")));
             produk.setKodeProduk(rs.getString("kode_produk"));
-            produk.setNamaProduk(rs.getString("nama_produks"));
+            produk.setNamaProduk(rs.getString("nama_produk"));
             produk.setHarga(rs.getBigDecimal("harga"));
             produk.setKeteranganProduk(rs.getString("keterangan_produk"));
             produk.setTglUpdateProduk(rs.getDate("tgl_update_produk"));

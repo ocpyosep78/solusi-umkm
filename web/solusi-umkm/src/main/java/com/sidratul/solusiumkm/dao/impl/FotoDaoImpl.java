@@ -32,9 +32,9 @@ public class FotoDaoImpl implements FotoDao{
             Foto foto = new Foto();
             
             foto.setId(rs.getInt("id"));
-            foto.setNamaFile(rs.getString("namaFile"));
+            foto.setNamaFile(rs.getString("nama_file"));
             foto.setKeteranganFoto(rs.getString("keterangan_foto"));
-            foto.setTglUpload(rs.getDate("tglUpload"));
+            foto.setTglUpload(rs.getDate("tgl_upload"));
             return foto;
         }
     
