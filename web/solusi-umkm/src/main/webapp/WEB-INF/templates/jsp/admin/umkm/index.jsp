@@ -12,7 +12,31 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        
+        <h2>DAFTAR UMKM</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kode</th>
+                  <th>Nama</th>
+                  <th>Pemilik</th>
+                  <th>Kategori</th>
+                  <th>keterangan</th>
+                  <th>visi</th>
+                  <th>misi</th>
+                  <th>alamat</th>
+                  <th>Telpon</th>
+                  <th>Email</th>
+                  <th colspan="2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      
+                  </tr>
+              </tbody>
+            </table>
+        </div>
     </body>
 </html>
