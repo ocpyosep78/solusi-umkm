@@ -4,7 +4,9 @@
     Author     : sidratul
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +14,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h2>DAFTAR UMKM</h2>
+        <div class="col-lg-12">
+            <h2>UMKM <small>Index</small></h2>
+            <ol class="breadcrumb">
+              <li class="active"><i class="fa fa-users"></i> Daftar anggota asosiasi UMKM</li>
+            </ol>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -32,9 +39,23 @@
                 </tr>
               </thead>
               <tbody>
+                <c:forEach items="${listUmkm}" var="lu" varStatus="i" >
                   <tr>
-                      
+                      <td>${i.count}</td>
+                      <td>${lu.kodeUmkm}</td>
+                      <td>${lu.namaUmkm}</td>
+                      <td>${lu.pemilikUmkm}</td>
+                      <td>${lu.kategoriUmkm.jenisUmkm}</td>
+                      <td>${lu.keteranganUmkm}</td>
+                      <td>${lu.visi}</td>
+                      <td>${lu.misi}</td>
+                      <td>${lu.alamat}</td>
+                      <td>${lu.noTelp}</td>
+                      <td>${lu.email}</td>
+                      <td><a title="edit" alt="edit" href="input-umkm?id=${lu.id}"><i class="fa fa-edit"></i></a></td>
+                      <td><a title="hapus" alt="hapus" href="hapus-umkm?id=${lu.id}"><i class="fa fa-trash-o"></i></a></td>
                   </tr>
+                </c:forEach>
               </tbody>
             </table>
         </div>

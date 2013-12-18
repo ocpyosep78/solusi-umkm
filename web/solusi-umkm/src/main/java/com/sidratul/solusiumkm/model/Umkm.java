@@ -6,6 +6,12 @@ public class Umkm {
     private String namaUmkm;
     private String pemilikUmkm;
     private KategoriUmkm kategoriUmkm;
+    private String keteranganUmkm;
+    private String visi;
+    private String misi;
+    private String alamat;
+    private String noTelp;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -94,11 +100,6 @@ public class Umkm {
     public void setEmail(String email) {
         this.email = email;
     }
-    private String keteranganUmkm;
-    private String visi;
-    private String misi;
-    private String alamat;
-    private String noTelp;
-    private String email;
+    
 
 }
