@@ -33,7 +33,7 @@
                   <th>visi</th>
                   <th>misi</th>
                   <th>alamat</th>
-                  <th>Telpon</th>
+                  <th>Telepon</th>
                   <th>Email</th>
                   <th colspan="2"></th>
                 </tr>

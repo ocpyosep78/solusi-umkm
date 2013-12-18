@@ -23,8 +23,8 @@ public class UmkmDaoImpl implements UmkmDao{
             + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,`id_kategori_umkm` = ?,"
             + "`keterangan_umkm` = ?,`visi` = ?,`misi` = ?,`alamat` = ?,`no_telpon` = ?,`email` = ? "
             + "WHERE `id` = ?";
-    private static final String SQL_INSERT_UMKM="INSERT INTO `solusi-umkm`.`umkm`(`kode_umkm`,`nama_umkm`,`pemilik_umkm`,`id_kategori_umkm`,`keterangan_umkm`,`visi`,`misi`,`alamat`,`no_telpon`,`email`)"
-            + "VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_UMKM="INSERT INTO `umkm`(`kode_umkm`,`nama_umkm`,`pemilik_umkm`,`id_kategori_umkm`,`keterangan_umkm`,`visi`,`misi`,`alamat`,`no_telpon`,`email`)"
+            + "VALUES(?,?,?,?,?,?,?,?,?,?)";
     
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
