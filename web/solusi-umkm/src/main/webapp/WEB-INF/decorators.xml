@@ -4,7 +4,7 @@
     <pattern>/login.jsp</pattern>
   </excludes>
  
-  <decorator name="template-dasar" page="layout.jsp">
+  <decorator name="template-dasar" page="layout-admin.jsp">
     <pattern>/*</pattern>
   </decorator>
 </decorators>
