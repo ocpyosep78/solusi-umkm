@@ -16,10 +16,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import sun.security.provider.MD5;
 
 @Controller
 @RequestMapping("/produk")
@@ -43,6 +39,13 @@ public class ProdukController {
     public void tampilUmkm(ModelMap modelMap){
         List<Produk> produks = produkDao.getAllProduk();
         modelMap.addAttribute("listProduk",produks);
+    }
+    
+    @RequestMapping("/detail")
+    public void detailProduk(@RequestParam("id") Integer id,
+    ModelMap modelMap){
+        Produk produk = produkDao.getProdukById(id);
+        modelMap.addAttribute("produk", produk);
     }
     
     @RequestMapping(value = "/input-produk",method = RequestMethod.GET)
