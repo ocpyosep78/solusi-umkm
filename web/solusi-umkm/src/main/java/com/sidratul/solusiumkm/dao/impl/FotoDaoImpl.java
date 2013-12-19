@@ -17,12 +17,17 @@ public class FotoDaoImpl implements FotoDao{
     
     private static final String SQL_GETALLFOTO_BYIDPRODUK="select f.* from foto f, distribusi_foto d "
             + "where d.id_produk=? and d.id_foto = f.id";
-    private static final String SQL_GETFOTO_BYID="SELECT * FROM Foto WHERE id=?";
-    private static final String SQL_DELETE_FOTO="DELETE FROM FOTO WHERE id=?";
+    private static final String SQL_GETFOTO_BYID="SELECT * FROM foto WHERE id=?";
+    private static final String SQL_GETFOTO_NAMAFILE="SELECT * FROM foto WHERE nama_file=?";
+    private static final String SQL_DELETE_FOTO="DELETE FROM foto WHERE id=?";
     private static final String SQL_UPDATE_FOTO="UPDATE `foto` SET "
             + "`nama_file` = ?, `tgl_upload` = ?, `keterangan_foto` = ? "
             + "WHERE `id` = ?";
-    private static final String SQL_INSERT_FOTO="INSERT INTO `solusi-umkm`.`foto`(`nama_file`,`tgl_upload`,`keterangan_foto`)VALUES(?,?,?)";
+    private static final String SQL_INSERT_FOTO="INSERT INTO `foto`(`nama_file`,`tgl_upload`,`keterangan_foto`)VALUES(?,?,?)";
+    
+    private static final String SQL_INSERT_DISTRIBUSIFOTO="INSERT INTO `distribusi_foto`(`id_produk`,`id_foto`)VALUES(?,?)";
+    
+    
     
     private JdbcTemplate jdbcTemplate;
 
@@ -75,8 +80,17 @@ public class FotoDaoImpl implements FotoDao{
             return foto;
         }
     }
+    
+    public Foto getFotoByNamaFile(String namaFile){
+        Foto foto = jdbcTemplate.queryForObject(SQL_GETFOTO_NAMAFILE, new FotoParameterizedRowMapper(), namaFile);
+        return foto;
+    }
 
     public void DeleteFotoByid(Integer id) {
         jdbcTemplate.update(SQL_DELETE_FOTO,id);
+    }
+    
+    public void saveDistribusiFoto(Integer idProduk, Integer idFoto) {
+        jdbcTemplate.update(SQL_INSERT_DISTRIBUSIFOTO, new Object[]{idProduk,idFoto});
     }
 }

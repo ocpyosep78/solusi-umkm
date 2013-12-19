@@ -47,7 +47,7 @@ public class ProdukDaoImpl implements ProdukDao{
             produk.setHarga(rs.getBigDecimal("harga"));
             produk.setKeteranganProduk(rs.getString("keterangan_produk"));
             produk.setTglUpdateProduk(rs.getDate("tgl_update_produk"));
-            produk.setLfoto(fotoDao.getAllFotoByIdProduk(rs.getInt("id")));
+            produk.setFotos(fotoDao.getAllFotoByIdProduk(rs.getInt("id")));
             
             return produk;
         }

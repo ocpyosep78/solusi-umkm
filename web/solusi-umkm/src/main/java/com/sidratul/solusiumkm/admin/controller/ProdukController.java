@@ -1,21 +1,35 @@
 package com.sidratul.solusiumkm.admin.controller;
 
+import com.sidratul.solusiumkm.dao.FotoDao;
 import com.sidratul.solusiumkm.dao.KategoriProdukDao;
 import com.sidratul.solusiumkm.dao.ProdukDao;
 import com.sidratul.solusiumkm.dao.UmkmDao;
+import com.sidratul.solusiumkm.model.Foto;
 import com.sidratul.solusiumkm.model.KategoriProduk;
 import com.sidratul.solusiumkm.model.Produk;
 import com.sidratul.solusiumkm.model.Umkm;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import sun.security.provider.MD5;
 
 @Controller
 @RequestMapping("/produk")
@@ -23,6 +37,7 @@ public class ProdukController {
     @Autowired private ProdukDao produkDao;
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;
+    @Autowired private FotoDao fotoDao;
     
     @RequestMapping("/index")
     public void tampilUmkm(ModelMap modelMap){
@@ -49,16 +64,34 @@ public class ProdukController {
     
     @RequestMapping(value = "/input-produk",method = RequestMethod.POST)
     public String prosesInputProduk(@ModelAttribute Produk produk,
-    @RequestParam(value = "foto",required = false) List<MultipartFile> files,
-    ModelMap modelMap){
+    ModelMap modelMap,
+    HttpServletRequest request) throws FileNotFoundException, IOException{
         produk.setTglUpdateProduk(new Date());
+        
+        List<MultipartFile> files = produk.getFiles();
         
         if(files!= null && files.size() > 0) {
             for (MultipartFile multipartFile : files) {
  
-                String fileName = multipartFile.getOriginalFilename();
-                System.out.println("nama file :"+fileName);
- 
+                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyyssmmHH");
+                String s = format.format(new Date());
+                        
+                String namaFile = StringUtils.trimAllWhitespace(s+produk.getNamaProduk()+files.indexOf(multipartFile)+multipartFile.getOriginalFilename());
+                //System.out.println("file name : "+fileName);
+                
+                Foto foto = new Foto();
+                foto.setNamaFile(namaFile);
+                foto.setTglUpload(new Date());
+                
+                File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
+                OutputStream out = new FileOutputStream(localFile);
+                out.write(multipartFile.getBytes());
+                out.close();
+                
+                fotoDao.saveFoto(foto);
+                foto = fotoDao.getFotoByNamaFile(namaFile);
+                fotoDao.saveDistribusiFoto(produk.getUmkm().getId(), foto.getId());
+                
             }
         }
         

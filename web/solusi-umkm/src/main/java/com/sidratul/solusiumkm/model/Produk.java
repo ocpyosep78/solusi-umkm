@@ -3,6 +3,7 @@ package com.sidratul.solusiumkm.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Produk {
     private Integer id;
@@ -13,7 +14,16 @@ public class Produk {
     private BigDecimal harga;
     private String keteranganProduk;
     private Date tglUpdateProduk;
-    private List<Foto> lfoto;
+    private List<Foto> fotos;
+    private List<MultipartFile> files;
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
+    }
 
     public Integer getId() {
         return id;
@@ -79,12 +89,12 @@ public class Produk {
         this.tglUpdateProduk = tglUpdateProduk;
     }
 
-    public List<Foto> getLfoto() {
-        return lfoto;
+    public List<Foto> getFotos() {
+        return fotos;
     }
 
-    public void setLfoto(List<Foto> lfoto) {
-        this.lfoto = lfoto;
+    public void setFotos(List<Foto> fotos) {
+        this.fotos = fotos;
     }
     
 }

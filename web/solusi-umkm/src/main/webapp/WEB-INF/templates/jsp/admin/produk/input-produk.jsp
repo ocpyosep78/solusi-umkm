@@ -29,7 +29,7 @@
             </ol>
         </div>
         
-        <sf:form class="form-horizontal" role="form" modelAttribute="produk" action="input-produk">
+        <sf:form class="form-horizontal" role="form" modelAttribute="produk" action="input-produk" enctype="multipart/form-data">
             <sf:hidden path="id"/>
             <div class="form-group">
               <label class="col-sm-2 control-label">Kode Produk</label>
@@ -85,7 +85,7 @@
               <label class="col-sm-2 control-label">Foto</label>
               <div class="col-xs-4" id="btnfile">
                   <div class="input-group groupbtnfile">
-                    <input type="file" class="btn" name="foto[0]" placeholder="foto"/>
+                    <input type="file" class="btn" name="files[0]" placeholder="foto"  accept="image/*"/>
                     <span class="input-group-btn"><i class="fa fa-plus btn" id="tambahbtn"></i></span>
                   </div>
               </div>
@@ -105,7 +105,7 @@
                     var fileIndex = $('#btnfile').children().length;
                     $('#hapusbtn').remove();       
                     $('#btnfile').append('<div class="input-group groupbtnfile">'+
-                            '<input type="file" class="btn" name="foto['+fileIndex+']" placeholder="foto"/>'+
+                            '<input type="file" class="btn" name="files['+fileIndex+']" placeholder="foto"  accept="image/*"/>'+
                             '<span class="input-group-btn" ><i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i></span></div>');
                 });
                 
