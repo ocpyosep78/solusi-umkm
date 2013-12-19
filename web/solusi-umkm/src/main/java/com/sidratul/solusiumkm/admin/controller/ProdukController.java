@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/produk")
@@ -48,8 +49,18 @@ public class ProdukController {
     
     @RequestMapping(value = "/input-produk",method = RequestMethod.POST)
     public String prosesInputProduk(@ModelAttribute Produk produk,
+    @RequestParam(value = "foto",required = false) List<MultipartFile> files,
     ModelMap modelMap){
         produk.setTglUpdateProduk(new Date());
+        
+        if(files!= null && files.size() > 0) {
+            for (MultipartFile multipartFile : files) {
+ 
+                String fileName = multipartFile.getOriginalFilename();
+                System.out.println("nama file :"+fileName);
+ 
+            }
+        }
         
         produkDao.saveProduk(produk);
         return "redirect:index";

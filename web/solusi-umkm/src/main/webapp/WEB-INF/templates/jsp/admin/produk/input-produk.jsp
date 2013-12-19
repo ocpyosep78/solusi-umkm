@@ -80,6 +80,16 @@
                   <sf:textarea class="form-control" rows="2" path="keteranganProduk" placeholder="keterangan produk"/>
               </div>
             </div>
+              
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Foto</label>
+              <div class="col-xs-4" id="btnfile">
+                  <div class="input-group groupbtnfile">
+                    <input type="file" class="btn" name="foto[0]" placeholder="foto"/>
+                    <span class="input-group-btn"><i class="fa fa-plus btn" id="tambahbtn"></i></span>
+                  </div>
+              </div>
+            </div>
             <!--button-->
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
@@ -88,5 +98,28 @@
               </div>
             </div>
         </sf:form>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#tambahbtn').click(function() {
+                    var fileIndex = $('#btnfile').children().length;
+                    $('#hapusbtn').remove();       
+                    $('#btnfile').append('<div class="input-group groupbtnfile">'+
+                            '<input type="file" class="btn" name="foto['+fileIndex+']" placeholder="foto"/>'+
+                            '<span class="input-group-btn" ><i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i></span></div>');
+                });
+                
+            });
+            
+            function hapusbtn(ob){
+                $(ob.parentNode.parentNode).remove();
+                    if($('#btnfile .groupbtnfile').length !=1){
+                        $("#btnfile .groupbtnfile:last-child span").append('<i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i>');
+                    }
+                }
+            
+            
+            
+        </script>
     </body>
 </html>
