@@ -25,7 +25,7 @@
             </c:choose>
             <h2>Produk <small>${ket}</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} Produk</li>
+              <li class="active"><i class="fa fa-download"></i> ${ket} produk dan input foto</li>
             </ol>
         </div>
         
@@ -82,7 +82,7 @@
             </div>
               
             <div class="form-group">
-              <label class="col-sm-2 control-label">Foto</label>
+              <label class="col-sm-2 control-label">Input Foto</label>
               <div class="col-xs-4" id="btnfile">
                   <div class="input-group groupbtnfile">
                     <input type="file" class="btn" name="files[0]" placeholder="foto"  accept="image/*"/>

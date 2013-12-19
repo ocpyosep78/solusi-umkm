@@ -12,4 +12,12 @@ public interface ProdukDao {
     public Produk getProdukById(Integer id);
     
     public void deleteProduk(Integer id);
+    
+    public void deleteFotoById(Integer id);
+    
+    //public void deleteFotoByIdProduk(Integer idProduk);
+    
+    public void deleteDistribusiFotoByIdFoto(Integer idFoto);
+    
+    public void deleteDistribusiFotoByIdProduk(Integer idProduk);
 }

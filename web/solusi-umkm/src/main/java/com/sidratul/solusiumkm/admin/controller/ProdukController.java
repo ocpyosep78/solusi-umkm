@@ -73,27 +73,31 @@ public class ProdukController {
         
         List<MultipartFile> files = produk.getFiles();
         
+        //System.out.println("isi :"+files.size());
+        
         if(files!= null && files.size() > 0) {
             for (MultipartFile multipartFile : files) {
- 
-                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyyssmmHH");
-                String s = format.format(new Date());
-                        
-                String namaFile = StringUtils.trimAllWhitespace(s+produk.getNamaProduk()+files.indexOf(multipartFile)+multipartFile.getOriginalFilename());
-                //System.out.println("file name : "+fileName);
                 
-                Foto foto = new Foto();
-                foto.setNamaFile(namaFile);
-                foto.setTglUpload(new Date());
-                
-                File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
-                OutputStream out = new FileOutputStream(localFile);
-                out.write(multipartFile.getBytes());
-                out.close();
-                
-                fotoDao.saveFoto(foto);
-                foto = fotoDao.getFotoByNamaFile(namaFile);
-                fotoDao.saveDistribusiFoto(produk.getId(), foto.getId());
+                if(!multipartFile.isEmpty()){
+                    SimpleDateFormat format = new SimpleDateFormat("ddMMyyyyssmmHH");
+                    String s = format.format(new Date());
+
+                    String namaFile = StringUtils.trimAllWhitespace(s+produk.getNamaProduk()+files.indexOf(multipartFile)+multipartFile.getOriginalFilename());
+                    //System.out.println("file name : "+fileName);
+
+                    Foto foto = new Foto();
+                    foto.setNamaFile(namaFile);
+                    foto.setTglUpload(new Date());
+
+                    File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
+                    OutputStream out = new FileOutputStream(localFile);
+                    out.write(multipartFile.getBytes());
+                    out.close();
+
+                    fotoDao.saveFoto(foto);
+                    foto = fotoDao.getFotoByNamaFile(namaFile);
+                    fotoDao.saveDistribusiFoto(produk.getId(), foto.getId());
+                }
                 
             }
         }
@@ -139,5 +143,15 @@ public class ProdukController {
     ModelMap modelMap){
         kategoriProdukDao.deleteKategoriProduk(id);
         return "redirect:kategori";
+    }
+    
+    //foto
+    @RequestMapping("/hapus-foto")
+    public String hapusKategoriProduk(@RequestParam("id") Integer id,
+    @RequestParam("idProduk") Integer idProduk,
+    ModelMap modelMap){
+        produkDao.deleteDistribusiFotoByIdFoto(id);
+        produkDao.deleteFotoById(id);
+        return "redirect:detail?id="+idProduk;
     }
 }

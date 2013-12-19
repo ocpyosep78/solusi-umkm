@@ -61,12 +61,27 @@
                           <td>${produk.tglUpdateProduk}</td>
                         </tr>
                     </table>
-                    <div class="well">
+                    <div class="col-lg-12">
+                        <h3>Foto <small>produk</small></h3>
+                        <ol class="breadcrumb">
+                              <c:forEach items="${produk.fotos}" var="f">
+                                    <li class="col-lg-4">
+                                        <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" alt="sdsdsd" class="img-thumbnail foto-produk"></a>
+                                        <div class="col-lg-1">
+                                            <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
+                                            <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
+                                        </div>
+                                    </li>
+                              </c:forEach>
+                            </ol>
+                         </div>
+                    </div>
+                    
+                    <div class="">
                         <a title="edit" class="btn btn-primary" alt="edit" href="input-produk?id=${produk.id}">Edit <i class="fa fa-edit"></i></a>
                         <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-produk?id=${produk.id}">Hapus <i class="fa fa-trash-o"></i></a>
                     </div>
-                        
-                    <img src="<%= request.getContextPath() %>/upload-file/foto/${produk.fotos[1].namaFile}" alt="" class="img-thumbnail">
+
                 </div>
             </c:otherwise>
         </c:choose>

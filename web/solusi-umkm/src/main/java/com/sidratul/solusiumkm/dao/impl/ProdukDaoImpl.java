@@ -28,6 +28,10 @@ public class ProdukDaoImpl implements ProdukDao{
     private static final String SQL_INSERT_PRODUK="INSERT INTO `produk`"
             + "(`id_umkm`,`id_kategori_produk`,`kode_produk`,`nama_produk`,`harga`,`keterangan_produk`,`tgl_update_produk`)"
             + "VALUES(?,?,?,?,?,?,?)";
+    
+    private static final String SQL_DELETE_FOTOBYID="DELETE FROM foto WHERE id=?";
+    private static final String SQL_DELETE_DISTRIBUSIFOTOBYIDPRODUK="DELETE FROM distribusi_foto WHERE id_produk=?";
+    private static final String SQL_DELETE_DISTRIBUSIFOTOBYIDFOTO="DELETE FROM distibusi_foto WHERE id_foto=?";
 
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;
@@ -100,6 +104,18 @@ public class ProdukDaoImpl implements ProdukDao{
 
     public void deleteProduk(Integer id) {
         jdbcTemplate.update(SQL_DELETE_PRODUK,id);
+    }
+    
+    public void deleteFotoById(Integer id) {
+        jdbcTemplate.update(SQL_DELETE_FOTOBYID,id);
+    }
+
+    public void deleteDistribusiFotoByIdFoto(Integer idFoto) {
+        jdbcTemplate.update(SQL_DELETE_DISTRIBUSIFOTOBYIDFOTO,idFoto);
+    }
+
+    public void deleteDistribusiFotoByIdProduk(Integer idProduk) {
+        jdbcTemplate.update(SQL_DELETE_DISTRIBUSIFOTOBYIDPRODUK,idProduk);
     }
     
 }
