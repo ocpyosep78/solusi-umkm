@@ -47,7 +47,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift"></i> Produk <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="<%= request.getContextPath() %>/admin/produk/index">Index Produk</a></li>
-                <li><a href="<%= request.getContextPath() %>/admin/produk/input-umkm">Input Produk</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/produk/input-produk">Input Produk</a></li>
                 <li><a href="<%= request.getContextPath() %>/admin/produk/kategori">Kategori Produk</a></li>
                 <li><a href="<%= request.getContextPath() %>/admin/produk/input-kategori">Input Produk</a></li>
               </ul>

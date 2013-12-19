@@ -2,8 +2,11 @@ package com.sidratul.solusiumkm.admin.controller;
 
 import com.sidratul.solusiumkm.dao.KategoriProdukDao;
 import com.sidratul.solusiumkm.dao.ProdukDao;
+import com.sidratul.solusiumkm.dao.UmkmDao;
 import com.sidratul.solusiumkm.model.KategoriProduk;
 import com.sidratul.solusiumkm.model.Produk;
+import com.sidratul.solusiumkm.model.Umkm;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/produk")
 public class ProdukController {
     @Autowired private ProdukDao produkDao;
+    @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;
     
     @RequestMapping("/index")
@@ -34,14 +38,19 @@ public class ProdukController {
         }
         
         List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
+        List<Umkm> umkms = umkmDao.getAllUmkm();
         
         modelMap.addAttribute("produk", produk);
+        
+        modelMap.addAttribute("listUmkm", umkms);
         modelMap.addAttribute("listKategoriProduk", kategoriProduks);
     }
     
     @RequestMapping(value = "/input-produk",method = RequestMethod.POST)
     public String prosesInputProduk(@ModelAttribute Produk produk,
     ModelMap modelMap){
+        produk.setTglUpdateProduk(new Date());
+        
         produkDao.saveProduk(produk);
         return "redirect:index";
     }

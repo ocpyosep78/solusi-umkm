@@ -50,7 +50,7 @@
                               <td>${lp.kodeProduk}</td>
                               <td>${lp.namaProduk}</td>
                               <td>${lp.kategoriProduk.jenisProduk}</td>
-                              <td>${lp.umkm.namaUmkm}</td>
+                              <td><a href="<%= request.getContextPath() %>/admin/umkm/detail?id=${lp.umkm.id}">${lp.umkm.namaUmkm}</a></td>
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
                               <td>${lp.tglUpdateProduk}</td>
