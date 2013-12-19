@@ -90,7 +90,7 @@ public class ProdukController {
                 
                 fotoDao.saveFoto(foto);
                 foto = fotoDao.getFotoByNamaFile(namaFile);
-                fotoDao.saveDistribusiFoto(produk.getUmkm().getId(), foto.getId());
+                fotoDao.saveDistribusiFoto(produk.getId(), foto.getId());
                 
             }
         }

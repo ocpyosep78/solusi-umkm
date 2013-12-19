@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,9 +38,10 @@
                           <th>Nama Produk</th>
                           <th>Kategori Produk</th>
                           <th>Nama Umkm</th>
-                          <th>harga</th>
-                          <th>keterangan</th>
-                          <th>tgl update</th>
+                          <th>Harga</th>
+                          <th>Keterangan</th>
+                          <th>Tgl Update</th>
+                          <th>Jumlah Foto</th>
                           <th colspan="2"></th>
                         </tr>
                       </thead>
@@ -54,6 +56,7 @@
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
                               <td>${lp.tglUpdateProduk}</td>
+                              <td>${f:length(lp.fotos)}</td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
                               <td><a title="hapus" alt="hapus" href="hapus-produk?id=${lp.id}"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
