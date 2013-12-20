@@ -31,7 +31,7 @@ public class ProdukDaoImpl implements ProdukDao{
     
     private static final String SQL_DELETE_FOTOBYID="DELETE FROM foto WHERE id=?";
     private static final String SQL_DELETE_DISTRIBUSIFOTOBYIDPRODUK="DELETE FROM distribusi_foto WHERE id_produk=?";
-    private static final String SQL_DELETE_DISTRIBUSIFOTOBYIDFOTO="DELETE FROM distibusi_foto WHERE id_foto=?";
+    private static final String SQL_DELETE_DISTRIBUSIFOTOBYIDFOTO="DELETE FROM distribusi_foto WHERE id_foto=?";
 
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;

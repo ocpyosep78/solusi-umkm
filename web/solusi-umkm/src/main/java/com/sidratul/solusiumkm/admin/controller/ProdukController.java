@@ -149,9 +149,18 @@ public class ProdukController {
     @RequestMapping("/hapus-foto")
     public String hapusKategoriProduk(@RequestParam("id") Integer id,
     @RequestParam("idProduk") Integer idProduk,
+    @RequestParam("namaFile") String namaFile,
+    HttpServletRequest request,
     ModelMap modelMap){
         produkDao.deleteDistribusiFotoByIdFoto(id);
         produkDao.deleteFotoById(id);
+        
+        File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
+        
+        if(file.exists() && file.isFile()) {
+            file.delete();
+        }
+        
         return "redirect:detail?id="+idProduk;
     }
 }
