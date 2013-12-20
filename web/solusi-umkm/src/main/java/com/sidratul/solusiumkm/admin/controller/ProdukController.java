@@ -36,7 +36,7 @@ public class ProdukController {
     @Autowired private FotoDao fotoDao;
     
     @RequestMapping("/index")
-    public void tampilUmkm(ModelMap modelMap){
+    public void tampilProduk(ModelMap modelMap){
         List<Produk> produks = produkDao.getAllProduk();
         modelMap.addAttribute("listProduk",produks);
     }
