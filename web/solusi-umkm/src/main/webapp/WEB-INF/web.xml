@@ -2,7 +2,8 @@
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+            http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	 version="3.0">
     
     <context-param>
@@ -27,18 +28,33 @@
         <url-pattern>/admin/*</url-pattern>
     </servlet-mapping>
     
-    <filter>
+<!--    <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
-    </filter> 
+    </filter> -->
  
+    <filter>
+    	<filter-name>sitemesh</filter-name>
+    	<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+    </filter>
+    
     <filter-mapping>
         <filter-name>sitemesh</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
     
     <welcome-file-list>
-        <welcome-file>admin/umkm/</welcome-file>
+        <welcome-file>admin/umkm/index</welcome-file>
     </welcome-file-list>
+    
+<!--    <error-page>
+            <error-code>404</error-code>
+            <location>/404.jsp</location>
+    </error-page>
+    <error-page>
+            <exception-type>java.lang.Exception</exception-type>
+            <location>/error.jsp</location>
+    </error-page>-->
     
 </web-app>

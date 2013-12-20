@@ -1,11 +1,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin</title>
+        <title><sitemesh:write property='title'/></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/img/logo_kota_depok.jpg"/>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
@@ -72,7 +71,8 @@
 
         <div class="row">
           <div class="col-lg-12">
-              <decorator:body></decorator:body>
+              <%--<decorator:body></decorator:body>--%>
+              <sitemesh:write property='body'/>
           </div>
         </div><!-- /.row -->
         
