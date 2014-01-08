@@ -50,11 +50,11 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div class="col-lg-7">
+                <div class="">
                     <table class="capital">
                         <tr>
                             <td>Kode Produk</td>
-                            <td> : </td>
+                            <td width="30px" > : </td>
                             <td>${lp.kodeProduk}</td>
                         </tr>
                         <tr>
@@ -87,17 +87,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>nama produk</td>
-                            <td> : </td>
-                            <td><div>${lp.namaProduk}</div></td>
-                        </tr>
-                        <tr>
-                            <td>nama produk</td>
+                            <td>UMKM</td>
                             <td> : </td>
                             <td><div>${lp.umkm.namaUmkm}</div></div></td>
                         </tr>
                         <tr>
-                            <td>nama produk</td>
+                            <td>no telepon</td>
                             <td> : </td>
                             <td>
                                 <di>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Dec 18, 2013, 10:15:21 AM
-    Author     : sidratul
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -68,11 +63,11 @@
                             <td>
                                 <div>
                                     <c:choose>    
-                                        <c:when test="${empty produk.keteranganProduk}">
+                                        <c:when test="${empty lp.keteranganProduk}">
                                             <i><small>(tidak ada keterangan)</small></i>
                                         </c:when >
                                         <c:otherwise>
-                                            ${produk.keteranganProduk}
+                                            ${lp.keteranganProduk}
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -91,10 +86,6 @@
                                     <c:forEach items="${produk.fotos}" var="f">
                                         <li class="col-lg-4">
                                             <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="img-thumbnail foto-produk"></a>
-                                            <div class="col-lg-1">
-                                                <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
-                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
-                                            </div>
                                         </li>
                                     </c:forEach>
                                 </c:when>
@@ -104,12 +95,6 @@
                             </c:choose>
                           </ol>
                     </div>
-                        
-                    <div class="">
-                        <a title="edit" class="btn btn-primary" alt="edit" href="input-produk?id=${produk.id}">Edit <i class="fa fa-edit"></i></a>
-                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-produk?id=${produk.id}">Hapus <i class="fa fa-trash-o"></i></a>
-                    </div>
-
                 </div>
             </c:otherwise>
         </c:choose>
