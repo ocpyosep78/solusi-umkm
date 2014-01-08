@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/umkm")
-public class UmkmController {
+public class AdminUmkmController {
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     

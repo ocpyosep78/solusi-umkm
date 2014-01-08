@@ -69,7 +69,7 @@
                                 <c:when test="${fn:length(produk.fotos) > 0}">
                                     <c:forEach items="${produk.fotos}" var="f">
                                         <li class="col-lg-4">
-                                            <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" alt="sdsdsd" class="img-thumbnail foto-produk"></a>
+                                            <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="img-thumbnail foto-produk"></a>
                                             <div class="col-lg-1">
                                                 <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
                                                 <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>

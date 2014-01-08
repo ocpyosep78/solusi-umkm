@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/produk")
-public class ProdukController {
+public class ViewProdukController {
     @Autowired private ProdukDao produkDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;
     

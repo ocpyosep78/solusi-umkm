@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/produk")
-public class ProdukController {
+public class AdminProdukController {
     @Autowired private ProdukDao produkDao;
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriProdukDao kategoriProdukDao;
