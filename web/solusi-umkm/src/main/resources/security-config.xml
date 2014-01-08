@@ -9,8 +9,9 @@
       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
       
     <http auto-config='true'>
-        <intercept-url pattern="/admin/**" access="ADMIN" />
-        <intercept-url pattern="/view/**" access="UMKM" />
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/view/**" access="ROLE_UMKM" />
+
         <form-login login-page="/login/form" 
             default-target-url="/login/berhasil"
             authentication-failure-url="/login/gagal" />
