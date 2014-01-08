@@ -33,15 +33,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+          <a class="navbar-brand" href="<%= request.getContextPath() %>/view/home/index">Solusi UMKM</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
+            <li><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

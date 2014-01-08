@@ -29,7 +29,7 @@
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-responsive breadcrumb">
                         <tr>
                           <td class="col-lg-2">Kode</td>
                           <td class="col-lg-1">:</td>

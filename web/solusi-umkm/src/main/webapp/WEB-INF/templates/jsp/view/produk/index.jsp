@@ -71,19 +71,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Keterangan</td>
+                            <td>Ketegori Produk</td>
                             <td> : </td>
                             <td>
-                                <div>
-                                    <c:choose>    
-                                        <c:when test="${empty lp.keteranganProduk}">
-                                            <i><small>(tidak ada keterangan)</small></i>
-                                        </c:when >
-                                        <c:otherwise>
-                                            ${lp.keteranganProduk}
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
+                                <div>${lp.kategoriProduk.jenisProduk}</div>
                             </td>
                         </tr>
                         <tr>
