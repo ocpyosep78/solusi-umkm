@@ -12,13 +12,13 @@
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/view/**" access="ROLE_UMKM" />
 
-        <form-login login-page="/login/form" 
-            default-target-url="/login/berhasil"
-            authentication-failure-url="/login/gagal" />
-        <logout logout-success-url="/login/logout" />
+        <form-login login-page="/view/login/form" 
+            default-target-url="/view/login/berhasil"
+            authentication-failure-url="/view/login/gagal" />
+        <logout logout-success-url="/view/login/logout" />
         <remember-me />
     </http>
-            <!--always-use-default-target="true"-->
+    <!--always-use-default-target="true"-->
             
     <authentication-manager>
         <authentication-provider>
