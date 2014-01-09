@@ -8,8 +8,16 @@ public class UserUmkm {
     private String password;
     private String peran;
     private Date terakhirLogin;
-    private boolean aktif;
+    private Integer aktif;
     private Umkm umkm;
+    
+    public Integer getAktif() {
+        return aktif;
+    }
+
+    public void setAktif(Integer aktif) {
+        this.aktif = aktif;
+    }
 
     public Integer getId() {
         return id;
@@ -49,14 +57,6 @@ public class UserUmkm {
 
     public void setTerakhirLogin(Date terakhirLogin) {
         this.terakhirLogin = terakhirLogin;
-    }
-
-    public boolean isAktif() {
-        return aktif;
-    }
-
-    public void setAktif(boolean aktif) {
-        this.aktif = aktif;
     }
 
     public Umkm getUmkm() {

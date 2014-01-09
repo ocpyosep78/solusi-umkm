@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserUmkmDao{
             userUmkm.setPeran(rs.getString("peran"));
             userUmkm.setTerakhirLogin(rs.getDate("terakhir_login"));
             userUmkm.setUmkm(umkmDao.getUmkmById(rs.getInt("id_umkm")));
-            userUmkm.setAktif(rs.getBoolean("aktif"));
+            userUmkm.setAktif(rs.getInt("aktif"));
             
             return userUmkm;
         }
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserUmkmDao{
     }
     
 
-    public List<UserUmkm> getAllUser(Boolean aktif) {
+    public List<UserUmkm> getAllUser(Integer aktif) {
         List<UserUmkm> userUmkms = new ArrayList<UserUmkm>();
         userUmkms = jdbcTemplate.query(SQL_GETALL_USERUMKM_BYAKTIF, new UserUmkmParameterizedRowMapper(),aktif);
         return  userUmkms;
@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserUmkmDao{
                 userUmkm.getUmkm().getId(),
                 userUmkm.getPassword(),
                 new java.sql.Date(userUmkm.getTerakhirLogin().getTime()),
-                userUmkm.isAktif(),
+                userUmkm.getAktif(),
                 userUmkm.getId()
             });
         }else{
@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserUmkmDao{
                 userUmkm.getUmkm().getId(),
                 userUmkm.getPassword(),
                 userUmkm.getPeran(),
-                userUmkm.isAktif()
+                userUmkm.getAktif()
             });
         }
     }

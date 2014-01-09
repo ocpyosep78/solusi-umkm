@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserUmkmDao {
     
-    public List<UserUmkm> getAllUser(Boolean aktif);
+    public List<UserUmkm> getAllUser(Integer aktif);
     
     public void saveUserUmkm(UserUmkm userUmkm);
     
