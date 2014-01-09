@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
     
     @RequestMapping("/form")
-    public void formLogin(ModelMap modelMap){
+    public String formLogin(ModelMap modelMap, Principal principal){
+        if(principal!=null){
+            return "redirect:berhasil";
+        }
         
+        return null;
+                
     }
     
     @RequestMapping("/berhasil")
@@ -28,13 +33,21 @@ public class LoginController {
     }
     
     @RequestMapping("/gagal")
-    public String loginGagal(ModelMap modelMap){
+    public String loginGagal(ModelMap modelMap, Principal principal){
+        if(principal!=null){
+            return "redirect:berhasil";
+        }
+        
         modelMap.addAttribute("error", true);
         return "login/form";
     }
     
     @RequestMapping("/logout")
-    public String logut(ModelMap modelMap){
+    public String logut(ModelMap modelMap, Principal principal){
+        if(principal!=null){
+            return "redirect:berhasil";
+        }
+        
         return "login/form";
     }
 }

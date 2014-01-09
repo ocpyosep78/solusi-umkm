@@ -4,6 +4,13 @@
     Author     : sidratul
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="id">
@@ -41,8 +48,21 @@
           <ul class="nav navbar-nav">
             <li><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
             <li><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
-            
-            <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/form">Login</a></li>
+            <c:catch><c:set var="principal" value="${pageContext.request.userPrincipal.principal}" scope="request"/></c:catch>
+            <c:choose>
+                <c:when test="${!empty principal}">
+                    <% if (request.isUserInRole("ROLE_ADMIN")) { %>
+                        <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Administrator Solusi UMKM </a></li>
+                    <% }else if (request.isUserInRole("ROLE_UMKM")) { %>
+                       <li><a class="pull-right" href="<%= request.getContextPath() %>/user/umkm/index">Profil Usaha Saya</a></li>
+                       <li><a class="pull-right" href="<%= request.getContextPath() %>/user/produk/index">Produk Usaha Saya</a></li>
+                    <% }%>
+                    <li><a href="<c:url value='/j_spring_security_logout'/>">Logout</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Login</a></li>
+                </c:otherwise>
+            </c:choose>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

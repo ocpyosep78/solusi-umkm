@@ -11,6 +11,7 @@
     <http auto-config='true'>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/user/**" access="ROLE_UMKM" />
+        <intercept-url pattern="/view/login/berhasil" access="ROLE_UMKM,ROLE_ADMIN" />
 
         <form-login login-page="/view/login/form" 
             default-target-url="/view/login/berhasil"

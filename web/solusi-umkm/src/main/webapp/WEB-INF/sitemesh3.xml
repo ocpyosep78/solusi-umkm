@@ -2,4 +2,5 @@
     <mapping decorator="/WEB-INF/decorators/decorator.jsp"/>
     <mapping path="/*admin/*" decorator="/WEB-INF/decorators/layout-admin.jsp"/>
     <mapping path="/*view/*" decorator="/WEB-INF/decorators/layout-view.jsp"/>
+    <mapping path="/*user/*" decorator="/WEB-INF/decorators/layout-view.jsp"/>
 </sitemesh>
