@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository("userUmkmDao")
 public class UserDaoImpl implements UserUmkmDao{
     
-    private static final String SQL_GETALL_USERUMKM_BYAKTIF="SELECT * FROM user where aktif=?";
+    private static final String SQL_GETALL_USERUMKM_BYAKTIF="SELECT * FROM user where aktif=? and peran='ROLE_UMKM'";
     private static final String SQL_GETUSERUMKM_BYID="SELECT * FROM user where id=?";
     private static final String SQL_DELETEUSERUMKM_BYID="DELETE FROM user where id=?";
     private static final String SQL_UPDATE_USERUMKM="UPDATE `user` SET "
