@@ -30,6 +30,7 @@ public class AdminUserUmkmController {
         List<UserUmkm> userUmkms = userUmkmDao.getAllUser(aktif);
         
         modelMap.addAttribute("listUserUmkm",userUmkms);
+        modelMap.addAttribute("aktif",aktif);
     }
     
     @RequestMapping(value = "/input-user",method = RequestMethod.GET)
@@ -59,7 +60,7 @@ public class AdminUserUmkmController {
     }
     
     @RequestMapping("/hapus-user")
-    public String hapususer(@RequestParam("id") Integer id, @RequestParam("aktif") Integer aktif,
+    public String hapusUser(@RequestParam("id") Integer id, @RequestParam("aktif") Integer aktif,
     ModelMap modelMap){
         umkmDao.deleteUmkm(id);
         return "redirect:index?aktif="+aktif;

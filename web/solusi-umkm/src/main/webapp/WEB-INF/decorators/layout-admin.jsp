@@ -59,9 +59,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> User <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="<%= request.getContextPath() %>/admin/user/aktif-user">Index User</a></li>
-                <li><a href="<%= request.getContextPath() %>/admin/user/nonaktif-user">Non Aktif User</a></li>
-                <li><a href="<%= request.getContextPath() %>/admin/user/tambah-user">Tambah User</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/user/index?aktif=1">Index User</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/user/index?aktif=0">Non Aktif User</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/user/input-user">Input User</a></li>
               </ul>
             </li>
           </ul>
