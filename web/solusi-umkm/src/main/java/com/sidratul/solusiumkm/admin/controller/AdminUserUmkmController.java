@@ -41,7 +41,7 @@ public class AdminUserUmkmController {
             userUmkm = new UserUmkm();
         }
         
-        List<Umkm> umkms = umkmDao.getAllUmkm();
+        List<Umkm> umkms = umkmDao.getAllUmkmTidakMemilikiUser();
         
         modelMap.addAttribute("userUmkm", userUmkm);
         

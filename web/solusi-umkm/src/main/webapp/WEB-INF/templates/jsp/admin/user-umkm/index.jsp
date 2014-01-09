@@ -7,6 +7,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -45,7 +49,6 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Kode</th>
                           <th>username</th>
                           <th>Password</th>
                           <th>Umkm</th>
@@ -61,7 +64,14 @@
                               <td>${luu.password}</td>
                               <td>${luu.umkm.namaUmkm}</td>
                               <td>
-                                    <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${luu.terakhirLogin}" />
+                                <c:choose>
+                                    <c:when test="${empty luu.terakhirLogin}">
+                                        <i><small>(user belum pernah login)</small></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${luu.terakhirLogin}" />
+                                    </c:otherwise>
+                                </c:choose>
                               </td>
                               <td><a title="edit" alt="edit" href="input-user?id=${luu.id}"><i class="fa fa-edit"></i></a></td>
                               <td><a title="hapus" alt="hapus" href="hapus-user?id=${luu.id}"><i class="fa fa-trash-o"></i></a></td>

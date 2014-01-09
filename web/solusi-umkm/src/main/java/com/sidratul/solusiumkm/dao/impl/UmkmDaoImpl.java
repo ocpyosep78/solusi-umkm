@@ -17,6 +17,9 @@ import org.springframework.stereotype.Repository;
 public class UmkmDaoImpl implements UmkmDao{
     
     private static final String SQL_GETALL_UMKM="SELECT * FROM umkm";
+    private static final String SQL_GETALL_UMKM_BELUM_ADAUSER="SELECT um.* FROM umkm um LEFT JOIN user us "
+            + "ON um.id = us.id_umkm "
+            + "WHERE us.id_umkm is null";
     private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where ID=?";
     private static final String SQL_DELETE_UMKM="DELETE FROM umkm where ID=?";
     private static final String SQL_UPDATE_UMKM="UPDATE `umkm` SET "
@@ -61,6 +64,11 @@ public class UmkmDaoImpl implements UmkmDao{
     
     public List<Umkm> getAllUmkm() {
         List<Umkm> umkms = jdbcTemplate.query(SQL_GETALL_UMKM, new UmkmParameterizedRowMapper());
+        return umkms;
+    }
+    
+    public List<Umkm> getAllUmkmTidakMemilikiUser() {
+        List<Umkm> umkms = jdbcTemplate.query(SQL_GETALL_UMKM_BELUM_ADAUSER, new UmkmParameterizedRowMapper());
         return umkms;
     }
     
