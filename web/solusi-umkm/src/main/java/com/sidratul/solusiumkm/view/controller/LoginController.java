@@ -32,4 +32,9 @@ public class LoginController {
         modelMap.addAttribute("error", true);
         return "login/form";
     }
+    
+    @RequestMapping("/logout")
+    public String logut(ModelMap modelMap){
+        return "login/form";
+    }
 }

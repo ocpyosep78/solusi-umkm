@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html> 
 <html lang="id">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -54,6 +55,15 @@
                 <li><a href="<%= request.getContextPath() %>/admin/produk/input-kategori">Input Produk</a></li>
               </ul>
             </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md"></i> User <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= request.getContextPath() %>/admin/user/aktif-user">Index User</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/user/nonaktif-user">Non Aktif User</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/user/tambah-user">Tambah User</a></li>
+              </ul>
+            </li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right navbar-user">
@@ -63,7 +73,7 @@
                 <li><a href="#"><i class="fa user"></i> Profile</a></li>
                 <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
                 <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                <li><a href="<c:url value="/j_spring_security_logout"/>"><i class="fa fa-power-off"></i> Log Out</a></li>
               </ul>
             </li>
           </ul>
