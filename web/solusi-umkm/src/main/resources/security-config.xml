@@ -10,7 +10,7 @@
       
     <http auto-config='true'>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/view/**" access="ROLE_UMKM" />
+        <intercept-url pattern="/user/**" access="ROLE_UMKM" />
 
         <form-login login-page="/view/login/form" 
             default-target-url="/view/login/berhasil"
@@ -24,12 +24,8 @@
         <authentication-provider>
             
             <jdbc-user-service data-source-ref="dataSource"
-                users-by-username-query="
-                    select username,password, aktif 
-                    from user where Username=?"
-
-                authorities-by-username-query="
-                    select username, peran from user username =?  " 
+                users-by-username-query="select username,password, aktif from user where username=?"
+                authorities-by-username-query="select username, peran from user where username =?" 
             />
         </authentication-provider>
     </authentication-manager>

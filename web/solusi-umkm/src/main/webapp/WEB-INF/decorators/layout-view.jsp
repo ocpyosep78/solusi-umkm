@@ -41,6 +41,8 @@
           <ul class="nav navbar-nav">
             <li><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
             <li><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
+            
+            <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/form">Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

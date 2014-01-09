@@ -14,7 +14,7 @@
 <html lang="id">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>UMKM</title>
     </head>
     <body>
         <h1>Produk <small>Index</small></h1>
