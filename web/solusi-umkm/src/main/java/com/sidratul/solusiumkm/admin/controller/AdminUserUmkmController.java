@@ -37,11 +37,13 @@ public class AdminUserUmkmController {
     public void formInputProduk(@RequestParam(value = "id", required = false) Integer id,
     ModelMap modelMap){
         UserUmkm userUmkm = userUmkmDao.getUserById(id);
+        List<Umkm> umkms = umkmDao.getAllUmkmTidakMemilikiUser();
+        
         if(userUmkm==null){
             userUmkm = new UserUmkm();
+        }else{
+            umkms.add(userUmkm.getUmkm());
         }
-        
-        List<Umkm> umkms = umkmDao.getAllUmkmTidakMemilikiUser();
         
         modelMap.addAttribute("userUmkm", userUmkm);
         
