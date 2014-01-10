@@ -60,9 +60,9 @@
                               <td>${lu.alamat}</td>
                               <td>${lu.noTelp}</td>
                               <td>${lu.email}</td>
-                              <td><a title="edit" alt="detail" href="detail?id=${lu.id}"><i class="fa fa-eye"></i></a></td>
+                              <td><a title="detail" alt="detail" href="detail?id=${lu.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-umkm?id=${lu.id}"><i class="fa fa-edit"></i></a></td>
-                              <td><a title="hapus" alt="hapus" href="hapus-umkm?id=${lu.id}"><i class="fa fa-trash-o"></i></a></td>
+                              <td><a title="hapus" alt="hapus" href="hapus-umkm?id=${lu.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>
                       </tbody>

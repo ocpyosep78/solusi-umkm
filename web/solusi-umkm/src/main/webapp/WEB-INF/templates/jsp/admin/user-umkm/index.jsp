@@ -74,7 +74,7 @@
                                 </c:choose>
                               </td>
                               <td><a title="edit" alt="edit" href="input-user?id=${luu.id}"><i class="fa fa-edit"></i></a></td>
-                              <td><a title="hapus" alt="hapus" href="hapus-user?id=${luu.id}"><i class="fa fa-trash-o"></i></a></td>
+                              <td><a title="hapus" alt="hapus" href="hapus-user?id=${luu.id}" onclick="tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>
                       </tbody>
