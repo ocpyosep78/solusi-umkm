@@ -11,6 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="id">
@@ -49,20 +50,44 @@
             <li><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
             <li><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
             <c:catch><c:set var="principal" value="${pageContext.request.userPrincipal.principal}" scope="request"/></c:catch>
-            <c:choose>
+            <c:if test="${!empty principal}">
+                <% if (request.isUserInRole("ROLE_ADMIN")) { %>
+                    <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Administrator Solusi UMKM </a></li>
+                <% }else if (request.isUserInRole("ROLE_UMKM")) { %>
+                   <li><a class="pull-right" href="<%= request.getContextPath() %>/user/profil-umkm/detail"><i class="fa fa-users"></i> Profil Usaha Saya</a></li>
+                   <li>
+                       <ul class="nav navbar-nav navbar-right navbar-user">
+                        <li class="dropdown user-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift"></i> Produk Saya<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<%= request.getContextPath() %>/user/produk/index">Daftar Produk</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<%= request.getContextPath() %>/user/produk/input">Input</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                   </li>
+                <% }%>
+            </c:if>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+              <c:choose>
                 <c:when test="${!empty principal}">
-                    <% if (request.isUserInRole("ROLE_ADMIN")) { %>
-                        <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Administrator Solusi UMKM </a></li>
-                    <% }else if (request.isUserInRole("ROLE_UMKM")) { %>
-                       <li><a class="pull-right" href="<%= request.getContextPath() %>/user/umkm/index">Profil Usaha Saya</a></li>
-                       <li><a class="pull-right" href="<%= request.getContextPath() %>/user/produk/index">Produk Usaha Saya</a></li>
-                    <% }%>
-                    <li><a href="<c:url value='/j_spring_security_logout'/>">Logout</a></li>
+                  <ul class="nav navbar-nav navbar-right navbar-user">
+                        <li class="dropdown user-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= request.getUserPrincipal().getName() %> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa user"></i> Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<c:url value='/j_spring_security_logout'/>"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                  </ul>
                 </c:when>
                 <c:otherwise>
-                    <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Login</a></li>
-                </c:otherwise>
-            </c:choose>
+                    <li><a class="" href="<%= request.getContextPath() %>/view/login/berhasil">Login</a></li>
+               </c:otherwise>
+              </c:choose>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

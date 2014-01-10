@@ -29,12 +29,7 @@
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                           <table class="table table-responsive breadcrumb capital">
-                        <tr>
-                          <td>Kode</td>
-                          <td>:</td>
-                          <td>${umkm.kodeUmkm}</td>
-                        </tr>
+                    <table class="table table-responsive breadcrumb capital">
                         <tr>
                           <td>Nama</td>
                           <td>:</td>
@@ -135,8 +130,7 @@
                           </td>
                         </tr>
                     </table>
-                        <a title="edit" class="btn btn-primary" alt="edit" href="input-umkm?id=${umkm.id}">Edit <i class="fa fa-edit"></i></a>
-                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-umkm?id=${umkm.id}">Hapus <i class="fa fa-trash-o"></i></a>
+                    <a title="edit" class="btn btn-primary" alt="edit" href="edit">Edit <i class="fa fa-edit"></i></a>
                 </div>
             </c:otherwise>
         </c:choose>

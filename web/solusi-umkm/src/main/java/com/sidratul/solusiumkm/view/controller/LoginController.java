@@ -26,7 +26,7 @@ public class LoginController {
         if(request.isUserInRole("ROLE_ADMIN")){
             redirect+="/admin/umkm/index";
         }else if(request.isUserInRole("ROLE_UMKM")){
-            redirect+="/user/umkm/index";
+            redirect+="/user/profil-umkm/detail";
         }
         
         return redirect;

@@ -20,6 +20,11 @@ import org.springframework.stereotype.Repository;
 public class ProdukDaoImpl implements ProdukDao{
 
     private static final String SQL_GETALL_PRODUK="SELECT * FROM produk";
+    private static final String SQL_GETALL_PRODUK_BYUSERNAME="select p.* "
+            + "from produk p, umkm u "
+            + "where u.id = p.id_umkm and u.id in "
+            + "(select u.id from user us, umkm m "
+            + "where us.id_umkm = u.id and username=?)";
     private static final String SQL_GETPRODUK_BYID="SELECT * FROM produk WHERE id=?";
     private static final String SQL_DELETE_PRODUK="DELETE FROM produk WHERE id=?";
     private static final String SQL_UPDATE_PRODUK="UPDATE `produk` SET `id_umkm` = ?,`id_kategori_produk` = ?,"
@@ -38,6 +43,7 @@ public class ProdukDaoImpl implements ProdukDao{
     @Autowired private FotoDao fotoDao;
     
     private JdbcTemplate jdbcTemplate;
+
     
     public final class ProdukParameterizedRowMapper implements ParameterizedRowMapper<Produk>{
 
@@ -65,6 +71,11 @@ public class ProdukDaoImpl implements ProdukDao{
     
     public List<Produk> getAllProduk() {
         List<Produk> produks = jdbcTemplate.query(SQL_GETALL_PRODUK,new ProdukParameterizedRowMapper());
+        return produks;
+    }
+    
+    public List<Produk> getAllProdukByUsername(String username) {
+        List<Produk> produks = jdbcTemplate.query(SQL_GETALL_PRODUK_BYUSERNAME,new ProdukParameterizedRowMapper(),username);
         return produks;
     }
 

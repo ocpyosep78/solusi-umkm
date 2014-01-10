@@ -15,32 +15,19 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <c:choose>
-                <c:when test="${empty umkm.id}">
-                    <c:set var="ket" value="Input"/>
-                </c:when>
-                <c:otherwise>
-                    <c:set var="ket" value="Edit"/>
-                </c:otherwise>
-            </c:choose>
-            <h2>UMKM <small>${ket}</small></h2>
+            <h2>Profil UMKM <small>Edit</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} anggota asosiasi UMKM</li>
+              <li class="active"><i class="fa fa-download"></i> Edit Profil UMKM</li>
             </ol>
         </div>
         
-        <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" required="required">
+        <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="edit">
             <sf:hidden path="id"/>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Kode UMKM</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
-              </div>
-            </div>
+            <sf:hidden path="kodeUmkm"/>
             <div class="form-group">
               <label class="col-sm-2 control-label">Nama UMKM</label>
               <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required=""/>
+                  <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required="required"/>
               </div>
             </div>
             <div class="form-group">

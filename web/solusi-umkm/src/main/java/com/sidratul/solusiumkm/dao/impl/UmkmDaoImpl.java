@@ -20,8 +20,11 @@ public class UmkmDaoImpl implements UmkmDao{
     private static final String SQL_GETALL_UMKM_BELUM_ADAUSER="SELECT um.* FROM umkm um LEFT JOIN user us "
             + "ON um.id = us.id_umkm "
             + "WHERE us.id_umkm is null";
-    private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where ID=?";
-    private static final String SQL_DELETE_UMKM="DELETE FROM umkm where ID=?";
+    private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where id=?";
+    private static final String SQL_GETUMKM_BYUSERNAME="SELECT um.* FROM umkm um "
+            + "RIGHT JOIN user us ON um.id = us.id_umkm "
+            + "where username=?";
+    private static final String SQL_DELETE_UMKM="DELETE FROM umkm where id=?";
     private static final String SQL_UPDATE_UMKM="UPDATE `umkm` SET "
             + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,`id_kategori_umkm` = ?,"
             + "`keterangan_umkm` = ?,`visi` = ?,`misi` = ?,`alamat` = ?,`no_telpon` = ?,`email` = ? "
@@ -32,6 +35,7 @@ public class UmkmDaoImpl implements UmkmDao{
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
     private JdbcTemplate jdbcTemplate;
+
     
     private final class UmkmParameterizedRowMapper implements 
             ParameterizedRowMapper<Umkm>{
@@ -112,6 +116,11 @@ public class UmkmDaoImpl implements UmkmDao{
         }
     }
 
+    public Umkm getUmkmByUsername(String username) {
+        Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYUSERNAME, new UmkmParameterizedRowMapper(),username);
+        return umkm;
+    }
+    
     public void deleteUmkm(Integer id) {
         jdbcTemplate.update(SQL_DELETE_UMKM,id);
     }

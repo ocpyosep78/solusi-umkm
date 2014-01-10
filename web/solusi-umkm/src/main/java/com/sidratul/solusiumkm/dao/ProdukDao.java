@@ -7,6 +7,8 @@ import org.springframework.dao.DuplicateKeyException;
 public interface ProdukDao {
     public List<Produk> getAllProduk();
     
+    public List<Produk> getAllProdukByUsername(String username);
+    
     public void saveProduk(Produk produk) throws DuplicateKeyException;
     
     public Produk getProdukById(Integer id);
