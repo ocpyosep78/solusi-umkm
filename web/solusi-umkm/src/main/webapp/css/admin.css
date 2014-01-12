@@ -160,7 +160,16 @@ table.tablesorter thead tr th:hover {
       padding-right: 20px;
   }
   
-  .foto-produk{
+}
+
+.foto-produk{
       height: 200px;
   }
+
+.lproduk{
+    padding-right: 50px;
+}
+
+.lproduk img {
+    padding-bottom: 10px;
 }

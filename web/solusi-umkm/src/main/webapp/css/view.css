@@ -14,3 +14,15 @@ footer {
     text-transform: capitalize;
 }
 
+
+.lproduk{
+    padding-right: 50px;
+}
+
+.lproduk img {
+    padding-bottom: 10px;
+}
+
+.foto-produk{
+      height: 200px;
+  }

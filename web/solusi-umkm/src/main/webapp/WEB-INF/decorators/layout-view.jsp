@@ -60,7 +60,7 @@
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift"></i> Produk Saya<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%= request.getContextPath() %>/user/produk/index">Daftar Produk</a></li>
+                                <li><a href="<%= request.getContextPath() %>/user/produk/daftar-produk">Daftar Produk</a></li>
                                 <li class="divider"></li>
                                 <li><a href="<%= request.getContextPath() %>/user/produk/input">Input</a></li>
                             </ul>

@@ -85,24 +85,26 @@
                     
                     <div class="col-lg-12">
                         <h3>Foto <small>produk</small></h3>
-                        <ol class="breadcrumb">
+                        <div class="breadcrumb col-lg-12">
                             <c:choose>
                                 <c:when test="${fn:length(produk.fotos) > 0}">
                                     <c:forEach items="${produk.fotos}" var="f">
-                                        <li class="col-lg-4">
-                                            <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="img-thumbnail foto-produk"></a>
-                                            <div class="col-lg-1">
-                                                <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
-                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
+                                        <div class="pull-left lproduk">
+                                            <div class="row">
+                                                <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}"><img src="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="img-responsive img-rounded foto-produk"></a>
                                             </div>
-                                        </li>
+                                            <div class="row">
+                                                <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
+                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-sm btn-danger" onclick="tampil_confirm()"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
+                                            </div>
+                                        </div>  
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>
-                                    <li class="active"><i class="glyphicon glyphicon-file "></i> Produk Ini Belum Memiliki Foto</li>
+                                    <div class="active"><i class="glyphicon glyphicon-file "></i> Produk Ini Belum Memiliki Foto</div>
                                 </c:otherwise>
                             </c:choose>
-                          </ol>
+                        </div>
                     </div>
                         
                     <div class="">

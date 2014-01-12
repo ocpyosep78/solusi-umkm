@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="id_ID" scope="session"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +17,9 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <h2>Produk <small>Index</small></h2>
+            <h2>Produk <small>Saya</small></h2>
             <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Daftar produk </li>
+              <li class="active"><i class="fa fa-users"></i> Daftar produk yang saya miliki</li>
             </ol>
         </div>
         <c:choose>
@@ -30,14 +32,13 @@
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped breadcrumb">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Kode Produk</th>
                           <th>Nama Produk</th>
                           <th>Kategori Produk</th>
-                          <th>Nama Umkm</th>
                           <th>Harga</th>
                           <th>Keterangan</th>
                           <th>Tgl Update</th>
@@ -52,10 +53,11 @@
                               <td>${lp.kodeProduk}</td>
                               <td>${lp.namaProduk}</td>
                               <td>${lp.kategoriProduk.jenisProduk}</td>
-                              <td><a href="<%= request.getContextPath() %>/admin/umkm/detail?id=${lp.umkm.id}">${lp.umkm.namaUmkm}</a></td>
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
-                              <td>${lp.tglUpdateProduk}</td>
+                              <td>
+                                  <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" />
+                              </td>
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>

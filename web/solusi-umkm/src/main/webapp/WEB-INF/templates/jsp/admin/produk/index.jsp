@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib  prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="id_ID" scope="session"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +32,7 @@
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped breadcrumb">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -55,7 +57,7 @@
                               <td><a href="<%= request.getContextPath() %>/admin/umkm/detail?id=${lp.umkm.id}">${lp.umkm.namaUmkm}</a></td>
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
-                              <td>${lp.tglUpdateProduk}</td>
+                               <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" />
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
