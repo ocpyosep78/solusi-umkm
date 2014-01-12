@@ -6,7 +6,9 @@ import com.sidratul.solusiumkm.model.Umkm;
 import com.sidratul.solusiumkm.model.UserUmkm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,17 @@ public class UserDaoImpl implements UserUmkmDao{
             userUmkm.setUsername(rs.getString("username"));
             userUmkm.setPassword(rs.getString("password"));
             userUmkm.setPeran(rs.getString("peran"));
-            userUmkm.setTerakhirLogin(rs.getDate("terakhir_login"));
+            
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date;
+            try{
+                date = format.parse(rs.getString("terakhir_login"));
+            }catch(Exception e){
+                date = null;
+            }
+            
+            userUmkm.setTerakhirLogin(date);
+            
             userUmkm.setUmkm(umkmDao.getUmkmById(rs.getInt("id_umkm")));
             userUmkm.setAktif(rs.getInt("aktif"));
             

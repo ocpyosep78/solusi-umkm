@@ -37,8 +37,8 @@
                           <th>#</th>
                           <th>Judul</th>
                           <th>Isi</th>
-                          <th>Nama Foto</th>
-                          <th>Nama File</th>
+                          <th>Foto</th>
+                          <th>File</th>
                           <th>Tanggal Update</th>
                           <th colspan="2"></th>
                         </tr>
@@ -52,10 +52,10 @@
                               <td>
                                   <c:choose>    
                                     <c:when test="${empty la.namaFoto}">
-                                        <i><small>(file tidak ada)</small></i>
+                                        <i><small>(foto tidak ada)</small></i>
                                     </c:when >
                                     <c:otherwise>
-                                        ${la.namaFoto}
+                                        <i class="fa fa-check"></i>
                                     </c:otherwise>
                                 </c:choose>
                                   
@@ -66,12 +66,12 @@
                                         <i><small>(file tidak ada)</small></i>
                                     </c:when >
                                     <c:otherwise>
-                                        ${la.namaFile}
+                                        <i class="fa fa-check"></i>
                                     </c:otherwise>
                                 </c:choose>
                               </td>
                               <td>
-                                <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lu.tglUpdate}" />
+                                <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${la.tglUpdate}" />
                               </td>
                               <td><a title="detail" alt="detail" href="detail?id=${la.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-artikel?id=${la.id}"><i class="fa fa-edit"></i></a></td>

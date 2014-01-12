@@ -8,6 +8,8 @@ import com.sidratul.solusiumkm.model.KategoriProduk;
 import com.sidratul.solusiumkm.model.Produk;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,16 @@ public class ProdukDaoImpl implements ProdukDao{
             produk.setNamaProduk(rs.getString("nama_produk"));
             produk.setHarga(rs.getBigDecimal("harga"));
             produk.setKeteranganProduk(rs.getString("keterangan_produk"));
-            produk.setTglUpdateProduk(rs.getDate("tgl_update_produk"));
+            
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date;
+            try{
+                date = format.parse(rs.getString("tgl_update_produk"));
+            }catch(Exception e){
+                date = null;
+            }
+            produk.setTglUpdateProduk(date);
+            
             produk.setFotos(fotoDao.getAllFotoByIdProduk(rs.getInt("id")));
             
             return produk;

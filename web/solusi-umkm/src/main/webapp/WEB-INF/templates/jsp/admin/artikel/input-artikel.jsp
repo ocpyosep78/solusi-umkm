@@ -47,7 +47,7 @@
               <label class="col-sm-2 control-label">Foto</label>
               <div class="col-xs-4" id="btnfile">
                   <div class="input-group groupbtnfile">
-                    <input type="file" class="btn" name="foto" placeholder="foto"  accept="image/x-png,image/jpeg"/>
+                    <input type="file" class="btn" name="foto" placeholder="foto"  accept="image/x-png,image/jpeg" max-size="5000000"/>
                   </div>
               </div>
             </div>
@@ -55,7 +55,7 @@
               <label class="col-sm-2 control-label">File</label>
               <div class="col-xs-4" id="btnfile">
                   <div class="input-group groupbtnfile">
-                    <input type="file" class="btn" name="file" placeholder="nama"  accept=""/>
+                    <input type="file" class="btn" name="file" placeholder="nama"  accept="" max-size="20000000"/>
                   </div>
               </div>
             </div>

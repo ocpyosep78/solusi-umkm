@@ -47,6 +47,8 @@ public class AdminArtikelController {
         Artikel artikel = artikelDao.getArtikelById(id);
         if(artikel==null){
             artikel = new Artikel();
+        }else{
+            artikel.setIsi(artikel.getIsi().replace("<br>\n", "\n"));
         }
         
         modelMap.addAttribute("artikel", artikel);
@@ -59,7 +61,14 @@ public class AdminArtikelController {
     ModelMap modelMap,
     HttpServletRequest request) throws FileNotFoundException, IOException{
         
+        
+        if(artikel.getId()!=null){
+            Artikel artikelLama = artikelDao.getArtikelById(artikel.getId());
+            artikel.setNamaFoto(artikelLama.getNamaFoto());
+            artikel.setNamaFile(artikelLama.getNamaFile());
+        }
         artikel.setTglUpdate(new Date());
+        
         
         if(!foto.isEmpty()){
             if(artikel.getNamaFoto()!=null){
@@ -99,7 +108,7 @@ public class AdminArtikelController {
             String namaFile = StringUtils.trimAllWhitespace(s+file.getOriginalFilename());
             artikel.setNamaFile(namaFile);
             
-            File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
+            File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/aplikasi/"+namaFile);
             OutputStream out = new FileOutputStream(localFile);
             out.write(file.getBytes());
             out.close();
@@ -125,7 +134,7 @@ public class AdminArtikelController {
         }
         
         if(artikel.getNamaFile()!=null){
-            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+artikel.getNamaFile());
+            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/aplikasi/"+artikel.getNamaFile());
         
             if(file.exists() && file.isFile()) {
                 file.delete();
@@ -136,4 +145,44 @@ public class AdminArtikelController {
         return "redirect:index";
     }
     
+    @RequestMapping("/hapus-foto")
+    public String hapusFotoArtikel(@RequestParam("id") Integer id,
+    HttpServletRequest request,
+    ModelMap modelMap){        
+        
+        Artikel artikel = artikelDao.getArtikelById(id);
+        artikel.setIsi(artikel.getIsi().replace("<br>\n", "\n"));
+        if(artikel.getNamaFoto()!=null){
+            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+artikel.getNamaFoto());
+        
+            if(file.exists() && file.isFile()) {
+                file.delete();
+                artikel.setNamaFoto(null);
+            }
+        }
+
+        artikelDao.saveArtikel(artikel);
+        return "redirect:detail?id="+artikel.getId();
+    }
+    
+    @RequestMapping("/hapus-file")
+    public String hapusFileArtikel(@RequestParam("id") Integer id,
+    HttpServletRequest request,
+    ModelMap modelMap){        
+        
+        Artikel artikel = artikelDao.getArtikelById(id);
+        artikel.setIsi(artikel.getIsi().replace("<br>\n", "\n"));
+        
+        if(artikel.getNamaFile()!=null){
+            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/aplikasi/"+artikel.getNamaFile());
+        
+            if(file.exists() && file.isFile()) {
+                file.delete();
+                artikel.setNamaFile(null);
+            }
+        }
+
+        artikelDao.saveArtikel(artikel);
+        return "redirect:detail?id="+artikel.getId();
+    }
 }

@@ -4,6 +4,8 @@ import com.sidratul.solusiumkm.dao.FotoDao;
 import com.sidratul.solusiumkm.model.Foto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,14 @@ public class FotoDaoImpl implements FotoDao{
             foto.setId(rs.getInt("id"));
             foto.setNamaFile(rs.getString("nama_file"));
             foto.setKeteranganFoto(rs.getString("keterangan_foto"));
-            foto.setTglUpload(rs.getDate("tgl_upload"));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date;
+            try{
+                date = format.parse(rs.getString("tgl_upload"));
+            }catch(Exception e){
+                date = null;
+            }
+            foto.setTglUpload(date);
             return foto;
         }
     

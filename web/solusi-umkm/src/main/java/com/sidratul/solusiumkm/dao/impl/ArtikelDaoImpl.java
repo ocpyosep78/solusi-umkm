@@ -4,6 +4,8 @@ import com.sidratul.solusiumkm.dao.ArtikelDao;
 import com.sidratul.solusiumkm.model.Artikel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,18 @@ public class ArtikelDaoImpl implements ArtikelDao{
             Artikel artikel = new Artikel();
             artikel.setId(rs.getInt("id"));
             artikel.setJudul(rs.getString("judul"));
-            artikel.setIsi(rs.getString("isi").replace("<br>\n", "\n"));
+            artikel.setIsi(rs.getString("isi"));
             artikel.setNamaFoto(rs.getString("gambar"));
             artikel.setNamaFile(rs.getString("file"));
-            artikel.setTglUpdate(rs.getDate("tgl_update"));
+            
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date;
+            try{
+                date = format.parse(rs.getString("tgl_update"));
+            }catch(Exception e){
+                date = null;
+            }
+            artikel.setTglUpdate(date);
             
             return artikel;
         }
@@ -65,7 +75,7 @@ public class ArtikelDaoImpl implements ArtikelDao{
         }else{
             jdbcTemplate.update(SQL_INSERT_ARTIKEL, new Object[]{
                 artikel.getJudul(),
-                artikel.getIsi(),
+                artikel.getIsi().replace("\n","<br>\n"),
                 artikel.getNamaFoto(),
                 artikel.getNamaFile(),
                 artikel.getTglUpdate()

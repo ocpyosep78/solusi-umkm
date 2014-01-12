@@ -74,7 +74,7 @@
               <label class="col-sm-2 control-label">Input Foto</label>
               <div class="col-xs-4" id="btnfile">
                   <div class="input-group groupbtnfile">
-                    <input type="file" class="btn" name="files[0]" placeholder="foto"  accept="image/x-png,image/jpeg"/>
+                    <input type="file" class="btn" name="files[0]" placeholder="foto"  accept="image/x-png,image/jpeg" max-size="5000000"/>
                     <span class="input-group-btn"><i class="fa fa-plus btn" id="tambahbtn"></i></span>
                   </div>
               </div>
