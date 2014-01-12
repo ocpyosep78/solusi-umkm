@@ -34,7 +34,7 @@ public class ArtikelDaoImpl implements ArtikelDao{
             artikel.setIsi(rs.getString("isi").replace("<br>\n", "\n"));
             artikel.setNamaFoto(rs.getString("gambar"));
             artikel.setNamaFile(rs.getString("file"));
-            artikel.setTglUpdate(rs.getDate("tgl_udate"));
+            artikel.setTglUpdate(rs.getDate("tgl_update"));
             
             return artikel;
         }

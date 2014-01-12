@@ -38,6 +38,14 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Artikel <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= request.getContextPath() %>/admin/artikel/index">Index Artikel</a></li>
+                <li><a href="<%= request.getContextPath() %>/admin/artikel/input-artikel">Input Artikel</a></li>
+              </ul>
+            </li>
+            
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> UMKM <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="<%= request.getContextPath() %>/admin/umkm/index">Index UMKM</a></li>
