@@ -54,17 +54,6 @@
                   </sf:select>
               </div>
             </div>
-              <div class="form-group">
-              <label class="col-sm-2 control-label">UMKM</label>
-              <div class="col-xs-4">
-                  <sf:select path="umkm.id" class="form-control" required="required">
-                    <sf:option value="">Pilih UMKM</sf:option>
-                    <c:forEach items="${listUmkm}" var="lu">
-                        <sf:option value="${lu.id}">${lu.namaUmkm}</sf:option>
-                    </c:forEach>
-                  </sf:select>
-              </div>
-            </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Harga</label>
               <div class="col-xs-4">
