@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("artikelDao")
 public class ArtikelDaoImpl implements ArtikelDao{
-    private static final String SQL_GETALL_ARTIKEL="SELECT * FROM artikel";
+    private static final String SQL_GETALL_ARTIKEL="SELECT * FROM artikel ORDER BY tgl_update by DSC";
     private static final String SQL_GETARTIKEL_BYID="SELECT * FROM artikel where id=?";
     private static final String SQL_DELETE_ARTIKEL="DELETE FROM artikel where id = ?";
     private static final String SQL_UPDATE_ARTIKEL="UPDATE `artikel` "
