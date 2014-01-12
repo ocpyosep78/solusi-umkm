@@ -61,7 +61,7 @@
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
-                              <td><a title="hapus" alt="hapus" href="hapus-produk?id=${lp.id}" onclick="tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
+                              <td><a title="hapus" alt="hapus" href="hapus-produk?id=${lp.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>
                       </tbody>

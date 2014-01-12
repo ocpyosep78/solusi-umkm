@@ -39,63 +39,57 @@
       </form>  
         <hr>
         <c:forEach items="${listUmkm}" var="lu">
-            <div class="col-md-12 p-padd breadcrumb" >
-                <table class="capital">
-                    <tr>
-                        <td>Nama UMKM</td>
-                        <td width="30px" > : </td>
-                        <td>${lu.namaUmkm}</td>
-                    </tr>
-                    <tr>
-                        <td>Pemilik UMKM</td>
-                        <td> : </td>
-                        <td><div>${lu.pemilikUmkm}</div></td>
-                    </tr>
-                    <tr>
-                        <td>Kategori UMKM</td>
-                        <td> : </td>
-                        <td><div>${lu.kategoriUmkm.jenisUmkm}</div></td>
-                    </tr>
-                    <tr>
-                        <td>Alamat</td>
-                        <td> : </td>
-                        <td>
-                            <c:choose>    
-                                <c:when test="${empty lu.noTelp}">
-                                    <i><small>(alamat tidak tersedia)</small></i>
-                                </c:when >
-                                <c:otherwise>
-                                    ${lu.alamat}
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>no telepon</td>
-                        <td> : </td>
-                        <td>
-                            <di>
-                                <c:choose>    
-                                    <c:when test="${empty lu.noTelp}">
-                                        <i><small>(nomor telepon tidak tersedia)</small></i>
-                                    </c:when >
-                                    <c:otherwise>
-                                        ${lu.noTelp}
-                                    </c:otherwise>
-                                </c:choose>
-                            </di>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <div >
-                                <a href="detail?id=${lu.id}" class="btn btn-sm btn-info">Lihat UMKM</a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+            <div class="col-lg-12 breadcrumb capital" >
+                
+                <div class="row col-lg-12">
+                    <div class="col-lg-3">Nama UMKM</div>
+                    <div class="col-lg-1" > : </div>
+                    <div class="">${lu.namaUmkm}</div>
+                </div>
+                <div class="row col-lg-12">
+                    <div class="col-lg-3">Pemilik UMKM</div>
+                    <div class="col-lg-1" > : </div>
+                    <div class="">${lu.pemilikUmkm}</div>
+                </div>
+                <div class="row col-lg-12">
+                    <div class="col-lg-3">Jenis UMKM</div>
+                    <div class="col-lg-1" > : </div>
+                    <div class="">${lu.kategoriUmkm.jenisUmkm}</div>
+                </div>
+                <div class="row col-lg-12">
+                    <div class="col-lg-3">Alamat</div>
+                    <div class="col-lg-1" > : </div>
+                    <div class="">
+                        <c:choose>    
+                            <c:when test="${empty lu.alamat}">
+                                <i><small>(alamat tidak tersedia)</small></i>
+                            </c:when >
+                            <c:otherwise>
+                                ${lu.alamat}
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+                
+                <div class="row col-lg-12">
+                    <div class="col-lg-3">No Telpon</div>
+                    <div class="col-lg-1" > : </div>
+                    <div class="">
+                        <c:choose>    
+                            <c:when test="${empty lu.noTelp}">
+                                <i><small>(nomor telepon tidak tersedia)</small></i>
+                            </c:when >
+                            <c:otherwise>
+                                ${lu.noTelp}
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+                <div class="row col-lg-12">
+                    <div class="col-lg-2"><a href="detail?id=${lu.id}" class="btn btn-sm btn-info">Lihat UMKM</a></div>
+                </div>
+                    
             </div>
-            <hr>
         </c:forEach>    
 
     </body>

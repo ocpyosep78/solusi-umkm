@@ -20,6 +20,7 @@ public class FotoDaoImpl implements FotoDao{
     private static final String SQL_GETFOTO_BYID="SELECT * FROM foto WHERE id=?";
     private static final String SQL_GETFOTO_NAMAFILE="SELECT * FROM foto WHERE nama_file=?";
     private static final String SQL_DELETE_FOTO="DELETE FROM foto WHERE id=?";
+    private static final String SQL_DELETE_FOTO_BYID_PRODUK="DELETE FROM distribusi_foto WHERE id_produk=?";
     private static final String SQL_UPDATE_FOTO="UPDATE `foto` SET "
             + "`nama_file` = ?, `tgl_upload` = ?, `keterangan_foto` = ? "
             + "WHERE `id` = ?";
@@ -92,5 +93,9 @@ public class FotoDaoImpl implements FotoDao{
     
     public void saveDistribusiFoto(Integer idProduk, Integer idFoto) {
         jdbcTemplate.update(SQL_INSERT_DISTRIBUSIFOTO, new Object[]{idProduk,idFoto});
+    }
+    
+    public void DeleteDistribusiFotoByIdProduk(Integer id) {
+        jdbcTemplate.update(SQL_DELETE_FOTO_BYID_PRODUK,id);
     }
 }

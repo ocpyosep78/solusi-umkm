@@ -26,6 +26,8 @@ public class ProdukDaoImpl implements ProdukDao{
             + "(select u.id from user us, umkm m "
             + "where us.id_umkm = u.id and username=?)";
     private static final String SQL_GETPRODUK_BYID="SELECT * FROM produk WHERE id=?";
+    private static final String SQL_GETPRODUK_BYKODE="SELECT * FROM produk "
+            + "WHERE kode_produk=? and id_umkm = ? and nama_produk = ?";
     private static final String SQL_DELETE_PRODUK="DELETE FROM produk WHERE id=?";
     private static final String SQL_UPDATE_PRODUK="UPDATE `produk` SET `id_umkm` = ?,`id_kategori_produk` = ?,"
             + "`kode_produk` = ?,`nama_produk` = ?,`harga` = ?,`keterangan_produk` = ?,`tgl_update_produk` = ? "
@@ -111,6 +113,13 @@ public class ProdukDaoImpl implements ProdukDao{
             Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYID, new ProdukParameterizedRowMapper(), id);
             return produk;
         }
+    }
+    
+    public Produk getProdukByKode(String kodeProduk,Integer idUmkm, String namaProduk){
+        Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE, new ProdukParameterizedRowMapper(), new Object[]{
+            kodeProduk,idUmkm,namaProduk
+        });
+        return produk;
     }
 
     public void deleteProduk(Integer id) {

@@ -15,4 +15,6 @@ public interface FotoDao {
     public Foto getFotoByNamaFile(String namaFile);
     
     public void saveDistribusiFoto(Integer idProduk, Integer idFoto);
+    
+    public void DeleteDistribusiFotoByIdProduk(Integer id);
 }

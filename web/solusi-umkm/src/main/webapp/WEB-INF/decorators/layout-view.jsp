@@ -62,7 +62,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="<%= request.getContextPath() %>/user/produk/daftar-produk">Daftar Produk</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%= request.getContextPath() %>/user/produk/input">Input</a></li>
+                                <li><a href="<%= request.getContextPath() %>/user/produk/input-produk">Input</a></li>
                             </ul>
                         </li>
                         </ul>

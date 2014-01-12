@@ -38,13 +38,16 @@ public class UserUmkmController {
         List<KategoriUmkm> kategoriUmkms = kategoriUmkmDao.getAllKategoriUmkm();
         
         modelMap.addAttribute("umkm", umkm);
-        modelMap.addAttribute("kategoriUmkm",kategoriUmkms);
+        modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
     }
     
     @RequestMapping(value = "/edit",method = RequestMethod.POST )
-    public void prosesEditProfilUmkm(@ModelAttribute Umkm umkm,
+    public String prosesEditProfilUmkm(@ModelAttribute Umkm umkm,
     Principal principal, 
     ModelMap modelMap){
+        
+        
         umkmDao.saveUmkm(umkm);
+        return "redirect:detail";
     }
 }

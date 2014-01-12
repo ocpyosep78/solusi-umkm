@@ -96,6 +96,8 @@ public class UserProdukController {
         
         List<MultipartFile> files = produk.getFiles();
         
+        produkDao.saveProduk(produk);
+        produk = produkDao.getProdukByKode(produk.getKodeProduk(), produk.getUmkm().getId(), produk.getNamaProduk());
         //System.out.println("isi :"+files.size());
         
         if(files!= null && files.size() > 0) {
@@ -125,17 +127,31 @@ public class UserProdukController {
             }
         }
         
-        produkDao.saveProduk(produk);
-        return "redirect:index";
+        return "redirect:daftar-produk";
     }
     
     @RequestMapping("/hapus-produk")
     public String hapusProduk(@RequestParam("id") Integer id,
-    ModelMap modelMap){
+    HttpServletRequest request,
+    ModelMap modelMap){        
+        List<Foto> fotos = fotoDao.getAllFotoByIdProduk(id);
+        
+        fotoDao.DeleteDistribusiFotoByIdProduk(id);
+        
+        for (Foto foto : fotos) {
+            fotoDao.DeleteFotoByid(foto.getId());
+            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+foto.getNamaFile());
+        
+            if(file.exists() && file.isFile()) {
+                file.delete();
+            }
+        }
+        
         produkDao.deleteProduk(id);
         return "redirect:daftar-produk";
     }
     
+    //foto
     @RequestMapping("/hapus-foto")
     public String hapusKategoriProduk(@RequestParam("id") Integer id,
     @RequestParam("idProduk") Integer idProduk,
@@ -153,6 +169,5 @@ public class UserProdukController {
         
         return "redirect:detail?id="+idProduk;
     }
-    
     
 }

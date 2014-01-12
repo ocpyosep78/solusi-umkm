@@ -13,6 +13,8 @@ public interface ProdukDao {
     
     public Produk getProdukById(Integer id);
     
+    public Produk getProdukByKode(String kodeProduk, Integer idUmkm, String namaProduk);
+    
     public void deleteProduk(Integer id);
     
     public void deleteFotoById(Integer id);

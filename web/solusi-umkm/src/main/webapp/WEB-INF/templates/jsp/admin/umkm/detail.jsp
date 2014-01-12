@@ -136,7 +136,7 @@
                         </tr>
                     </table>
                         <a title="edit" class="btn btn-primary" alt="edit" href="input-umkm?id=${umkm.id}">Edit <i class="fa fa-edit"></i></a>
-                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-umkm?id=${umkm.id}" onclick="tampil_confirm()">Hapus <i class="fa fa-trash-o"></i></a>
+                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-umkm?id=${umkm.id}" onclick="return tampil_confirm()">Hapus <i class="fa fa-trash-o"></i></a>
                 </div>
             </c:otherwise>
         </c:choose>

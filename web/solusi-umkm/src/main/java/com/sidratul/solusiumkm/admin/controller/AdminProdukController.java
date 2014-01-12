@@ -74,7 +74,8 @@ public class AdminProdukController {
         List<MultipartFile> files = produk.getFiles();
         
         //System.out.println("isi :"+files.size());
-        
+        produkDao.saveProduk(produk);
+        produk = produkDao.getProdukByKode(produk.getKodeProduk(), produk.getUmkm().getId(), produk.getNamaProduk());
         if(files!= null && files.size() > 0) {
             for (MultipartFile multipartFile : files) {
                 
@@ -102,13 +103,26 @@ public class AdminProdukController {
             }
         }
         
-        produkDao.saveProduk(produk);
         return "redirect:index";
     }
     
     @RequestMapping("/hapus-produk")
     public String hapusProduk(@RequestParam("id") Integer id,
-    ModelMap modelMap){
+    HttpServletRequest request,
+    ModelMap modelMap){        
+        List<Foto> fotos = fotoDao.getAllFotoByIdProduk(id);
+        
+        fotoDao.DeleteDistribusiFotoByIdProduk(id);
+        
+        for (Foto foto : fotos) {
+            fotoDao.DeleteFotoByid(foto.getId());
+            File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+foto.getNamaFile());
+        
+            if(file.exists() && file.isFile()) {
+                file.delete();
+            }
+        }
+        
         produkDao.deleteProduk(id);
         return "redirect:index";
     }
@@ -141,13 +155,14 @@ public class AdminProdukController {
     @RequestMapping("/hapus-kategori")
     public String hapusKategoriProduk(@RequestParam("id") Integer id,
     ModelMap modelMap){
+        
         kategoriProdukDao.deleteKategoriProduk(id);
         return "redirect:kategori";
     }
     
     //foto
     @RequestMapping("/hapus-foto")
-    public String hapusKategoriProduk(@RequestParam("id") Integer id,
+    public String hapusFotoProduk(@RequestParam("id") Integer id,
     @RequestParam("idProduk") Integer idProduk,
     @RequestParam("namaFile") String namaFile,
     HttpServletRequest request,
@@ -163,4 +178,5 @@ public class AdminProdukController {
         
         return "redirect:detail?id="+idProduk;
     }
+    
 }

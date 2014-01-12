@@ -95,7 +95,7 @@
                                             </div>
                                             <div class="row">
                                                 <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
-                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-sm btn-danger" onclick="tampil_confirm()"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
+                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-sm btn-danger" onclick="return tampil_confirm()"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
                                             </div>
                                         </div>  
                                     </c:forEach>
@@ -109,7 +109,7 @@
                         
                     <div class="">
                         <a title="edit" class="btn btn-primary" alt="edit" href="input-produk?id=${produk.id}">Edit <i class="fa fa-edit"></i></a>
-                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-produk?id=${produk.id}" onclick="tampil_confirm()">Hapus <i class="fa fa-trash-o"></i></a>
+                        <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-produk?id=${produk.id}" onclick="return tampil_confirm()">Hapus <i class="fa fa-trash-o"></i></a>
                     </div>
 
                 </div>
