@@ -19,7 +19,7 @@
     <body>
         <h1>Produk <small>Index</small></h1>
         <hr>
-    <form class="form-horizontal">
+<!--    <form class="form-horizontal">
         <div class="form-group">
                 <div class="col-lg-5">
                   <input type="text" class="form-control" placeholder="Kata Kunci">
@@ -37,7 +37,7 @@
                 </div>
         </div>
       </form>  
-        <hr>
+        <hr>-->
         <c:forEach items="${listProduk}" var="lp">
             <div class="col-md-12 p-padd breadcrumb" >
                 <div class="col-lg-4">

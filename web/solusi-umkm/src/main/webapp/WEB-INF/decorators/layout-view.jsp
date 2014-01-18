@@ -41,14 +41,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%= request.getContextPath() %>/view/home/index">Solusi UMKM</a>
+          <a class="navbar-brand " href="<%= request.getContextPath() %>/view/artikel/index">Solusi UMKM</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
-            <li><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
+            <li id="artikel" class=""><a href="<%= request.getContextPath() %>/view/artikel/index">Home</a></li>
+            <li id="umkm" class=""><a href="<%= request.getContextPath() %>/view/umkm/index">UMKM</a></li>
+            <li id="produk" class=""><a href="<%= request.getContextPath() %>/view/produk/index">Produk</a></li>
             <c:catch><c:set var="principal" value="${pageContext.request.userPrincipal.principal}" scope="request"/></c:catch>
             <c:if test="${!empty principal}">
                 <% if (request.isUserInRole("ROLE_ADMIN")) { %>
@@ -85,7 +86,7 @@
                   </ul>
                 </c:when>
                 <c:otherwise>
-                    <li><a class="" href="<%= request.getContextPath() %>/view/login/berhasil">Login</a></li>
+                    <li><a class="" id="login" href="<%= request.getContextPath() %>/view/login/berhasil">Login</a></li>
                </c:otherwise>
               </c:choose>
           </ul>
@@ -113,15 +114,15 @@
         </div>
         
         <div class="col-lg-4">
-          <div class="well">
+<!--          <div class="well">
             <h4>Blog Search</h4>
             <div class="input-group">
               <input type="text" class="form-control">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
               </span>
-            </div><!-- /input-group -->
-          </div><!-- /well -->
+            </div> /input-group 
+          </div> /well 
           <div class="well">
             <h4>Popular Blog Categories</h4>
               <div class="row">
@@ -142,11 +143,11 @@
                   </ul>
                 </div>
               </div>
-          </div><!-- /well -->
+          </div> /well 
           <div class="well">
             <h4>Side Widget Well</h4>
             <p>Bootstrap's default wells work great for side widgets! What is a widget anyways...?</p>
-          </div><!-- /well -->
+          </div> /well -->
         </div>
       </div>
       

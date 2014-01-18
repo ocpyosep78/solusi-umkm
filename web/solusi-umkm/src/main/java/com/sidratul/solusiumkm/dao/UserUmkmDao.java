@@ -13,4 +13,6 @@ public interface UserUmkmDao {
     
     public void deleteUserUmkm(Integer id);
     
+    public UserUmkm getUserByUsername(String username);
+    
 }

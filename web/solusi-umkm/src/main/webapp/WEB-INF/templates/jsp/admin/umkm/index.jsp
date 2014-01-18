@@ -29,7 +29,7 @@
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -43,7 +43,9 @@
                           <th>alamat</th>
                           <th>Telepon</th>
                           <th>Email</th>
-                          <th colspan="2"></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -65,10 +67,11 @@
                               <td><a title="hapus" alt="hapus" href="hapus-umkm?id=${lu.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>
+                          
                       </tbody>
                     </table>
                 </div>
-            </c:otherwise>
+           </c:otherwise>
         </c:choose>
     </body>
 </html>

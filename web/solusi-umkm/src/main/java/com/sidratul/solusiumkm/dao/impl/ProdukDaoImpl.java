@@ -112,7 +112,7 @@ public class ProdukDaoImpl implements ProdukDao{
                 produk.getNamaProduk(),
                 produk.getHarga(),
                 produk.getKeteranganProduk(),
-                new java.sql.Date(produk.getTglUpdateProduk().getTime())
+                produk.getTglUpdateProduk()
             });
         }
     }

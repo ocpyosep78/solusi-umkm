@@ -21,6 +21,7 @@ public class UserDaoImpl implements UserUmkmDao{
     
     private static final String SQL_GETALL_USERUMKM_BYAKTIF="SELECT * FROM user where aktif=? and peran='ROLE_UMKM'";
     private static final String SQL_GETUSERUMKM_BYID="SELECT * FROM user where id=?";
+    private static final String SQL_GETUSERUMKM_BYUSERNAME="SELECT * FROM user where username=?";
     private static final String SQL_DELETEUSERUMKM_BYID="DELETE FROM user where id=?";
     private static final String SQL_UPDATE_USERUMKM="UPDATE `user` SET "
             + "`username` = ?, `id_umkm` = ?, `password` = ?, `terakhir_login` = ?, `aktif` = ? "
@@ -75,7 +76,7 @@ public class UserDaoImpl implements UserUmkmDao{
                 userUmkm.getUsername(),
                 userUmkm.getUmkm().getId(),
                 userUmkm.getPassword(),
-                new java.sql.Date(userUmkm.getTerakhirLogin().getTime()),
+                userUmkm.getTerakhirLogin(),
                 userUmkm.getAktif(),
                 userUmkm.getId()
             });
@@ -89,7 +90,12 @@ public class UserDaoImpl implements UserUmkmDao{
             });
         }
     }
-
+    
+    public UserUmkm getUserByUsername(String username) {
+        UserUmkm userUmkm = jdbcTemplate.queryForObject(SQL_GETUSERUMKM_BYUSERNAME, new UserUmkmParameterizedRowMapper(),username);
+        return userUmkm;
+    }
+    
     public UserUmkm getUserById(Integer id) {
         if(id==null){
             return null;

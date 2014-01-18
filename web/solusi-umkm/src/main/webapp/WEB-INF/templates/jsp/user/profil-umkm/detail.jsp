@@ -96,10 +96,7 @@
                                     <i><small>(visi tidak tersedia)</small></i>
                                 </c:when >
                                 <c:otherwise>
-                                    <pre>
-                                        ${umkm.alamat}
-                                        sdsd
-                                    </pre>
+                                    ${umkm.alamat}
                                 </c:otherwise>
                             </c:choose>
                                     sasd
