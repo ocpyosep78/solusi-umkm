@@ -15,21 +15,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Produk <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail Produk</li>
-            </ol>
-        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">UMKM <small>Detail</small></h1>
+                <ol class="breadcrumb">
+                    <li class="active"><i class="fa fa-users"></i> Detail Produk</li>
+                </ol>
+            </div>
+        </div>        
         <c:choose>
             <c:when test="${empty produk}">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Tidak Ditemukan</li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                          <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Tidak Ditemukan</li>
+                        </ol>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
+                <div class="row">
+                    <div class="col-lg-12">
+
                 <div class="table-responsive">
                     <table class="table table-responsive breadcrumb">
                         <tr>
@@ -113,6 +120,8 @@
                     </div>
 
                 </div>
+                    </div>
+                </div>  
             </c:otherwise>
         </c:choose>
     </body>

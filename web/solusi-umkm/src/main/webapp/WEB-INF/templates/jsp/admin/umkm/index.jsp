@@ -16,7 +16,7 @@
         
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">UMKM <small>Index</small></h2>
+                <h1 class="page-header">UMKM <small>Index</small></h1>
                 <ol class="breadcrumb">
                     <li class="active"><i class="fa fa-users"></i> Daftar anggota asosiasi UMKM</li>
                 </ol>

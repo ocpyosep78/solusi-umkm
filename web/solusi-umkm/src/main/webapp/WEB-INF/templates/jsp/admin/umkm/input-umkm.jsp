@@ -14,20 +14,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <c:choose>
-                <c:when test="${empty umkm.id}">
-                    <c:set var="ket" value="Input"/>
-                </c:when>
-                <c:otherwise>
-                    <c:set var="ket" value="Edit"/>
-                </c:otherwise>
-            </c:choose>
-            <h2>UMKM <small>${ket}</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} anggota asosiasi UMKM</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <c:choose>
+                    <c:when test="${empty umkm.id}">
+                        <c:set var="ket" value="Input"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="ket" value="Edit"/>
+                    </c:otherwise>
+                </c:choose>
+                <h1 class="page-header">UMKM <small>${ket}</small></h1>
+                <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-download"></i> ${ket} anggota asosiasi UMKM</li>
+                </ol>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+
         
         <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" required="required">
             <sf:hidden path="id"/>
@@ -46,7 +51,19 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Pemilik UMKM</label>
               <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM" required="required"/>
+                  <sf:input type="text" class="form-control" path="username" placeholder="username" required="required"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Password</label>
+              <div class="col-xs-4">
+                  <sf:input type="text" class="form-control" path="password" placeholder="password" required="required"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Tulis Ulang Password</label>
+              <div class="col-xs-4">
+                  <sf:input type="text" class="form-control" path="passwordCek" placeholder="tulis ulang password" required="required"/>
               </div>
             </div>
             <div class="form-group">
@@ -104,5 +121,8 @@
               </div>
             </div>
         </sf:form>
+            
+            </div>
+        </div>
     </body>
 </html>

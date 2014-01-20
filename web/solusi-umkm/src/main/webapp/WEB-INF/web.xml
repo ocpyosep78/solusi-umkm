@@ -50,6 +50,19 @@
         <servlet-name>user</servlet-name>
         <url-pattern>/user/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>   
+        <servlet-name>json</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>json</servlet-name>
+        <url-pattern>/user/*</url-pattern>
+    </servlet-mapping>
+    
+    
 <!--    <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>

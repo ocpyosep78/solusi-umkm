@@ -5,13 +5,16 @@ import com.sidratul.solusiumkm.dao.UmkmDao;
 import com.sidratul.solusiumkm.model.KategoriUmkm;
 import com.sidratul.solusiumkm.model.Umkm;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/umkm")
@@ -81,9 +84,18 @@ public class AdminUmkmController {
     }
     
     @RequestMapping(value = "/input-kategori",method = RequestMethod.POST)
-    public String prosesInputKategoriUmkm(@ModelAttribute KategoriUmkm kategoriUmkm ,
-    ModelMap modelMap){
+    public String prosesInputKategoriUmkm(@ModelAttribute @Valid KategoriUmkm kategoriUmkm,
+    ModelMap modelMap,
+    BindingResult result,
+    SessionStatus status){
+        
+        if(result.hasErrors()) {
+            return "input-kategori";
+        }
+        
         kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
+        
+        status.setComplete();
         return "redirect:kategori";
     }
     

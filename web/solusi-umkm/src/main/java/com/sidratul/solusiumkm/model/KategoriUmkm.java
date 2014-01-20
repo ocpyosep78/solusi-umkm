@@ -1,7 +1,10 @@
 package com.sidratul.solusiumkm.model;
 
 public class KategoriUmkm {
+    
     private Integer id;
+    
+ 
     private String jenisUmkm;
 
     public Integer getId() {

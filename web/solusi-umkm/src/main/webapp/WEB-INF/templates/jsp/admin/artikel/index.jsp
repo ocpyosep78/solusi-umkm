@@ -15,23 +15,29 @@
         <title>Artikel</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Artikel <small>Index</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Daftar artikel untuk web solusi UMKM</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Artikel <small>Index</small></h1>
+                <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-users"></i> Daftar artikel untuk web solusi UMKM</li>
+                </ol>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty listArtikel}">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                          <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
+                        </ol>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
+                <div class="row">
+                    <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -40,7 +46,9 @@
                           <th>Foto</th>
                           <th>File</th>
                           <th>Tanggal Update</th>
-                          <th colspan="2"></th>
+                          <th>Lihat</th>
+                          <th>Edit</th>
+                          <th>Hapus</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -80,6 +88,8 @@
                         </c:forEach>
                       </tbody>
                     </table>
+                </div>
+                    </div>
                 </div>
             </c:otherwise>
         </c:choose>

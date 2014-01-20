@@ -16,23 +16,30 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Produk <small>Index</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Daftar produk </li>
-            </ol>
+        <div class="row"> 
+            <div class="col-lg-12">
+                <h1 class="page-header">Produk <small>Index</small></h1>
+                <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-users"></i> Daftar produk </li>
+                </ol>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty listProduk}">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                          <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
+                        </ol>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
+                <div class="row">
+                    <div class="col-lg-12">          
+                  
                 <div class="table-responsive">
-                    <table class="table table-striped breadcrumb">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -44,7 +51,9 @@
                           <th>Keterangan</th>
                           <th>Tgl Update</th>
                           <th>Jumlah Foto</th>
-                          <th colspan="2"></th>
+                          <th>View</th>
+                          <th>Edit</th>
+                          <th>Hapus</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -57,7 +66,7 @@
                               <td><a href="<%= request.getContextPath() %>/admin/umkm/detail?id=${lp.umkm.id}">${lp.umkm.namaUmkm}</a></td>
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
-                               <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" />
+                              <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" /></td>
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
@@ -66,6 +75,9 @@
                         </c:forEach>
                       </tbody>
                     </table>
+                </div>
+                        
+                    </div>
                 </div>
             </c:otherwise>
         </c:choose>

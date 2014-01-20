@@ -28,7 +28,7 @@ public class AdminArtikelController {
     
     @Autowired private ArtikelDao artikelDao;
     
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public void tampilArtikel(ModelMap modelMap){
         List<Artikel> artikels = artikelDao.getAllArtikel();
         modelMap.addAttribute("listArtikel", artikels);

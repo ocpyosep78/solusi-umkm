@@ -13,28 +13,36 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Produk <small>kategori</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-qrcode"></i> Kategori produk</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Produk <small>kategori</small></h1>
+                <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-qrcode"></i> Kategori produk</li>
+                </ol>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty listKategoriProduk}">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                          <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
+                        </ol>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="table-responsive col-lg-5">
-                    <table class="table table-striped">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Kategori</th>
-                          <th colspan="2"></th>
+                          <th>Edit</th>
+                          <th>Hapus</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -48,6 +56,8 @@
                         </c:forEach>
                       </tbody>
                     </table>
+                </div>
+                    </div>                    
                 </div>
             </c:otherwise>
         </c:choose>

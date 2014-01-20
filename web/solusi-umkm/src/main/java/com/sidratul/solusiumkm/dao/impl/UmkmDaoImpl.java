@@ -26,11 +26,13 @@ public class UmkmDaoImpl implements UmkmDao{
             + "where username=?";
     private static final String SQL_DELETE_UMKM="DELETE FROM umkm where id=?";
     private static final String SQL_UPDATE_UMKM="UPDATE `umkm` SET "
-            + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,`id_kategori_umkm` = ?,"
+            + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,username=?, password=?`id_kategori_umkm` = ?,"
             + "`keterangan_umkm` = ?,`visi` = ?,`misi` = ?,`alamat` = ?,`no_telpon` = ?,`email` = ? "
             + "WHERE `id` = ?";
-    private static final String SQL_INSERT_UMKM="INSERT INTO `umkm`(`kode_umkm`,`nama_umkm`,`pemilik_umkm`,`id_kategori_umkm`,`keterangan_umkm`,`visi`,`misi`,`alamat`,`no_telpon`,`email`)"
-            + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_UMKM="INSERT INTO `umkm`"
+            + "(`kode_umkm`,`nama_umkm`,`pemilik_umkm`,username, password,"
+            + "`id_kategori_umkm`,`keterangan_umkm`,`visi`,`misi`,`alamat`,`no_telpon`,`email`)"
+            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
     
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
@@ -46,6 +48,9 @@ public class UmkmDaoImpl implements UmkmDao{
             umkm.setKodeUmkm(rs.getString("kode_umkm"));
             umkm.setNamaUmkm(rs.getString("nama_umkm"));
             umkm.setPemilikUmkm(rs.getString("pemilik_umkm"));
+            umkm.setUsername(rs.getString("username"));
+            umkm.setPassword(rs.getString("password"));
+            
             
             umkm.setKategoriUmkm(kategoriUmkmDao.getKategoriUmkmById(rs.getInt("id_kategori_umkm")));
             
@@ -82,6 +87,8 @@ public class UmkmDaoImpl implements UmkmDao{
                 umkm.getKodeUmkm(),
                 umkm.getNamaUmkm(),
                 umkm.getPemilikUmkm(),
+                umkm.getUsername(),
+                umkm.getPassword(),
                 umkm.getKategoriUmkm().getId(),
                 umkm.getKeteranganUmkm(),
                 umkm.getVisi(),
@@ -96,6 +103,8 @@ public class UmkmDaoImpl implements UmkmDao{
                 umkm.getKodeUmkm(),
                 umkm.getNamaUmkm(),
                 umkm.getPemilikUmkm(),
+                umkm.getUsername(),
+                umkm.getPassword(),
                 umkm.getKategoriUmkm().getId(),
                 umkm.getKeteranganUmkm(),
                 umkm.getVisi(),

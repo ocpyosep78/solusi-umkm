@@ -15,20 +15,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <c:choose>
-                <c:when test="${empty kategoriUmkm.id}">
-                    <c:set var="ket" value="Input"/>
-                </c:when>
-                <c:otherwise>
-                    <c:set var="ket" value="Edit"/>
-                </c:otherwise>
-            </c:choose>
-            <h2>UMKM <small> ${ket} Kategori</small>
-            </h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} kategori UMKM</li>
-            </ol>
+        <c:choose>
+            <c:when test="${empty kategoriUmkm.id}">
+                <c:set var="ket" value="Input"/>
+            </c:when>
+            <c:otherwise>
+                <c:set var="ket" value="Edit"/>
+            </c:otherwise>
+        </c:choose>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">UMKM <small> ${ket} Kategori</small></h1>
+                <ol class="breadcrumb">
+                    <li class="active"><i class="fa fa-download"></i> ${ket} kategori UMKM</li>
+                </ol>
+            </div>
         </div>
         
         <sf:form class="form-horizontal" role="form" modelAttribute="kategoriUmkm" action="input-kategori">
@@ -37,6 +38,7 @@
               <label class="col-sm-2 control-label">Jenis UMKM</label>
               <div class="col-xs-4">
                   <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM"/>
+                  <sf:errors path="jenisUmkm" />
               </div>
             </div>
             

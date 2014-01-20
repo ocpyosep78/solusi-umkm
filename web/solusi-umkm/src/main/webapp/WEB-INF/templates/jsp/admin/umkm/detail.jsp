@@ -13,23 +13,27 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>UMKM <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail UMKM</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">UMKM <small>Detail</small></h1>
+                <ol class="breadcrumb">
+                    <li class="active"><i class="fa fa-users"></i> Detail UMKM</li>
+                </ol>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty umkm}">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Tidak Ditemukan</li>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                          <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Tidak Ditemukan</li>
+                        </ol>
+                    </div>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="table-responsive">
-                           <table class="table table-responsive breadcrumb capital">
+                    <table class="table table-responsive breadcrumb capital">
                         <tr>
                           <td>Kode</td>
                           <td>:</td>

@@ -12,7 +12,44 @@ public class Umkm {
     private String alamat;
     private String noTelp;
     private String email;
+    
+    private String username;
+    private String password;
+    private String passwordLama;
+    private String passwordCek;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordLama() {
+        return passwordLama;
+    }
+
+    public void setPasswordLama(String passwordLama) {
+        this.passwordLama = passwordLama;
+    }
+
+    public String getPasswordCek() {
+        return passwordCek;
+    }
+
+    public void setPasswordCek(String passwordCek) {
+        this.passwordCek = passwordCek;
+    }
+    
     public Integer getId() {
         return id;
     }
