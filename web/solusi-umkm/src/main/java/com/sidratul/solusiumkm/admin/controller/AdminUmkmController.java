@@ -146,13 +146,10 @@ public class AdminUmkmController {
         if(umkm.getKodeUmkm()==""){
             setPesanGagal("Kode UMKM harus diisi");
         }else{
-            Umkm umkm1 = umkmDao.getUmkmById(umkm.getId());
-            Umkm umkm2 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
+            Umkm umkm2 = umkmDao.getUmkmByKodeUmkmDanBukanId(umkm.getKodeUmkm(), umkm.getId());
             
             if(umkm2!=null){
-                if(umkm1.getKodeUmkm()==umkm2.getKodeUmkm()){
-                    setPesanGagal("Kode UMKM sudah dimiliki oleh UMKM yang lain");
-                }
+                setPesanGagal("Kode UMKM sudah dimiliki oleh UMKM yang lain");
             }
             
         }

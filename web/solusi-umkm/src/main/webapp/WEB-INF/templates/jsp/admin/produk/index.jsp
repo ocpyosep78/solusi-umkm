@@ -24,6 +24,22 @@
                 </ol>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div> 
         <c:choose>
             <c:when test="${empty listProduk}">
                 <div class="row">

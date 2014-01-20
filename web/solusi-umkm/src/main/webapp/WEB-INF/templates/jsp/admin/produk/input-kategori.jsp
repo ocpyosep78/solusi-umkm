@@ -32,6 +32,24 @@
                 </ol>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div> 
+        
         <div class="row">
             <div class="col-lg-12">                
             <sf:form class="form-horizontal" role="form" modelAttribute="kategoriProduk" action="input-kategori">
@@ -39,7 +57,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenis Kategori</label>
                   <div class="col-xs-4">
-                      <sf:input type="text" class="form-control" path="jenisProduk" placeholder="jenis kategori"/>
+                      <sf:input type="text" class="form-control" path="jenisProduk" placeholder="jenis kategori" required="required"/>
                   </div>
                 </div>
 

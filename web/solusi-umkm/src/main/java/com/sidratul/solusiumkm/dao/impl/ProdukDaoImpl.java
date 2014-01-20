@@ -14,6 +14,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,14 @@ public class ProdukDaoImpl implements ProdukDao{
     private static final String SQL_GETPRODUK_BYID="SELECT * FROM produk WHERE id=?";
     private static final String SQL_GETPRODUK_BYKODE="SELECT * FROM produk "
             + "WHERE kode_produk=? and id_umkm = ? and nama_produk = ?";
+    
+    private static final String SQL_GETPRODUK_BYKODE_DANIDUMKM="SELECT * FROM produk "
+            + "WHERE kode_produk=? and id_umkm = ?";
+    
+    private static final String SQL_GETPRODUK_BYKODEIDUMKM_DAN_ID="SELECT * FROM produk "
+            + "WHERE kode_produk=? and id_umkm = ? and id != ?";
+    
+    
     private static final String SQL_DELETE_PRODUK="DELETE FROM produk WHERE id=?";
     private static final String SQL_UPDATE_PRODUK="UPDATE `produk` SET `id_umkm` = ?,`id_kategori_produk` = ?,"
             + "`kode_produk` = ?,`nama_produk` = ?,`harga` = ?,`keterangan_produk` = ?,`tgl_update_produk` = ? "
@@ -48,7 +57,6 @@ public class ProdukDaoImpl implements ProdukDao{
     
     private JdbcTemplate jdbcTemplate;
 
-    
     public final class ProdukParameterizedRowMapper implements ParameterizedRowMapper<Produk>{
 
         public Produk mapRow(ResultSet rs, int i) throws SQLException {
@@ -91,7 +99,7 @@ public class ProdukDaoImpl implements ProdukDao{
         List<Produk> produks = jdbcTemplate.query(SQL_GETALL_PRODUK_BYUSERNAME,new ProdukParameterizedRowMapper(),username);
         return produks;
     }
-
+    
     public void saveProduk(Produk produk) throws DuplicateKeyException {
         if(produk.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_PRODUK, new Object[]{
@@ -131,6 +139,33 @@ public class ProdukDaoImpl implements ProdukDao{
             kodeProduk,idUmkm,namaProduk
         });
         return produk;
+    }
+    
+    public Produk getProdukByKodeDanIdUMKM(String kodeProduk, Integer idUmkm) {
+         try{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE, new ProdukParameterizedRowMapper(), new Object[]{
+                kodeProduk,
+                idUmkm
+            });
+            
+            return produk;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+    }
+
+    public Produk getProdukByKodeIdUmkmDanBukanIdProduk(String kodeProduk, Integer idUmkm, Integer id) {
+        try{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE, new ProdukParameterizedRowMapper(), new Object[]{
+                kodeProduk,
+                idUmkm,
+                id
+            });
+            
+            return  produk;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
     }
 
     public void deleteProduk(Integer id) {

@@ -53,48 +53,48 @@
                 
         <div class="row">
             <div class="col-lg-12">
-                <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" required="required">
+                <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" >
                     <sf:hidden path="id"/>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Kode UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM"/>
+                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Nama UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM"/>
+                          <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Pemilik UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM"/>
+                          <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Username</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="username" placeholder="username" />
+                          <sf:input type="text" class="form-control" path="username" placeholder="username" required="required"/>
                       </div>
                     </div>
                       <div class="form-group">
                       <label class="col-sm-2 control-label">Password</label>
                       <div class="col-xs-4">
-                          <sf:input type="password" class="form-control" path="password" placeholder="password"/>
+                          <sf:input type="password" class="form-control" path="password" placeholder="password" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Tulis Ulang Password</label>
                       <div class="col-xs-4">
-                          <sf:input type="password" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password"/>
+                          <sf:input type="password" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Kategori UMKM</label>
                       <div class="col-xs-4">
-                          <sf:select path="kategoriUmkm.id" class="form-control" >
+                          <sf:select path="kategoriUmkm.id" class="form-control" required="required" >
                             <sf:option value="">Pilih Kategori</sf:option>
                             <c:forEach items="${listKategoriUmkm}" var="lku">
                                 <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>

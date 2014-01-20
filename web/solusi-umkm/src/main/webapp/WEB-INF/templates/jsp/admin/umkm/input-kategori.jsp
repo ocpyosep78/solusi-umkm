@@ -55,7 +55,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Jenis UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM"/>
+                          <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM" required="required"/>
                           <sf:errors path="jenisUmkm" />
                       </div>
                     </div>

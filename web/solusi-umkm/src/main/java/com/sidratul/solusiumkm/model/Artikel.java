@@ -7,7 +7,7 @@ public class Artikel {
     private String judul;
     private String isi;
     private String namaFoto;
-    private String namaFile;
+
     private Date tglUpdate;
 
     public Date getTglUpdate() {
@@ -51,12 +51,4 @@ public class Artikel {
         this.namaFoto = namaFoto;
     }
 
-    public String getNamaFile() {
-        return namaFile;
-    }
-
-    public void setNamaFile(String namaFile) {
-        this.namaFile = namaFile;
-    }
-            
 }

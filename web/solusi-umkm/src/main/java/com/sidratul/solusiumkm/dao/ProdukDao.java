@@ -15,6 +15,10 @@ public interface ProdukDao {
     
     public Produk getProdukByKode(String kodeProduk, Integer idUmkm, String namaProduk);
     
+    public Produk getProdukByKodeDanIdUMKM(String kodeProduk, Integer idUmkm);
+    
+    public Produk getProdukByKodeIdUmkmDanBukanIdProduk(String kodeProduk, Integer idUmkm, Integer id);
+    
     public void deleteProduk(Integer id);
     
     public void deleteFotoById(Integer id);

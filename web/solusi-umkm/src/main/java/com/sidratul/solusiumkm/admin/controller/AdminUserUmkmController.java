@@ -33,39 +33,40 @@ public class AdminUserUmkmController {
         modelMap.addAttribute("aktif",aktif);
     }
     
-    @RequestMapping(value = "/input-user",method = RequestMethod.GET)
-    public void formInputProduk(@RequestParam(value = "id", required = false) Integer id,
-    ModelMap modelMap){
-        UserUmkm userUmkm = userUmkmDao.getUserById(id);
-        List<Umkm> umkms = umkmDao.getAllUmkmTidakMemilikiUser();
-        
-        if(userUmkm==null){
-            userUmkm = new UserUmkm();
-        }else{
-            umkms.add(userUmkm.getUmkm());
-        }
-        
-        modelMap.addAttribute("userUmkm", userUmkm);
-        
-        modelMap.addAttribute("listUmkm", umkms);
-    }
-    
-    @RequestMapping(value = "/input-user",method = RequestMethod.POST)
-    public String prosesInputUser(@ModelAttribute UserUmkm userUmkm,
-    ModelMap modelMap){
-        userUmkm.setTerakhirLogin(new Date());
-        userUmkm.setPeran("ROLE_UMKM");
-        
-        userUmkmDao.saveUserUmkm(userUmkm);
-        
-        return "redirect:index?aktif="+userUmkm.getAktif();
-    }
-    
-    @RequestMapping("/hapus-user")
-    public String hapusUser(@RequestParam("id") Integer id, @RequestParam("aktif") Integer aktif,
-    ModelMap modelMap){
-        umkmDao.deleteUmkm(id);
-        return "redirect:index?aktif="+aktif;
-    }
+//    
+//    @RequestMapping(value = "/input-user",method = RequestMethod.GET)
+//    public void formInputProduk(@RequestParam(value = "id", required = false) Integer id,
+//    ModelMap modelMap){
+//        UserUmkm userUmkm = userUmkmDao.getUserById(id);
+//        List<Umkm> umkms = umkmDao.getAllUmkmTidakMemilikiUser();
+//        
+//        if(userUmkm==null){
+//            userUmkm = new UserUmkm();
+//        }else{
+//            umkms.add(userUmkm.getUmkm());
+//        }
+//        
+//        modelMap.addAttribute("userUmkm", userUmkm);
+//        
+//        modelMap.addAttribute("listUmkm", umkms);
+//    }
+//    
+//    @RequestMapping(value = "/input-user",method = RequestMethod.POST)
+//    public String prosesInputUser(@ModelAttribute UserUmkm userUmkm,
+//    ModelMap modelMap){
+//        userUmkm.setTerakhirLogin(new Date());
+//        userUmkm.setPeran("ROLE_UMKM");
+//        
+//        userUmkmDao.saveUserUmkm(userUmkm);
+//        
+//        return "redirect:index?aktif="+userUmkm.getAktif();
+//    }
+//    
+//    @RequestMapping("/hapus-user")
+//    public String hapusUser(@RequestParam("id") Integer id, @RequestParam("aktif") Integer aktif,
+//    ModelMap modelMap){
+//        umkmDao.deleteUmkm(id);
+//        return "redirect:index?aktif="+aktif;
+//    }
 
 }
