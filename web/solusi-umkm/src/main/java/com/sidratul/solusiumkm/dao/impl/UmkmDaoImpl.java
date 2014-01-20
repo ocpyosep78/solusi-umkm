@@ -23,12 +23,16 @@ public class UmkmDaoImpl implements UmkmDao{
             + "WHERE us.id_umkm is null";
     private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where id=?";
     private static final String SQL_GETUMKM_BYKODEUMKM="SELECT * FROM umkm where kode_umkm=?";
+    private static final String SQL_GETUMKM_BYKODEUMKM_BUKANID="SELECT * FROM umkm where kode_umkm=? AND id != ?";
+    
     private static final String SQL_GETUMKM_BYUSERNAME="SELECT um.* FROM umkm um "
             + "RIGHT JOIN user us ON um.id = us.id_umkm "
-            + "where username=?";
+            + "where um.username=?";
+    private static final String SQL_GETUMKM_BYUSERNAME_BUKANID="select * from umkm where username = ? and id != ? ";
+    
     private static final String SQL_DELETE_UMKM="DELETE FROM umkm where id=?";
     private static final String SQL_UPDATE_UMKM="UPDATE `umkm` SET "
-            + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,username=?, password=?`id_kategori_umkm` = ?,"
+            + "`kode_umkm` = ?,`nama_umkm` = ?,`pemilik_umkm` = ?,username=?, password=?,`id_kategori_umkm` = ?,"
             + "`keterangan_umkm` = ?,`visi` = ?,`misi` = ?,`alamat` = ?,`no_telpon` = ?,`email` = ? "
             + "WHERE `id` = ?";
     private static final String SQL_INSERT_UMKM="INSERT INTO `umkm`"
@@ -40,7 +44,6 @@ public class UmkmDaoImpl implements UmkmDao{
     
     private JdbcTemplate jdbcTemplate;
 
-    
     
     private final class UmkmParameterizedRowMapper implements 
             ParameterizedRowMapper<Umkm>{
@@ -92,6 +95,24 @@ public class UmkmDaoImpl implements UmkmDao{
             return null;
         }
         
+    }
+    
+    public Umkm getUmkmByKodeUmkmDanBukanId(String kodeUmkm, Integer id) {
+        try{
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYKODEUMKM_BUKANID, new UmkmParameterizedRowMapper(),kodeUmkm,id);
+            return umkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+    }
+
+    public Umkm getUmkmByUsernameDanBukanId(String username, Integer id) {
+        try{
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYUSERNAME_BUKANID, new UmkmParameterizedRowMapper(),username,id);
+            return umkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
     }
     
     public void saveUmkm(Umkm umkm) throws DuplicateKeyException {

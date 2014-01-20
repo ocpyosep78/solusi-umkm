@@ -34,18 +34,20 @@
                 
         <div class="row">
             <div class="col-lg-12">
-                <c:if test="${not empty listPesan}">
-                    <div class="row">
-                        <div class="col-lg-12">
-                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
-                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <span class="kapital"> ${lp.isiPesan}</span>
-                                </div>
-                            </c:forEach>
+                <small>
+                    <c:if test="${not empty listPesan}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                    <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <span class="kapital"> ${lp.isiPesan}</span>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
-                    </div>
-                </c:if>
+                    </c:if>
+                </small>
             </div>
         </div> 
                 
@@ -56,43 +58,43 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Kode UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
+                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Nama UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required="required"/>
+                          <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Pemilik UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM" required="required"/>
+                          <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Username</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="username" placeholder="username" required="required"/>
+                          <sf:input type="text" class="form-control" path="username" placeholder="username" />
                       </div>
                     </div>
                       <div class="form-group">
                       <label class="col-sm-2 control-label">Password</label>
                       <div class="col-xs-4">
-                          <sf:input type="password" class="form-control" path="password" placeholder="password" required="required"/>
+                          <sf:input type="password" class="form-control" path="password" placeholder="password"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Tulis Ulang Password</label>
                       <div class="col-xs-4">
-                          <sf:input type="password" value="${umkm.password}" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password" required="required"/>
+                          <sf:input type="password" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Kategori UMKM</label>
                       <div class="col-xs-4">
-                          <sf:select path="kategoriUmkm.id" class="form-control" required="required">
+                          <sf:select path="kategoriUmkm.id" class="form-control" >
                             <sf:option value="">Pilih Kategori</sf:option>
                             <c:forEach items="${listKategoriUmkm}" var="lku">
                                 <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>

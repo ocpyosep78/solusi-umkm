@@ -27,6 +27,9 @@ public class AdminUmkmController {
     @Autowired private UmkmDao umkmDao;
     @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
+    private List<Pesan> pesans;
+    private Boolean error;
+    
     @RequestMapping("/index")
     public void tampilUmkm(ModelMap modelMap){
         List<Umkm> umkms = umkmDao.getAllUmkm();
@@ -48,6 +51,8 @@ public class AdminUmkmController {
             umkm= new Umkm();
         }
         
+        umkm.setPasswordCek(umkm.getPassword());
+        
         List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
         
         modelMap.addAttribute("umkm", umkm);
@@ -58,88 +63,50 @@ public class AdminUmkmController {
     public String prosesInputUmkm(@ModelAttribute Umkm umkm ,
     ModelMap modelMap,
     RedirectAttributes redirectAttributes ){
-        Boolean error=false;
-        List<Pesan> pesans = new ArrayList<Pesan>();
+        error=false;
+        pesans = new ArrayList<Pesan>();
         
-        
-        if(umkm.getKodeUmkm()==""){
-                error =true;
-                Pesan pesan = new Pesan();
-                pesan.setJenisPesan("danger");
-                pesan.setIsiPesan("Kode UMKM harus diisi");
-                pesans.add(pesan);
+        if(umkm.getId()!=null){
+            cekKodeUmkmEdit(umkm);
         }else{
-            Umkm umkm1 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
-
-            if(umkm1!=null){
-                error =true;
-                Pesan pesan = new Pesan();
-                pesan.setJenisPesan("danger");
-                pesan.setIsiPesan("Kode UMKM sudah dimiliki oleh UMKM yang lain");
-                pesans.add(pesan);
-            }
+            cekKodeUmkmInput(umkm);
         }
         
-        if(umkm.getUsername() ==""){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Username harus di isi");
-            pesans.add(pesan);
-        }else{
-            final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
-            Pattern pattern = Pattern.compile(USERNAME_PATTERN);
-            Matcher matcher = pattern.matcher(umkm.getUsername());
-        
-            if(matcher.matches()){
-                error =true;
-                Pesan pesan = new Pesan();
-                pesan.setJenisPesan("danger");
-                pesan.setIsiPesan("Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");
-                pesans.add(pesan);
-            }
+        if(umkm.getNamaUmkm()==""){
+            setPesan("danger", "Nama UMKM harus diisi");
         }
         
         if(umkm.getPemilikUmkm()==""){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Pemilik UMKM harus diisi");
-            pesans.add(pesan);
+            setPesan("danger", "Pemilik UMKM harus diisi");
+        }
+        
+        if(umkm.getId()!=null){
+            cekUsernameEdit(umkm);
+        }else{
+            cekUsernameInput(umkm);
         }
         
         if(umkm.getPassword()==""){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Password harus diisi");
-            pesans.add(pesan);
+            setPesan("danger", "Password harus diisi");
         }
         
         if(umkm.getPasswordCek()==""){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Password harus dituliskan kembali");
-            pesans.add(pesan);
+            setPesan("danger", "Password harus dituliskan kembali");
         }
         
         if(umkm.getPasswordCek()!="" && umkm.getPassword()!=""){
-            if(umkm.getPassword() != umkm.getPassword()){
-                error =true;
-                Pesan pesan = new Pesan();
-                pesan.setJenisPesan("danger");
-                pesan.setIsiPesan("Password tidak cocok");
-                pesans.add(pesan);
+            System.out.println("pass dan ulang tidak kosong");
+            System.out.println(umkm.getPassword());
+            System.out.println(umkm.getPasswordCek());
+            
+            if(umkm.getPassword().compareTo(umkm.getPasswordCek())!=0){
+                setPesan("danger", "Password tidak cocok");
             }
+            
         }
         
         if(umkm.getKategoriUmkm().getId() == null){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Kategori UMKM harus dipilih");
-            pesans.add(pesan);
+            setPesan("danger", "Kategori UMKM harus dipilih");
         }
         
         if(error){
@@ -151,17 +118,91 @@ public class AdminUmkmController {
             return "umkm/input-umkm";
         }
         
-        Pesan pesan = new Pesan();
-        pesan.setJenisPesan("success");
-        pesan.setIsiPesan("berhasil menambahkan umkm");
         
-        pesans.add(pesan);
+        if(umkm.getId()!=null){
+            setPesan("success", "berhasil mengedit UMKM");
+        }else{        
+            setPesan("success", "berhasil menambahkan UMKM");
+        }
+        
         redirectAttributes.addFlashAttribute("listPesan",pesans);
         
         umkmDao.saveUmkm(umkm);
         return "redirect:index";
     }
     
+    private void cekKodeUmkmInput(Umkm umkm){
+        if(umkm.getKodeUmkm()==""){
+            setPesan("danger", "Kode UMKM harus diisi");
+        }else{
+            Umkm umkm1 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
+            
+            if(umkm1!=null){
+                setPesan("danger", "Kode UMKM sudah dimiliki oleh UMKM yang lain");
+            }
+            
+        }
+    }
+    
+    private void cekKodeUmkmEdit(Umkm umkm){
+        if(umkm.getKodeUmkm()==""){
+            setPesan("danger", "Kode UMKM harus diisi");
+        }else{
+            Umkm umkm1 = umkmDao.getUmkmById(umkm.getId());
+            Umkm umkm2 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
+            
+            if(umkm2!=null){
+                if(umkm1.getKodeUmkm()==umkm2.getKodeUmkm()){
+                    setPesan("danger", "Kode UMKM sudah dimiliki oleh UMKM yang lain");
+                }
+            }
+            
+        }
+    }
+    
+    private void cekUsernameInput(Umkm umkm){
+        if(umkm.getUsername() ==""){
+            setPesan("danger", "Username harus di isi");
+        }else{
+            final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
+            Pattern pattern = Pattern.compile(USERNAME_PATTERN);
+            Matcher matcher = pattern.matcher(umkm.getUsername());
+            
+            Umkm umkm1 = umkmDao.getUmkmByUsername(umkm.getUsername());
+             
+            if(!matcher.matches()){
+                setPesan("danger", "Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+            }else if(umkm1!=null){
+                setPesan("danger", "Username sudah dimiliki oleh UMKM yang lain");
+            }
+        }
+    }
+    
+    private void cekUsernameEdit(Umkm umkm){
+        if(umkm.getUsername() ==""){
+            setPesan("danger", "Username harus di isi");
+        }else{
+            final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
+            Pattern pattern = Pattern.compile(USERNAME_PATTERN);
+            Matcher matcher = pattern.matcher(umkm.getUsername());
+            
+            Umkm umkm1 = umkmDao.getUmkmByUsernameDanBukanId(umkm.getUsername(),umkm.getId());
+             
+            if(!matcher.matches()){
+                setPesan("danger", "Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+            }if(umkm1!=null){
+                    setPesan("danger", "Username sudah dimiliki oleh UMKM yang lain");
+            }
+        }
+    }
+    
+    private void setPesan(String jenisPesan, String isiPesan){
+        error =true;
+        Pesan pesan = new Pesan();
+        pesan.setJenisPesan(jenisPesan);
+        pesan.setIsiPesan(isiPesan);
+        pesans.add(pesan);
+    }
     
     @RequestMapping("/hapus-umkm")
     public String hapusUmkm(@RequestParam("id") Integer id,
