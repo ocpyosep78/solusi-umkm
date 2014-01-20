@@ -19,10 +19,10 @@ public class ArtikelDaoImpl implements ArtikelDao{
     private static final String SQL_GETARTIKEL_BYID="SELECT * FROM artikel where id=?";
     private static final String SQL_DELETE_ARTIKEL="DELETE FROM artikel where id = ?";
     private static final String SQL_UPDATE_ARTIKEL="UPDATE `artikel` "
-            + "SET `judul` = ?,`isi` = ?,`gambar` = ?,`file` = ?,`tgl_update` = ? "
+            + "SET `judul` = ?,`isi` = ?,`gambar` = ?,`tgl_update` = ? "
             + "WHERE `id` = ?";
-    private static final String SQL_INSERT_ARTIKEL="INSERT INTO `artikel`(`judul`,`isi`,`gambar`,`file`,`tgl_update`)"
-            + "VALUES(?,?,?,?,?)";
+    private static final String SQL_INSERT_ARTIKEL="INSERT INTO `artikel`(`judul`,`isi`,`gambar`,`tgl_update`)"
+            + "VALUES(?,?,?,?)";
     
     private JdbcTemplate jdbcTemplate;
 
@@ -35,7 +35,7 @@ public class ArtikelDaoImpl implements ArtikelDao{
             artikel.setJudul(rs.getString("judul"));
             artikel.setIsi(rs.getString("isi"));
             artikel.setNamaFoto(rs.getString("gambar"));
-            artikel.setNamaFile(rs.getString("file"));
+//            artikel.setNamaFile(rs.getString("file"));
             
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date;
@@ -68,7 +68,6 @@ public class ArtikelDaoImpl implements ArtikelDao{
                 artikel.getJudul(),
                 artikel.getIsi().replace("\n","<br>\n"),
                 artikel.getNamaFoto(),
-                artikel.getNamaFile(),
                 artikel.getTglUpdate(),
                 artikel.getId()
             });
@@ -77,7 +76,6 @@ public class ArtikelDaoImpl implements ArtikelDao{
                 artikel.getJudul(),
                 artikel.getIsi().replace("\n","<br>\n"),
                 artikel.getNamaFoto(),
-                artikel.getNamaFile(),
                 artikel.getTglUpdate()
             });
         }

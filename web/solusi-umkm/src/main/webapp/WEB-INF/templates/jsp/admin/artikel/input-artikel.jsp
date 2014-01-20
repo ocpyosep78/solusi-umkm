@@ -31,6 +31,22 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12">              
                 <sf:form class="form-horizontal" role="form" modelAttribute="artikel" action="input-artikel" enctype="multipart/form-data">
                     <sf:hidden path="id"/>
@@ -54,15 +70,6 @@
                           </div>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">File</label>
-                      <div class="col-xs-4" id="btnfile">
-                          <div class="input-group groupbtnfile">
-                            <input type="file" class="btn" name="file" placeholder="nama"  accept="" max-size="20000000"/>
-                          </div>
-                      </div>
-                    </div>
-
                     <!--button-->
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">

@@ -242,7 +242,8 @@ public class AdminProdukController {
     @RequestParam("idProduk") Integer idProduk,
     @RequestParam("namaFile") String namaFile,
     HttpServletRequest request,
-    ModelMap modelMap){
+    ModelMap modelMap,
+    RedirectAttributes redirectAttributes){
         error=false;
         pesans = new ArrayList<Pesan>();
         
@@ -256,6 +257,7 @@ public class AdminProdukController {
         }
         
         setPesanBerhasil("Berhasil menghapus foto produk");
+        redirectAttributes.addFlashAttribute("listPesan",pesans);
         return "redirect:detail?id="+idProduk;
     }
     

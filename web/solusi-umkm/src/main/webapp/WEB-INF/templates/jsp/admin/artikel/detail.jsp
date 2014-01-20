@@ -23,6 +23,22 @@
                 </ol>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
         <c:choose>
             <c:when test="${empty artikel}">
                 <div class="row">
@@ -53,9 +69,6 @@
                         </c:choose>
                         
                             <div class="row">${artikel.isi}</div>
-                            <c:if test="${!empty artikel.namaFile}">
-                                <div class="row col-lg-12"><a href="<%= request.getContextPath() %>/upload-file/aplikasi/${artikel.namaFile}" class="btn pull-right"><i class="fa fa-download"></i> download file</a></div>
-                            </c:if>
                         </div>
                     </div>
                     <div class="col-lg-12 breadcrumb">
@@ -64,9 +77,6 @@
                             
                             <c:if test="${!empty artikel.namaFoto}">
                                 <a href="hapus-foto?id=${artikel.id}" class="btn btn-danger btn-sm"> Hapus Foto</a>
-                            </c:if>
-                            <c:if test="${!empty artikel.namaFile}">
-                                <a href="hapus-file?id=${artikel.id}" class="btn btn-danger btn-sm"> Hapus File</a>
                             </c:if>
                             <a href="hapus-artikel?id=${artikel.id}" class="btn btn-danger btn-sm"> Hapus Artikel</a>
                         </div>

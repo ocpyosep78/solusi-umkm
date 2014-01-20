@@ -51,4 +51,12 @@ public class Artikel {
         this.namaFoto = namaFoto;
     }
 
+//    public String getNamaFile() {
+//        return namaFile;
+//    }
+//
+//    public void setNamaFile(String namaFile) {
+//        this.namaFile = namaFile;
+//    }
+//            
 }

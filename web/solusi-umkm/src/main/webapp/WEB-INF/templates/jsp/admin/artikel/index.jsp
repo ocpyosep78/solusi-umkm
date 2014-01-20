@@ -23,6 +23,22 @@
                 </ol>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
         <c:choose>
             <c:when test="${empty listArtikel}">
                 <div class="row">
@@ -44,7 +60,6 @@
                           <th>Judul</th>
                           <th>Isi</th>
                           <th>Foto</th>
-                          <th>File</th>
                           <th>Tanggal Update</th>
                           <th>Lihat</th>
                           <th>Edit</th>
@@ -67,16 +82,6 @@
                                     </c:otherwise>
                                 </c:choose>
                                   
-                              </td>
-                              <td>
-                                <c:choose>    
-                                    <c:when test="${empty la.namaFile}">
-                                        <i><small>(file tidak ada)</small></i>
-                                    </c:when >
-                                    <c:otherwise>
-                                        <i class="fa fa-check"></i>
-                                    </c:otherwise>
-                                </c:choose>
                               </td>
                               <td>
                                 <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${la.tglUpdate}" />
