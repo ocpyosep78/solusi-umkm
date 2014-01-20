@@ -2,6 +2,7 @@ package com.sidratul.solusiumkm.dao;
 
 import com.sidratul.solusiumkm.model.KategoriUmkm;
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
 
 public interface KategoriUmkmDao {
     
@@ -11,5 +12,5 @@ public interface KategoriUmkmDao {
     
     public KategoriUmkm getKategoriUmkmById(Integer id);
     
-    public void deleteKategoriUmkm(Integer id);
+    public void deleteKategoriUmkm(Integer id)throws DataIntegrityViolationException;
 }

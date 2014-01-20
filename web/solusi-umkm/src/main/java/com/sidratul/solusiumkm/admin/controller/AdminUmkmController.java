@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -73,11 +74,11 @@ public class AdminUmkmController {
         }
         
         if(umkm.getNamaUmkm()==""){
-            setPesan("danger", "Nama UMKM harus diisi");
+            setPesanGagal("Nama UMKM harus diisi");
         }
         
         if(umkm.getPemilikUmkm()==""){
-            setPesan("danger", "Pemilik UMKM harus diisi");
+            setPesanGagal("Pemilik UMKM harus diisi");
         }
         
         if(umkm.getId()!=null){
@@ -87,26 +88,23 @@ public class AdminUmkmController {
         }
         
         if(umkm.getPassword()==""){
-            setPesan("danger", "Password harus diisi");
+            setPesanGagal("Password harus diisi");
         }
         
         if(umkm.getPasswordCek()==""){
-            setPesan("danger", "Password harus dituliskan kembali");
+            setPesanGagal("Password harus dituliskan kembali");
         }
         
         if(umkm.getPasswordCek()!="" && umkm.getPassword()!=""){
-            System.out.println("pass dan ulang tidak kosong");
-            System.out.println(umkm.getPassword());
-            System.out.println(umkm.getPasswordCek());
             
             if(umkm.getPassword().compareTo(umkm.getPasswordCek())!=0){
-                setPesan("danger", "Password tidak cocok");
+                setPesanGagal("Password tidak cocok");
             }
             
         }
         
         if(umkm.getKategoriUmkm().getId() == null){
-            setPesan("danger", "Kategori UMKM harus dipilih");
+            setPesanGagal("Kategori UMKM harus dipilih");
         }
         
         if(error){
@@ -120,9 +118,9 @@ public class AdminUmkmController {
         
         
         if(umkm.getId()!=null){
-            setPesan("success", "berhasil mengedit UMKM");
+            setPesanBerhasil("berhasil mengedit UMKM");
         }else{        
-            setPesan("success", "berhasil menambahkan UMKM");
+            setPesanBerhasil("berhasil menambahkan UMKM");
         }
         
         redirectAttributes.addFlashAttribute("listPesan",pesans);
@@ -133,12 +131,12 @@ public class AdminUmkmController {
     
     private void cekKodeUmkmInput(Umkm umkm){
         if(umkm.getKodeUmkm()==""){
-            setPesan("danger", "Kode UMKM harus diisi");
+            setPesanGagal("Kode UMKM harus diisi");
         }else{
             Umkm umkm1 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
             
             if(umkm1!=null){
-                setPesan("danger", "Kode UMKM sudah dimiliki oleh UMKM yang lain");
+                setPesanGagal("Kode UMKM sudah dimiliki oleh UMKM yang lain");
             }
             
         }
@@ -146,14 +144,14 @@ public class AdminUmkmController {
     
     private void cekKodeUmkmEdit(Umkm umkm){
         if(umkm.getKodeUmkm()==""){
-            setPesan("danger", "Kode UMKM harus diisi");
+            setPesanGagal("Kode UMKM harus diisi");
         }else{
             Umkm umkm1 = umkmDao.getUmkmById(umkm.getId());
             Umkm umkm2 = umkmDao.getUmkmByKodeUmkm(umkm.getKodeUmkm());
             
             if(umkm2!=null){
                 if(umkm1.getKodeUmkm()==umkm2.getKodeUmkm()){
-                    setPesan("danger", "Kode UMKM sudah dimiliki oleh UMKM yang lain");
+                    setPesanGagal("Kode UMKM sudah dimiliki oleh UMKM yang lain");
                 }
             }
             
@@ -162,7 +160,7 @@ public class AdminUmkmController {
     
     private void cekUsernameInput(Umkm umkm){
         if(umkm.getUsername() ==""){
-            setPesan("danger", "Username harus di isi");
+            setPesanGagal("Username harus di isi");
         }else{
             final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
             Pattern pattern = Pattern.compile(USERNAME_PATTERN);
@@ -171,16 +169,16 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsername(umkm.getUsername());
              
             if(!matcher.matches()){
-                setPesan("danger", "Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+                setPesanGagal("Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
             }else if(umkm1!=null){
-                setPesan("danger", "Username sudah dimiliki oleh UMKM yang lain");
+                setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
         }
     }
     
     private void cekUsernameEdit(Umkm umkm){
         if(umkm.getUsername() ==""){
-            setPesan("danger", "Username harus di isi");
+            setPesanGagal("Username harus di isi");
         }else{
             final String USERNAME_PATTERN = "^[a-z0-9_-]{3,15}$";
             Pattern pattern = Pattern.compile(USERNAME_PATTERN);
@@ -189,15 +187,23 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsernameDanBukanId(umkm.getUsername(),umkm.getId());
              
             if(!matcher.matches()){
-                setPesan("danger", "Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+                setPesanGagal("Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
             }if(umkm1!=null){
-                    setPesan("danger", "Username sudah dimiliki oleh UMKM yang lain");
+                setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
         }
     }
     
-    private void setPesan(String jenisPesan, String isiPesan){
-        error =true;
+    private void setPesanBerhasil(String isiPesan){
+        setPesan(isiPesan, "success");
+    }
+    
+    private void setPesanGagal(String isiPesan){
+        error = true;
+        setPesan(isiPesan, "danger");
+    }
+    
+    private void setPesan(String isiPesan, String jenisPesan){
         Pesan pesan = new Pesan();
         pesan.setJenisPesan(jenisPesan);
         pesan.setIsiPesan(isiPesan);
@@ -206,7 +212,13 @@ public class AdminUmkmController {
     
     @RequestMapping("/hapus-umkm")
     public String hapusUmkm(@RequestParam("id") Integer id,
-    ModelMap modelMap){
+    ModelMap modelMap,
+    RedirectAttributes redirectAttributes){
+        error=false;
+        pesans = new ArrayList<Pesan>();
+        
+        setPesanBerhasil( "berhasil menghapus UMKM");
+        redirectAttributes.addFlashAttribute("listPesan",pesans);
         umkmDao.deleteUmkm(id);
         return "redirect:index";
     }
@@ -232,33 +244,44 @@ public class AdminUmkmController {
     
     @RequestMapping(value = "/input-kategori",method = RequestMethod.POST)
     public String prosesInputKategoriUmkm(@ModelAttribute KategoriUmkm kategoriUmkm,
-    ModelMap modelMap){
-        Boolean error=false;
-        List<Pesan> pesans = new ArrayList<Pesan>();
+    ModelMap modelMap,
+    RedirectAttributes redirectAttributes){
+        error=false;
+        pesans = new ArrayList<Pesan>();
         
         if(kategoriUmkm.getJenisUmkm()==""){
-            error =true;
-            Pesan pesan = new Pesan();
-            pesan.setJenisPesan("danger");
-            pesan.setIsiPesan("Jenis UMKM harus di isi");
-            pesans.add(pesan);
+            setPesanGagal("Kategori UMKM harus diisi");
         }
-        
         
         if(error){
+            
             modelMap.addAttribute("listPesan", pesans);
             return "umkm/input-kategori";
+        }else{
+            kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
+
+            setPesanBerhasil("berhasil menghapus kategori UMKM");
+            redirectAttributes.addFlashAttribute("listPesan",pesans);
+            return "redirect:kategori";
         }
         
-        kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
         
-        return "redirect:kategori";
     }
     
     @RequestMapping("/hapus-kategori")
     public String hapusKategoriUmkm(@RequestParam("id") Integer id,
-    ModelMap modelMap){
-        kategoriUmkmDao.deleteKategoriUmkm(id);
+    ModelMap modelMap, RedirectAttributes redirectAttributes){
+        error=false;
+        pesans = new ArrayList<Pesan>();
+        try{
+            kategoriUmkmDao.deleteKategoriUmkm(id);
+            setPesanBerhasil("berhasil menghapus kategori UMKM");
+        }catch(DataIntegrityViolationException dive){
+            System.out.println("gagal");
+            setPesanGagal("gagal menghapus kategori UMKM. Kategori sedang digunakan");
+        }
+        
+        redirectAttributes.addFlashAttribute("listPesan",pesans);
         return "redirect:kategori";
     }
 }
