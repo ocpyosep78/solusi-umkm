@@ -15,5 +15,7 @@ public interface UmkmDao {
     
     public Umkm getUmkmByUsername(String username);
     
+    public Umkm getUmkmByKodeUmkm(String kodeUmkm);
+    
     public void deleteUmkm(Integer id);
 }

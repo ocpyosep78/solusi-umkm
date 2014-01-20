@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,7 @@ public class UmkmDaoImpl implements UmkmDao{
             + "ON um.id = us.id_umkm "
             + "WHERE us.id_umkm is null";
     private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where id=?";
+    private static final String SQL_GETUMKM_BYKODEUMKM="SELECT * FROM umkm where kode_umkm=?";
     private static final String SQL_GETUMKM_BYUSERNAME="SELECT um.* FROM umkm um "
             + "RIGHT JOIN user us ON um.id = us.id_umkm "
             + "where username=?";
@@ -38,6 +40,7 @@ public class UmkmDaoImpl implements UmkmDao{
     
     private JdbcTemplate jdbcTemplate;
 
+    
     
     private final class UmkmParameterizedRowMapper implements 
             ParameterizedRowMapper<Umkm>{
@@ -79,6 +82,16 @@ public class UmkmDaoImpl implements UmkmDao{
     public List<Umkm> getAllUmkmTidakMemilikiUser() {
         List<Umkm> umkms = jdbcTemplate.query(SQL_GETALL_UMKM_BELUM_ADAUSER, new UmkmParameterizedRowMapper());
         return umkms;
+    }
+    
+    public Umkm getUmkmByKodeUmkm(String kodeUmkm)  {
+        try{
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYKODEUMKM, new UmkmParameterizedRowMapper(),kodeUmkm);
+            return umkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+        
     }
     
     public void saveUmkm(Umkm umkm) throws DuplicateKeyException {
@@ -126,8 +139,12 @@ public class UmkmDaoImpl implements UmkmDao{
     }
 
     public Umkm getUmkmByUsername(String username) {
-        Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYUSERNAME, new UmkmParameterizedRowMapper(),username);
-        return umkm;
+        try{
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_BYUSERNAME, new UmkmParameterizedRowMapper(),username);
+            return umkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
     }
     
     public void deleteUmkm(Integer id) {

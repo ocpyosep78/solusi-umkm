@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <div class="row">
             <div class="col-lg-12">
                 <c:choose>
@@ -30,98 +31,119 @@
                 </ol>
             </div>
         </div>
+                
         <div class="row">
             <div class="col-lg-12">
-
-        
-        <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" required="required">
-            <sf:hidden path="id"/>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Kode UMKM</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
-              </div>
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Nama UMKM</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required=""/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Pemilik UMKM</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="username" placeholder="username" required="required"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Password</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="password" placeholder="password" required="required"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Tulis Ulang Password</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="passwordCek" placeholder="tulis ulang password" required="required"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Kategori UMKM</label>
-              <div class="col-xs-4">
-                  <sf:select path="kategoriUmkm.id" class="form-control" required="required">
-                    <sf:option value="">Pilih Kategori</sf:option>
-                    <c:forEach items="${listKategoriUmkm}" var="lku">
-                        <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>
-                    </c:forEach>
-                  </sf:select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Keterangan UMKM</label>
-              <div class="col-xs-4">
-                  <sf:textarea class="form-control" rows="2" path="keteranganUmkm" placeholder="keterangan UMKM"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Visi</label>
-              <div class="col-xs-4">
-                  <sf:textarea class="form-control" rows="2" path="visi" placeholder="visi"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">misi</label>
-              <div class="col-xs-4">
-                  <sf:textarea class="form-control" rows="2" path="misi" placeholder="misi"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">alamat</label>
-              <div class="col-xs-4">
-                  <sf:textarea class="form-control" rows="2" path="alamat" placeholder="alamat"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Telepon</label>
-              <div class="col-xs-4">
-                  <sf:input type="tel" class="form-control" path="noTelp" placeholder="telephon"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Email</label>
-              <div class="col-xs-4">
-                  <sf:input type="email" class="form-control" path="email" placeholder="email"/>
-              </div>
-            </div>
-            <!--button-->
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Proses</button>
-                <button type="reset" class="btn btn-danger">Hapus</button>
-              </div>
-            </div>
-        </sf:form>
-            
+        </div> 
+                
+        <div class="row">
+            <div class="col-lg-12">
+                <sf:form class="form-horizontal" role="form" modelAttribute="umkm" action="input-umkm" required="required">
+                    <sf:hidden path="id"/>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Kode UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Nama UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:input type="text" class="form-control" path="namaUmkm" placeholder="nama UMKM" required="required"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Pemilik UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:input type="text" class="form-control" path="pemilikUmkm" placeholder="pemilik UMKM" required="required"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Username</label>
+                      <div class="col-xs-4">
+                          <sf:input type="text" class="form-control" path="username" placeholder="username" required="required"/>
+                      </div>
+                    </div>
+                      <div class="form-group">
+                      <label class="col-sm-2 control-label">Password</label>
+                      <div class="col-xs-4">
+                          <sf:input type="password" class="form-control" path="password" placeholder="password" required="required"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Tulis Ulang Password</label>
+                      <div class="col-xs-4">
+                          <sf:input type="password" value="${umkm.password}" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password" required="required"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Kategori UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:select path="kategoriUmkm.id" class="form-control" required="required">
+                            <sf:option value="">Pilih Kategori</sf:option>
+                            <c:forEach items="${listKategoriUmkm}" var="lku">
+                                <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>
+                            </c:forEach>
+                          </sf:select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Keterangan UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:textarea class="form-control" rows="2" path="keteranganUmkm" placeholder="keterangan UMKM"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Visi</label>
+                      <div class="col-xs-4">
+                          <sf:textarea class="form-control" rows="2" path="visi" placeholder="visi"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">misi</label>
+                      <div class="col-xs-4">
+                          <sf:textarea class="form-control" rows="2" path="misi" placeholder="misi"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">alamat</label>
+                      <div class="col-xs-4">
+                          <sf:textarea class="form-control" rows="2" path="alamat" placeholder="alamat"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Telepon</label>
+                      <div class="col-xs-4">
+                          <sf:input type="tel" class="form-control" path="noTelp" placeholder="telephon"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Email</label>
+                      <div class="col-xs-4">
+                          <sf:input type="email" class="form-control" path="email" placeholder="email"/>
+                      </div>
+                    </div>
+                    <!--button-->
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Proses</button>
+                        <button type="reset" class="btn btn-danger">Hapus</button>
+                      </div>
+                    </div>
+                </sf:form>
             </div>
         </div>
     </body>

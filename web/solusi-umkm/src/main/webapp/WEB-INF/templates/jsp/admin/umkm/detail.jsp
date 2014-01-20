@@ -50,6 +50,11 @@
                           <td>${umkm.pemilikUmkm}</td>
                         </tr>
                         <tr>
+                          <td>username</td>
+                          <td>:</td>
+                          <td>${umkm.username}</td>
+                        </tr>
+                        <tr>
                           <td>Kategori</td>
                           <td>:</td>
                           <td>${umkm.kategoriUmkm.jenisUmkm}</td>

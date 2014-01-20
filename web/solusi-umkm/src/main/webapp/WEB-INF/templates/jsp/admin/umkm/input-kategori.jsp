@@ -31,24 +31,44 @@
                 </ol>
             </div>
         </div>
-        
-        <sf:form class="form-horizontal" role="form" modelAttribute="kategoriUmkm" action="input-kategori">
-            <sf:hidden path="id"/>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Jenis UMKM</label>
-              <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM"/>
-                  <sf:errors path="jenisUmkm" />
-              </div>
+                
+        <div class="row">
+            <div class="col-lg-12">
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
             </div>
-            
-            <!--button-->
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Proses</button>
-                <button type="reset" class="btn btn-danger">Hapus</button>
-              </div>
+        </div> 
+        <div class="row"> 
+            <div class="col-lg-12">
+                <sf:form class="form-horizontal" role="form" modelAttribute="kategoriUmkm" action="input-kategori">
+                    <sf:hidden path="id"/>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Jenis UMKM</label>
+                      <div class="col-xs-4">
+                          <sf:input type="text" class="form-control" path="jenisUmkm" placeholder="Jenis UMKM"/>
+                          <sf:errors path="jenisUmkm" />
+                      </div>
+                    </div>
+
+                    <!--button-->
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Proses</button>
+                        <button type="reset" class="btn btn-danger">Hapus</button>
+                      </div>
+                    </div>
+                </sf:form>
             </div>
-        </sf:form>
+        </div>
     </body>
 </html>

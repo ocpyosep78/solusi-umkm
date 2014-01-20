@@ -22,7 +22,25 @@
                 </ol>
             </div>
         </div>
-
+        
+        <div class="row">
+            <div class="col-lg-12"><small>
+                <c:if test="${not empty listPesan}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span class="kapital"> ${lp.isiPesan}</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+                </small>
+            </div>
+        </div> 
+        
         <c:choose>
             <c:when test="${empty listUmkm}">
                 <div class="col-lg-12">
@@ -42,6 +60,7 @@
                                   <th>Kode</th>
                                   <th>Nama</th>
                                   <th>Pemilik</th>
+                                  <th>Username</th>
                                   <th>Kategori</th>
                                   <th>keterangan</th>
                                   <th>visi</th>
@@ -61,6 +80,7 @@
                                       <td>${lu.kodeUmkm}</td>
                                       <td>${lu.namaUmkm}</td>
                                       <td>${lu.pemilikUmkm}</td>
+                                      <td>${lu.username}</td>
                                       <td>${lu.kategoriUmkm.jenisUmkm}</td>
                                       <td>${lu.keteranganUmkm}</td>
                                       <td>${lu.visi}</td>
