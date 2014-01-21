@@ -110,6 +110,9 @@ public class AdminProdukController {
         if(error){
             List<Umkm> umkms = umkmDao.getAllUmkm();
 
+            List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
+        
+            modelMap.addAttribute("listKategoriProduk", kategoriProduks);
             modelMap.addAttribute("listUmkm", umkms);
             modelMap.addAttribute("listPesan", pesans);
             return "produk/input-produk";
