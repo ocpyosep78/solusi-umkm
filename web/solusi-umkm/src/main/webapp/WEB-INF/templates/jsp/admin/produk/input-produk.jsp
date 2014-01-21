@@ -89,14 +89,14 @@
                       <div class="col-xs-4">
                           <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <sf:input type="number" class="form-control" path="harga" placeholder="harga" min="100"/>
+                            <sf:input type="number" class="form-control" path="harga" placeholder="harga" min="100" required="required"/>
                           </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Keterangan</label>
                       <div class="col-xs-4">
-                          <sf:textarea class="form-control" rows="2" path="keteranganProduk" placeholder="keterangan produk"/>
+                          <sf:textarea class="form-control" rows="2" path="keteranganProduk" placeholder="keterangan produk" />
                       </div>
                     </div>
 
