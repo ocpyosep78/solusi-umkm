@@ -12,5 +12,9 @@ public interface KategoriUmkmDao {
     
     public KategoriUmkm getKategoriUmkmById(Integer id);
     
+    public KategoriUmkm getKategoriUmkmByJenisUmkm(String jenisUmkm);
+    
+    public KategoriUmkm getKategoriUmkmByJenisUmkmEdit(String jenisUmkm, Integer id);
+    
     public void deleteKategoriUmkm(Integer id)throws DataIntegrityViolationException;
 }

@@ -76,9 +76,9 @@
                             <a href="input-artikel?id=${artikel.id}" class="btn btn-info btn-sm"> Edit</a>
                             
                             <c:if test="${!empty artikel.namaFoto}">
-                                <a href="hapus-foto?id=${artikel.id}" class="btn btn-danger btn-sm"> Hapus Foto</a>
+                                <a href="hapus-foto?id=${artikel.id}" class="btn btn-danger btn-sm" onclick="return tampil_confirm()"> Hapus Foto</a>
                             </c:if>
-                            <a href="hapus-artikel?id=${artikel.id}" class="btn btn-danger btn-sm"> Hapus Artikel</a>
+                            <a href="hapus-artikel?id=${artikel.id}" class="btn btn-danger btn-sm" onclick="return tampil_confirm()"> Hapus Artikel</a>
                         </div>
                     </div>    
                             

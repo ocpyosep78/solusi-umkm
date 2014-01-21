@@ -166,7 +166,7 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsername(umkm.getUsername());
              
             if(!matcher.matches()){
-                setPesanGagal("Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+                setPesanGagal("Username harus di mengandung 3 sampai 15 karakter yang terdiri dari huruf, angka, - atau _ ");
             }else if(umkm1!=null){
                 setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
@@ -184,7 +184,7 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsernameDanBukanId(umkm.getUsername(),umkm.getId());
              
             if(!matcher.matches()){
-                setPesanGagal("Username harus di mengandung 3-15 karakter yang terdiri dari a-Z,A-Z,- dan _ ");                
+                setPesanGagal("Username harus di mengandung 3 sampai 15 karakter yang terdiri dari huruf, angka, - atau _ ");
             }if(umkm1!=null){
                 setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
@@ -248,10 +248,21 @@ public class AdminUmkmController {
         
         if(kategoriUmkm.getJenisUmkm()==""){
             setPesanGagal("Kategori UMKM harus diisi");
+        }else{
+            KategoriUmkm kategoriUmkm1;
+            
+            if(kategoriUmkm.getId()!=null){
+                kategoriUmkm1 = kategoriUmkmDao.getKategoriUmkmByJenisUmkmEdit(kategoriUmkm.getJenisUmkm(), kategoriUmkm.getId());
+            }else{
+                kategoriUmkm1 = kategoriUmkmDao.getKategoriUmkmByJenisUmkm(kategoriUmkm.getJenisUmkm());
+            }
+            
+            if(kategoriUmkm1 != null){
+                setPesanGagal("Jenis UMKM sudah ada");
+            }
         }
         
-        if(error){
-            
+        if(error){            
             modelMap.addAttribute("listPesan", pesans);
             return "umkm/input-kategori";
         }else{

@@ -205,6 +205,19 @@ public class AdminProdukController {
         
         if(kategoriProduk.getJenisProduk()==""){
             setPesanGagal("Jenis kategori produk harus diisi");
+        }else{
+            KategoriProduk kategoriProduk1;
+            
+            if(kategoriProduk.getId()!=null){
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByJenisKategoriProdukEdit(kategoriProduk.getJenisProduk(), kategoriProduk.getId());
+            }else{
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByJenisKategoriProduk(kategoriProduk.getJenisProduk());
+            }
+            
+            if(kategoriProduk1 != null){
+                setPesanGagal("Jenis produk sudah ada");
+            }
+            
         }
         
         if(error){

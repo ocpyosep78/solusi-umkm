@@ -143,7 +143,7 @@ public class ProdukDaoImpl implements ProdukDao{
     
     public Produk getProdukByKodeDanIdUMKM(String kodeProduk, Integer idUmkm) {
          try{
-            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE, new ProdukParameterizedRowMapper(), new Object[]{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE_DANIDUMKM, new ProdukParameterizedRowMapper(), new Object[]{
                 kodeProduk,
                 idUmkm
             });
@@ -156,7 +156,7 @@ public class ProdukDaoImpl implements ProdukDao{
 
     public Produk getProdukByKodeIdUmkmDanBukanIdProduk(String kodeProduk, Integer idUmkm, Integer id) {
         try{
-            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODE, new ProdukParameterizedRowMapper(), new Object[]{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUK_BYKODEIDUMKM_DAN_ID, new ProdukParameterizedRowMapper(), new Object[]{
                 kodeProduk,
                 idUmkm,
                 id

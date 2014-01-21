@@ -8,6 +8,7 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.stereotype.Repository;
@@ -17,8 +18,10 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
     
     private static final String SQL_GETALL_KATEGORI_UMKM = "SELECT * FROM `kategori_umkm`";
     private static final String SQL_GETKATEGORI_UMKM_BYID = "SELECT * FROM `kategori_umkm` where id=?";
+    private static final String SQL_GETKATEGORI_UMKM_BYJENIS_UMKM = "SELECT * FROM `kategori_umkm` where jenis_umkm=?";
+    private static final String SQL_GETKATEGORI_UMKM_BYJENIS_UMKM_EDIT = "SELECT * FROM `kategori_umkm` where jenis_umkm=? AND id!=?";
     private static final String SQL_DELETE_KATEGORI_UMKM_BYID = "DELETE FROM `kategori_umkm` where id=?";
-    private static final String SQL_UPDATE_KATEGORI_UMKM = "UPDATE `KATEGORI_UMKM` SET `jenis_umkm` = ? WHERE "
+    private static final String SQL_UPDATE_KATEGORI_UMKM = "UPDATE kategori_umkm SET `jenis_umkm` = ? WHERE "
             + "id = ?";
     private static final String SQL_INSERT_KATEGORI_UMKM = "INSERT INTO `kategori_umkm`(`jenis_umkm`)VALUES(?);";
     
@@ -65,7 +68,26 @@ public class KategoriUmkmDaoImpl implements KategoriUmkmDao{
             return kategoriUmkm;
         }
     }
-
+    
+    
+    public KategoriUmkm getKategoriUmkmByJenisUmkm(String jenisUmkm) {
+        try{
+            KategoriUmkm kategoriUmkm= jdbcTemplate.queryForObject(SQL_GETKATEGORI_UMKM_BYJENIS_UMKM,new KategoriUmkmParameterizedRowMapper(),jenisUmkm);
+            return kategoriUmkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+    }
+    
+    public KategoriUmkm getKategoriUmkmByJenisUmkmEdit(String jenisUmkm, Integer id) {
+        try{
+            KategoriUmkm kategoriUmkm= jdbcTemplate.queryForObject(SQL_GETKATEGORI_UMKM_BYJENIS_UMKM_EDIT,new KategoriUmkmParameterizedRowMapper(),jenisUmkm, id);
+            return kategoriUmkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+    }
+    
     public void deleteKategoriUmkm(Integer id){
         jdbcTemplate.update(SQL_DELETE_KATEGORI_UMKM_BYID,id);
     }
