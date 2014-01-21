@@ -107,6 +107,11 @@ public class AdminArtikelController {
         
         artikelDao.saveArtikel(artikel);
         
+        if(artikel.getId()!=null){
+            setPesanBerhasil("berhasil mengedit artikel");
+        }else{        
+            setPesanBerhasil("berhasil menambahkan artikel");
+        }
         redirectAttributes.addFlashAttribute("listPesan",pesans);
         return "redirect:index";
     }

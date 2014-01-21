@@ -150,7 +150,12 @@ public class AdminProdukController {
         }
         
         
-        setPesanBerhasil("Berhasil menghapus produk");
+        if(produk.getId()!=null){
+            setPesanBerhasil("berhasil mengedit produk");
+        }else{        
+            setPesanBerhasil("berhasil menambahkan produk");
+        }
+        
         redirectAttributes.addFlashAttribute("listPesan",pesans);
         return "redirect:index";
     }
