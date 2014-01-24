@@ -59,9 +59,8 @@
     
     <servlet-mapping>
         <servlet-name>json</servlet-name>
-        <url-pattern>/user/*</url-pattern>
+        <url-pattern>/json/*</url-pattern>
     </servlet-mapping>
-    
     
 <!--    <filter>
         <filter-name>sitemesh</filter-name>

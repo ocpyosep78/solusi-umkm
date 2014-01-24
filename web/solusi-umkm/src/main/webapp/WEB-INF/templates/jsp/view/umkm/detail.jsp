@@ -14,10 +14,7 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <h2>UMKM <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail UMKM</li>
-            </ol>
+            <h1 class="page-header">UMKM <small>Detail</small></h1>
         </div>
         <c:choose>
             <c:when test="${empty umkm}">
@@ -138,5 +135,14 @@
                 </div>
             </c:otherwise>
         </c:choose>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+         <script>
+           $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-umkm").addClass("active");
+            });
+            
+        </script>
     </body>
 </html>

@@ -25,7 +25,7 @@
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        min-height: 1300px;
+        /*min-height: 1300px;*/
         border-left: 1px solid #e7e7e7;
     }
 }
@@ -304,4 +304,34 @@ table.dataTable thead .sorting:after {
 
 .show-grid {
     margin: 15px 0;
+}
+
+
+ .artikel{
+     text-align: justify;
+  }
+  
+  .index-artikel img{
+      height: 150px;
+      width: 300px;
+      padding-right: 10px;
+      padding-bottom: 5px;
+  }
+  
+  .capital{
+    text-transform: capitalize;
+    
+    
+}
+
+.foto-produk{
+      height: 200px;
+  }
+
+.lproduk{
+    padding-right: 50px;
+}
+
+.lproduk img {
+    padding-bottom: 10px;
 }

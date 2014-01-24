@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,9 @@ public class UserDaoImpl implements UserUmkmDao{
     private static final String SQL_GETALL_USERUMKM_BYAKTIF="SELECT * FROM user where aktif=? and peran='ROLE_UMKM'";
     private static final String SQL_GETUSERUMKM_BYID="SELECT * FROM user where id=?";
     private static final String SQL_GETUSERUMKM_BYUSERNAME="SELECT * FROM user where username=?";
+
+    private static final String SQL_GETUSERUMKM_BYUSERNAME_AND_PASSWORD="SELECT * FROM user where username=? AND password=?";
+    
     private static final String SQL_DELETEUSERUMKM_BYID="DELETE FROM user where id=?";
     private static final String SQL_UPDATE_USERUMKM="UPDATE `user` SET "
             + "`username` = ?, `id_umkm` = ?, `password` = ?, `terakhir_login` = ?, `aktif` = ? "
@@ -94,6 +98,15 @@ public class UserDaoImpl implements UserUmkmDao{
     public UserUmkm getUserByUsername(String username) {
         UserUmkm userUmkm = jdbcTemplate.queryForObject(SQL_GETUSERUMKM_BYUSERNAME, new UserUmkmParameterizedRowMapper(),username);
         return userUmkm;
+    }
+    
+    public UserUmkm getUserByUsernameAndPassword(String username, String password){
+        try{
+            UserUmkm userUmkm = jdbcTemplate.queryForObject(SQL_GETUSERUMKM_BYUSERNAME_AND_PASSWORD, new UserUmkmParameterizedRowMapper(),username, password);
+            return userUmkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
     }
     
     public UserUmkm getUserById(Integer id) {

@@ -17,7 +17,7 @@
         <c:if test="${not empty error}">            
             <div class="alert alert-error">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <span><strong>Login gagal !</strong> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
+                <span><strong>Login gagal !</strong> periksa kembali username dan password anda </span>
             </div>
         </c:if>
         <form class="form-horizontal" role="form" action="<c:url value='/j_spring_security_check'/>" method="POST">
@@ -39,5 +39,13 @@
               </div>
             </div>
           </form>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-login").addClass("active");
+            });
+        </script>
     </body>
 </html>

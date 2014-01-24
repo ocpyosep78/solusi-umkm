@@ -116,6 +116,13 @@
             </div>
             <hr>
         </c:forEach>    
-
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-produk").addClass("active");
+            });
+        </script>
     </body>
 </html>

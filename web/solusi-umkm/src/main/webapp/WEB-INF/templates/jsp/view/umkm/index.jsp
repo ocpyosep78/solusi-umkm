@@ -17,80 +17,68 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>UMKM <small>Index</small></h1>
-        <hr>
-<!--    <form class="form-horizontal">
-        <div class="form-group">
-                <div class="col-lg-5">
-                  <input type="text" class="form-control" placeholder="Kata Kunci">
-                </div>
-                <div class="col-lg-5">
-                    <select class="form-control">
-                        <option value="">Kategori UMKM</option>
-                        <c:forEach items="${listKategoriUmkm}" var="lku">
-                            <option value="${lku.id}">${lku.jenisUmkm}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="col-lg-2">
-                    <input type="submit" class="btn btn-info" value="Cari">
-                </div>
-        </div>
-      </form>  
-        <hr>-->
-        <c:forEach items="${listUmkm}" var="lu">
-            <div class="col-lg-12 breadcrumb capital" >
-                
-                <div class="row col-lg-12">
-                    <div class="col-lg-3">Nama UMKM</div>
-                    <div class="col-lg-1" > : </div>
-                    <div class="">${lu.namaUmkm}</div>
-                </div>
-                <div class="row col-lg-12">
-                    <div class="col-lg-3">Pemilik UMKM</div>
-                    <div class="col-lg-1" > : </div>
-                    <div class="">${lu.pemilikUmkm}</div>
-                </div>
-                <div class="row col-lg-12">
-                    <div class="col-lg-3">Jenis UMKM</div>
-                    <div class="col-lg-1" > : </div>
-                    <div class="">${lu.kategoriUmkm.jenisUmkm}</div>
-                </div>
-                <div class="row col-lg-12">
-                    <div class="col-lg-3">Alamat</div>
-                    <div class="col-lg-1" > : </div>
-                    <div class="">
-                        <c:choose>    
-                            <c:when test="${empty lu.alamat}">
-                                <i><small>(alamat tidak tersedia)</small></i>
-                            </c:when >
-                            <c:otherwise>
-                                ${lu.alamat}
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                </div>
-                
-                <div class="row col-lg-12">
-                    <div class="col-lg-3">No Telpon</div>
-                    <div class="col-lg-1" > : </div>
-                    <div class="">
-                        <c:choose>    
-                            <c:when test="${empty lu.noTelp}">
-                                <i><small>(nomor telepon tidak tersedia)</small></i>
-                            </c:when >
-                            <c:otherwise>
-                                ${lu.noTelp}
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                </div>
-                <div class="row col-lg-12">
-                    <div class="col-lg-2"><a href="detail?id=${lu.id}" class="btn btn-sm btn-info">Lihat UMKM</a></div>
-                </div>
-                    
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">UMKM <small>Index</small></h1>
             </div>
-        </c:forEach>    
+        </div>
+        
+        <c:choose>
+            <c:when test="${empty listUmkm}">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                      <li class="active"><i class="fa fa-arrow-circle-o-right"></i> Data Kosong</li>
+                    </ol>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Kode</th>
+                                  <th>Nama</th>
+                                  <th>Pemilik</th>
+                                  <td>Kategori</td>
+                                  <th>Keterangan</th>
+                                  <th>Alamat</th>
+                                  <th>Telepon</th>
+                                  <th>Lihat</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <c:forEach items="${listUmkm}" var="lu" varStatus="i" >
+                                  <tr>
+                                      <td>${i.count}</td>
+                                      <td>${lu.kodeUmkm}</td>
+                                      <td>${lu.namaUmkm}</td>
+                                      <td>${lu.pemilikUmkm}</td>
+                                      <td>${lu.kategoriUmkm.jenisUmkm}</td>
+                                      <td>${lu.keteranganUmkm}</td>                                      
+                                      <td>${lu.alamat}</td>
+                                      <td>${lu.noTelp}</td>
+                                      <td><a title="detail" alt="detail" href="detail?id=${lu.id}"><i class="fa fa-eye"></i></a></td>
+                                  </tr>
+                                </c:forEach>
 
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+           </c:otherwise>
+        </c:choose>
+            <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+         <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-umkm").addClass("active");
+            });
+            
+        </script>
     </body>
 </html>

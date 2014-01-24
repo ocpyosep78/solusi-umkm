@@ -15,4 +15,6 @@ public interface UserUmkmDao {
     
     public UserUmkm getUserByUsername(String username);
     
+    public UserUmkm getUserByUsernameAndPassword(String username, String password);
+    
 }

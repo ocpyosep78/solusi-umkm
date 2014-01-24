@@ -24,7 +24,7 @@
         </div>
         
         <div class="row">
-            <div class="col-lg-12"><small>
+            <div class="col-lg-12">
                 <c:if test="${not empty listPesan}">
                     <div class="row">
                         <div class="col-lg-12">
@@ -37,7 +37,6 @@
                         </div>
                     </div>
                 </c:if>
-                </small>
             </div>
         </div> 
         
@@ -62,15 +61,15 @@
                                   <th>Pemilik</th>
                                   <th>Username</th>
                                   <th>Kategori</th>
-                                  <th>keterangan</th>
-                                  <th>visi</th>
-                                  <th>misi</th>
-                                  <th>alamat</th>
+                                  <th>Keterangan</th>
+                                  <th>Visi</th>
+                                  <th>Misi</th>
+                                  <th>Alamat</th>
                                   <th>Telepon</th>
                                   <th>Email</th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
+                                  <th>Lihat</th>
+                                  <th>Edit</th>
+                                  <th>Hapus</th>
                                 </tr>
                               </thead>
                               <tbody>

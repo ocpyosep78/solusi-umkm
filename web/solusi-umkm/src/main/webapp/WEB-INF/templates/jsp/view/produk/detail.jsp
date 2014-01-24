@@ -11,10 +11,7 @@
     </head>
     <body>
         <div class="col-lg-12">
-            <h2>Produk <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail Produk</li>
-            </ol>
+            <h1 class="page-header">Produk <small>Detail</small></h1>
         </div>
         <c:choose>
             <c:when test="${empty produk}">
@@ -98,5 +95,13 @@
                 </div>
             </c:otherwise>
         </c:choose>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-produk").addClass("active");
+            });
+        </script>
     </body>
 </html>

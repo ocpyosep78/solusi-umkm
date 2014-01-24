@@ -44,8 +44,10 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -53,7 +55,7 @@
                           <th>Password</th>
                           <th>Umkm</th>
                           <th>Terakhir Login</th>
-                          <th colspan="2"></th>
+                          <!--<th></th>-->
                         </tr>
                       </thead>
                       <tbody>
@@ -73,12 +75,14 @@
                                     </c:otherwise>
                                 </c:choose>
                               </td>
-                              <td><a title="edit" alt="edit" href="input-user?id=${luu.id}"><i class="fa fa-edit"></i></a></td>
-                              <td><a title="hapus" alt="hapus" href="hapus-user?id=${luu.id}" onclick="tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
+                              <!--<td><a title="edit" alt="edit" href="input-user?id=${luu.id}"><i class="fa fa-edit"></i></a></td>-->
+                              <!--<td><a title="hapus" alt="hapus" href="hapus-user?id=${luu.id}" onclick="tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>-->
                           </tr>
                         </c:forEach>
                       </tbody>
                     </table>
+                </div>
+                    </div>
                 </div>
             </c:otherwise>
         </c:choose>

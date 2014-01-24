@@ -15,11 +15,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Produk <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail Produk</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Produk <small>Detail</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <small>
+                    <c:if test="${not empty listPesan}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                    <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <span class="kapital"> ${lp.isiPesan}</span>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                </small>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty produk}">
@@ -30,7 +47,10 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="table-responsive">
+                <div class="row">
+                    <div class="col-lg-12">
+                
+                        <div class="table-responsive">
                     <table class="table table-responsive breadcrumb">
                         <tr>
                           <td class="col-lg-2">Kode Produk</td>
@@ -88,7 +108,7 @@
                                             </div>
                                             <div class="row">
                                                 <a href="<%= request.getContextPath() %>/upload-file/foto/${f.namaFile}" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-zoom-in"> </i>lihat</a>
-                                                <a href="<%= request.getContextPath() %>/admin/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-sm btn-danger" onclick="tampil_confirm()"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
+                                                <a href="<%= request.getContextPath() %>/user/produk/hapus-foto?id=${f.id}&idProduk=${produk.id}&namaFile=${f.namaFile}" class="btn btn-sm btn-danger" onclick="tampil_confirm()"><i class="glyphicon glyphicon-remove"> </i>Hapus</a>
                                             </div>
                                         </div>  
                                     </c:forEach>
@@ -106,7 +126,18 @@
                     </div>
 
                 </div>
+                            
+                    </div>
+                </div>
             </c:otherwise>
         </c:choose>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-produk-saya").addClass("active");
+            });
+        </script>
     </body>
 </html>

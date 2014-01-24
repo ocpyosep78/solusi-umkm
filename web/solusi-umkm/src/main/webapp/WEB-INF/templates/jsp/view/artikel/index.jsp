@@ -18,34 +18,46 @@
         <title>Index Artikel</title>
     </head>
     <body>
-        <h1>Artikel <small>Index</small></h1>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <h1 class="page-header">Artikel <small>Index</small></h1>
+            </div>
+        </div>
         <c:forEach items="${listArtikel}" var="la">
-            <div class="col-lg-12 index-artikel breadcrumb">
-                <h3 class="capital" ><a href="detail?id=${la.id}">${la.judul}</a></h3>
-                <div class="row col-lg-12 artikel">
-                <c:if test="${!empty la.namaFoto}">
-                    <span class="pull-left">
-                        <a href="<%= request.getContextPath() %>/upload-file/foto/${la.namaFoto}">
-                            <img src="<%= request.getContextPath() %>/upload-file/foto/${la.namaFoto}" class="img-responsive artikel-img" >
-                        </a>
-                    </span>
-                </c:if>
-                <c:choose>
-                    <c:when test="${fn:length(la.isi) > 500}">
-                        ${fn:substring(la.isi,0,500)} <a href="detail?id=${la.id}">...Baca Selengkapnya</a>
-                    </c:when>
-                    <c:otherwise>
-                        ${la.isi}
-                    </c:otherwise>
-                </c:choose>
-                
-                
-                <c:if test="${!empty la.namaFile}">
-                    <div class="row col-lg-12"><a href="<%= request.getContextPath() %>/upload-file/aplikasi/${la.namaFile}" class="btn pull-right"><i class="fa fa-download"></i> download file</a></div>
-                </c:if>
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading capital">
+                            <a href="detail?id=${la.id}"><strong>${la.judul}</strong></a></div>
+                        <div class="panel-body isi-artikel"> 
+                            <c:if test="${!empty la.namaFoto}">
+                                <span class="pull-left">
+                                    <a href="<%= request.getContextPath() %>/upload-file/foto/${la.namaFoto}">
+                                        <img src="<%= request.getContextPath() %>/upload-file/foto/${la.namaFoto}" class="img-responsive img-index-artikel" >
+                                    </a>
+                                </span>
+                            </c:if>
+                            <c:choose>
+                                <c:when test="${fn:length(la.isi) > 390}">
+                                    ${fn:substring(la.isi,0,390)}... <a href="detail?id=${la.id}"> <small><i>(Baca Selengkapnya)</i></small></a>
+                                </c:when>
+                                <c:otherwise>
+                                    ${la.isi}
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
                 </div>
             </div>
         </c:forEach>    
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-artikel").addClass("active");
+            });
+        </script>
     </body>
+    
 </html>

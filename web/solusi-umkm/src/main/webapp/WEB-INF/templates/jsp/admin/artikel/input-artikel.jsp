@@ -59,7 +59,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Isi</label>
                       <div class="col-lg-8">
-                          <sf:textarea type="text" rows="15px" class="form-control" path="isi" placeholder="Isi" required="required"/>
+                          <sf:textarea type="text" rows="15px" class="form-control " path="isi" placeholder="Isi" required="required"/>
                       </div>
                     </div>
                     <div class="form-group">
@@ -80,6 +80,6 @@
                 </sf:form>
             </div>
         </div>
-        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+
     </body>
 </html>

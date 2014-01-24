@@ -14,22 +14,41 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <c:choose>
-                <c:when test="${empty produk.id}">
-                    <c:set var="ket" value="Input"/>
-                </c:when>
-                <c:otherwise>
-                    <c:set var="ket" value="Edit"/>
-                </c:otherwise>
-            </c:choose>
-            <h2>Produk <small>${ket}</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-download"></i> ${ket} produk dan input foto</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <c:choose>
+                    <c:when test="${empty produk.id}">
+                        <c:set var="ket" value="Input"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="ket" value="Edit"/>
+                    </c:otherwise>
+                </c:choose>
+                <h1 class="page-header">Produk <small>${ket}</small></h1>
+            </div>
         </div>
         
-        <sf:form class="form-horizontal" role="form" modelAttribute="produk" action="input-produk" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-12">
+                <small>
+                    <c:if test="${not empty listPesan}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                    <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <span class="kapital"> ${lp.isiPesan}</span>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                </small>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-lg-12">
+                <sf:form class="form-horizontal" role="form" modelAttribute="produk" action="input-produk" enctype="multipart/form-data">
             <sf:hidden path="id"/>
             <div class="form-group">
               <label class="col-sm-2 control-label">Kode Produk</label>
@@ -87,6 +106,8 @@
               </div>
             </div>
         </sf:form>
+            </div>
+        </div>
         <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
         <script>
             $(document).ready(function(){
@@ -98,17 +119,22 @@
                             '<span class="input-group-btn" ><i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i></span></div>');
                 });
                 
+                
+                    $('.active').removeClass('active');
+                    $("#menu-produk-saya-input").addClass("active");
+                    $("#menu-produk-saya").addClass("active");
+                
             });
             
             function hapusbtn(ob){
                 $(ob.parentNode.parentNode).remove();
-                    if($('#btnfile .groupbtnfile').length !=1){
-                        $("#btnfile .groupbtnfile:last-child span").append('<i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i>');
-                    }
+                if($('#btnfile .groupbtnfile').length !=1){
+                    $("#btnfile .groupbtnfile:last-child span").append('<i class="fa fa-trash-o btn" onclick="hapusbtn(this)" id="hapusbtn"></i>');
                 }
-            
-            
+            }
             
         </script>
+        
+        
     </body>
 </html>

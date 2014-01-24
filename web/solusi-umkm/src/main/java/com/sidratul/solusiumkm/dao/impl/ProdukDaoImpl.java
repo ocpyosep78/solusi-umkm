@@ -27,7 +27,7 @@ public class ProdukDaoImpl implements ProdukDao{
             + "from produk p, umkm u "
             + "where u.id = p.id_umkm and u.id in "
             + "(select u.id from user us, umkm m "
-            + "where us.id_umkm = u.id and username=?)";
+            + "where us.id_umkm = u.id and us.username=?)";
     private static final String SQL_GETPRODUK_BYID="SELECT * FROM produk WHERE id=?";
     private static final String SQL_GETPRODUK_BYKODE="SELECT * FROM produk "
             + "WHERE kode_produk=? and id_umkm = ? and nama_produk = ?";

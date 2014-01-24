@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -14,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-theme.css">
    
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-wysihtml5.css">
 
 
     <!-- Page-Level Plugin CSS - Tables -->
@@ -21,7 +24,6 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="<%= request.getContextPath() %>/css/sb-admin.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -46,10 +48,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+<!--                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>-->
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                <li><a href="<c:url value='/j_spring_security_logout'/>"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>             
                 </li>
               
@@ -86,12 +88,13 @@
                         </ul>                       
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> User<span class="fa arrow"></span></a>
+                       <a href="<%= request.getContextPath() %>/admin/user-umkm/index?aktif=1">Index User</a>
+<!--                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> User<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%= request.getContextPath() %>/admin/user-umkm/index?aktif=1">Index User</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/user-umkm/index?aktif=0">Non Aktif User</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/user-umkm/input-user">Input User</a></li>
-                        </ul>                       
+                        </ul>                       -->
                     </li>
                 </ul>
                 <!-- /#side-menu -->
@@ -100,7 +103,7 @@
         </nav>
         <!-- /.navbar-static-side -->
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" >
             <sitemesh:write property='body'/>
         </div>
         
@@ -123,6 +126,8 @@
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<%= request.getContextPath() %>/js/sb-admin.js"></script>
+    <script src="<%= request.getContextPath() %>/js/bootstrap-wysihtml5"></script>
+    
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

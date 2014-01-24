@@ -13,12 +13,30 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div class="row">
+            
         <div class="col-lg-12">
-            <h2>UMKM <small>Detail</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Detail UMKM</li>
-            </ol>
+            <h1 class="page-header">UMKM <small>Detail</small></h1>
         </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <small>
+                    <c:if test="${not empty listPesan}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                    <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <span class="kapital"> ${lp.isiPesan}</span>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                </small>
+            </div>
+        </div> 
         <c:choose>
             <c:when test="${empty umkm}">
                 <div class="col-lg-12">
@@ -39,6 +57,11 @@
                           <td>Pemilik</td>
                           <td>:</td>
                           <td>${umkm.pemilikUmkm}</td>
+                        </tr>
+                        <tr>
+                          <td>Username</td>
+                          <td>:</td>
+                          <td>${umkm.username}</td>
                         </tr>
                         <tr>
                           <td>Kategori</td>
@@ -93,13 +116,12 @@
                           <td>
                               <c:choose>    
                                 <c:when test="${empty umkm.alamat}">
-                                    <i><small>(visi tidak tersedia)</small></i>
+                                    <i><small>(alamat tidak tersedia)</small></i>
                                 </c:when >
                                 <c:otherwise>
                                     ${umkm.alamat}
                                 </c:otherwise>
                             </c:choose>
-                                    sasd
                           </td>
                         </tr>
                         <tr>
@@ -135,5 +157,13 @@
                 </div>
             </c:otherwise>
         </c:choose>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-umkm-saya").addClass("active");
+            });
+        </script>
     </body>
 </html>

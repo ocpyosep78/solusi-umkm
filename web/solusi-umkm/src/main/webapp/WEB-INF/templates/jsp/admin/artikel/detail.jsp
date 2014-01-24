@@ -51,26 +51,17 @@
             </c:when>
             <c:otherwise>
                 <div class="row">
-            
-                
                 <div class="col-lg-12">
                     <h3 class="capital" align="center">${artikel.judul}</h3>
-                    <div class="row col-lg-12">
-                        <c:choose>
-                            <c:when test="${!empty artikel.namaFoto}">
-                                <span class="pull-left col-lg-3">
-                                    <a href="<%= request.getContextPath() %>/upload-file/foto/${artikel.namaFoto}"><img src="<%= request.getContextPath() %>/upload-file/foto/${artikel.namaFoto}" class="img-responsive" ></a>
-                                </span>
-                                <div class="col-lg-9">
-                            </c:when>
-                            <c:otherwise>
-                                <div class="col-lg-12">
-                            </c:otherwise>
-                        </c:choose>
-                        
-                            <div class="row">${artikel.isi}</div>
-                        </div>
+                    <div class="row col-lg-12 artikel">
+                        <c:if test="${!empty artikel.namaFoto}">
+                            <span class="pull-left">
+                                <a href="<%= request.getContextPath() %>/upload-file/foto/${artikel.namaFoto}"><img src="<%= request.getContextPath() %>/upload-file/foto/${artikel.namaFoto}" class="img-responsive" width="400px" ></a>
+                            </span>
+                        </c:if>
+                        ${artikel.isi}
                     </div>
+                </div>
                     <div class="col-lg-12 breadcrumb">
                         <div class="pull-right">
                             <a href="input-artikel?id=${artikel.id}" class="btn btn-info btn-sm"> Edit</a>

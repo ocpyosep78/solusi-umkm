@@ -16,11 +16,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-lg-12">
-            <h2>Produk <small>Saya</small></h2>
-            <ol class="breadcrumb">
-              <li class="active"><i class="fa fa-users"></i> Daftar produk yang saya miliki</li>
-            </ol>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Produk <small>Saya</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <small>
+                    <c:if test="${not empty listPesan}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                 <c:forEach items="${listPesan}" var="lp" varStatus="i" >
+                                    <div class="alert alert-${lp.jenisPesan} alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <span class="kapital"> ${lp.isiPesan}</span>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                </small>
+            </div>
         </div>
         <c:choose>
             <c:when test="${empty listProduk}">
@@ -31,19 +48,25 @@
                 </div>
             </c:when>
             <c:otherwise>
+                 <div class="row">
+                    <div class="col-lg-12">          
+                  
                 <div class="table-responsive">
-                    <table class="table table-striped breadcrumb">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Kode Produk</th>
                           <th>Nama Produk</th>
                           <th>Kategori Produk</th>
+                          <th>Nama Umkm</th>
                           <th>Harga</th>
                           <th>Keterangan</th>
                           <th>Tgl Update</th>
                           <th>Jumlah Foto</th>
-                          <th colspan="2"></th>
+                          <th>View</th>
+                          <th>Edit</th>
+                          <th>Hapus</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -53,11 +76,10 @@
                               <td>${lp.kodeProduk}</td>
                               <td>${lp.namaProduk}</td>
                               <td>${lp.kategoriProduk.jenisProduk}</td>
+                              <td><a href="<%= request.getContextPath() %>/admin/umkm/detail?id=${lp.umkm.id}">${lp.umkm.namaUmkm}</a></td>
                               <td>${lp.harga}</td>
                               <td>${lp.keteranganProduk}</td>
-                              <td>
-                                  <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" />
-                              </td>
+                              <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" /></td>
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
                               <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
@@ -67,7 +89,19 @@
                       </tbody>
                     </table>
                 </div>
+                        
+                    </div>
+                </div>
             </c:otherwise>
         </c:choose>
+        <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.active').removeClass('active');
+                
+                $("#menu-produk-saya").addClass("active");
+                $("#menu-produk-saya-list").addClass("active");
+            });
+        </script>
     </body>
 </html>
