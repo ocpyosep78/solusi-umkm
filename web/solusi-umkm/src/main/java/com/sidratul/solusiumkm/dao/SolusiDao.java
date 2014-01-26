@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sidratul.solusiumkm.dao;
 
-/**
- *
- * @author sidratul
- */
+import com.sidratul.solusiumkm.model.Solusi;
+import java.util.List;
+
 public interface SolusiDao {
+
+    public List<Solusi> getAllSolusi();
     
+    public Solusi getSolusiByIdKasus(Integer idKasus);
 }

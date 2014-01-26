@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class LoginController {
             return "redirect:berhasil";
         }
         
+//        String password = "plaintextPassword";
+//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String hashedPassword = passwordEncoder.encode(password);
         return null;
                 
     }

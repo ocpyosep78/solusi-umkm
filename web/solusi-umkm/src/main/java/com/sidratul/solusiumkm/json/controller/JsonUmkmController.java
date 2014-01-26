@@ -34,6 +34,7 @@ public class JsonUmkmController {
     
     @RequestMapping(value = "/edit-umkm",method = RequestMethod.POST)
     public @ResponseBody void prosesInputUmkm(@RequestParam("id") Integer id,
+    @RequestParam("kodeUmkm") String kodeUmkm,
     @RequestParam("namaUmkm") String namaUmkm,
     @RequestParam("pemilikUmkm") String pemilikUmkm,
     @RequestParam("kategoriUmkm") Integer idKategoriUmkm,
@@ -48,6 +49,7 @@ public class JsonUmkmController {
         Umkm umkm = new Umkm();
         
         umkm.setId(id);
+        umkm.setKodeUmkm(kodeUmkm);
         umkm.setNamaUmkm(namaUmkm);
         umkm.setPemilikUmkm(pemilikUmkm);
         
