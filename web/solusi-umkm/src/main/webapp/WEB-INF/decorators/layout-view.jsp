@@ -3,8 +3,11 @@
     Created on : Dec 20, 2013, 3:03:30 PM
     Author     : sidratul
 --%>
-
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="id">
@@ -54,7 +57,7 @@
                 <% if (request.isUserInRole("ROLE_ADMIN")) { %>
                     <li><a class="pull-right" href="<%= request.getContextPath() %>/view/login/berhasil">Administrator Solusi UMKM </a></li>
                 <% }else if (request.isUserInRole("ROLE_UMKM")) { %>
-                   <li id="menu-umkm-saya" class=""><a class="pull-right" href="<%= request.getContextPath() %>/user/profil-umkm/detail"><i class="fa fa-users"></i> Profil Usaha Saya</a></li>
+                   <li id="menu-umkm-saya" class=""><a href="<%= request.getContextPath() %>/user/profil-umkm/detail"><i class="fa fa-users"></i> Profil Usaha Saya</a></li>
                    <li id="menu-produk-saya" class="">
                        <ul class="nav navbar-nav navbar-right navbar-user">
                         <li class="dropdown user-dropdown">
@@ -77,7 +80,7 @@
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= request.getUserPrincipal().getName() %> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%= request.getContextPath() %>/user/profil-umkm/detail"><i class="fa user"></i> Profile</a></li>
+                                <!--<li><a href="<%= request.getContextPath() %>/user/profil-umkm/detail"><i class="fa user"></i> Profile</a></li>-->
                                 <li class="divider"></li>
                                 <li><a href="<c:url value='/j_spring_security_logout'/>"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
@@ -103,30 +106,55 @@
         <div class="col-lg-4">
             <div class="panel panel-default" >
                 <div class="panel-heading capital">Waktu & Tangal</div>
-                <div class="panel-body">
-                    
+                <div class="panel-body" align="center">
+                    <div class="row">
+                        <div class="col-lg-12" id="jam">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <c:set var="tanggalSkrg" value="<%=new java.util.Date()%>" />
+                            <fmt:formatDate pattern="EEEEE, dd MMMM yyyy" value="${tanggalSkrg}" />
+                        </div>
+                    </div>
                 </div>            
             </div>
             
-            <div class="panel panel-default" >
-                <div class="panel-heading capital">Produk1</div>
-                <div class="panel-body">
-                    
-                </div>            
-            </div>
+            <sql:setDataSource 
+                var="ds" driver="com.mysql.jdbc.Driver" 
+                url = "jdbc:mysql://localhost:3306/solusi-umkm"
+                user="root"  password="admin"/>
+
+            <sql:query dataSource="${ds}" var="hasil">
+                select * from produk order by rand() limit 2;
+            </sql:query>
             
-            <div class="panel panel-default" >
-                <div class="panel-heading capital">Produk 2</div>
-                <div class="panel-body">
-                </div>            
-            </div>
+            <c:forEach var="p" items="${hasil.rows}">
+                <div class="panel panel-default" >
+                    <div class="panel-heading capital"><a href="<%= request.getContextPath() %>/view/produk/detail?id=${p.id}"><strong>${p.nama_produk}</strong></a></div>
+                    <div class="panel-body" align="center">
+                        <sql:query dataSource="${ds}" var="hasilFoto">
+                            select f.* from foto f,distribusi_foto d where id_produk= ${p.id} and f.id = d.id_foto;
+                        </sql:query>
+                        <c:choose>
+                            <c:when test="${empty hasilFoto.rows[0].id}">
+                                <img src="<%= request.getContextPath() %>/upload-file/foto/default-produk.jpg" class="img-thumbnail foto-produk">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<%= request.getContextPath() %>/upload-file/foto/${hasilFoto.rows[0].nama_file}" class="img-thumbnail foto-produk">
+                            </c:otherwise>
+                        </c:choose>
+                    </div>            
+                </div>
+            </c:forEach>
+            
             <div class="panel panel-info" >
                 <div class="panel-heading capital"><strong>Aplikasi Solusi UMKM Depok</strong></div>
-                <div class="panel-body">
-
+                <div class="panel-body" style="text-align: justify">
+                    Aplikasi Solusi UMKM yang ditujukan untuk anggota asosiasi UMKM kota Depok.Untuk membantu UMKM dalam menangani permasalahannya dengan solusi yang diberikan.
                 </div>
                 <div class="panel-footer">
-                    <div  ><a href="#" >download</a></div>
+                    <div ><a href="<%= request.getContextPath() %>/upload-file/aplikasi/SolusiUmkm.apk" >Download Aplikasi</a></div>
                 </div>
             
             </div>
@@ -184,6 +212,13 @@
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
+    
+    var int=self.setInterval(function(){clock();},1000);
+    function clock(){
+        var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("jam").innerHTML=t;
+    }
     </script>
   </body>
 </html>

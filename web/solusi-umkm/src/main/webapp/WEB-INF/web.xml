@@ -79,7 +79,7 @@
     </filter-mapping>
     
     <welcome-file-list>
-        <welcome-file>view/umkm/index</welcome-file>
+        <welcome-file>view/artikel/index</welcome-file>
     </welcome-file-list>
     
     <filter>
