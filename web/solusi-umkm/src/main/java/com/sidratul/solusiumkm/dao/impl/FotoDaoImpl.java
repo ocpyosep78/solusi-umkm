@@ -17,18 +17,17 @@ import org.springframework.stereotype.Repository;
 @Repository("FotoDao")
 public class FotoDaoImpl implements FotoDao{
     
-    private static final String SQL_GETALLFOTO_BYIDPRODUK="select f.* from foto f, distribusi_foto d "
-            + "where d.id_produk=? and d.id_foto = f.id";
+//    private static final String SQL_GETALLFOTO_BYIDPRODUK="select f.* from foto f, distribusi_foto d "
+//            + "where d.id_produk=? and d.id_foto = f.id";
+    private static final String SQL_GETALLFOTO_BYIDPRODUK="select * from foto where id_produk=?";
     private static final String SQL_GETFOTO_BYID="SELECT * FROM foto WHERE id=?";
     private static final String SQL_GETFOTO_NAMAFILE="SELECT * FROM foto WHERE nama_file=?";
     private static final String SQL_DELETE_FOTO="DELETE FROM foto WHERE id=?";
-    private static final String SQL_DELETE_FOTO_BYID_PRODUK="DELETE FROM distribusi_foto WHERE id_produk=?";
+    private static final String SQL_DELETE_FOTO_BYID_PRODUK="DELETE FROM foto WHERE id_produk=?";
     private static final String SQL_UPDATE_FOTO="UPDATE `foto` SET "
-            + "`nama_file` = ?, `tgl_upload` = ?, `keterangan_foto` = ? "
+            + "`nama_file` = ?,id_produk=?, `tgl_upload` = ?, `keterangan_foto` = ? "
             + "WHERE `id` = ?";
-    private static final String SQL_INSERT_FOTO="INSERT INTO `foto`(`nama_file`,`tgl_upload`,`keterangan_foto`)VALUES(?,?,?)";
-    
-    private static final String SQL_INSERT_DISTRIBUSIFOTO="INSERT INTO `distribusi_foto`(`id_produk`,`id_foto`)VALUES(?,?)";
+    private static final String SQL_INSERT_FOTO="INSERT INTO `foto`(`nama_file`,id_produk,`tgl_upload`,`keterangan_foto`)VALUES(?,?,?,?)";
     
     
     
@@ -65,10 +64,11 @@ public class FotoDaoImpl implements FotoDao{
         return fotos;
     }
 
-    public void saveFoto(Foto foto) {
+    public void saveFoto(Foto foto, Integer idProduk) {
         if(foto.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_FOTO, new Object[]{
                 foto.getNamaFile(),
+                idProduk,
                 foto.getTglUpload(),
                 foto.getKeteranganFoto(),
                 foto.getId()
@@ -76,6 +76,7 @@ public class FotoDaoImpl implements FotoDao{
         }else{
             jdbcTemplate.update(SQL_INSERT_FOTO, new Object[]{
                 foto.getNamaFile(),
+                idProduk,
                 foto.getTglUpload(),
                 foto.getKeteranganFoto()
             });
@@ -100,11 +101,7 @@ public class FotoDaoImpl implements FotoDao{
         jdbcTemplate.update(SQL_DELETE_FOTO,id);
     }
     
-    public void saveDistribusiFoto(Integer idProduk, Integer idFoto) {
-        jdbcTemplate.update(SQL_INSERT_DISTRIBUSIFOTO, new Object[]{idProduk,idFoto});
-    }
-    
-    public void DeleteDistribusiFotoByIdProduk(Integer id) {
-        jdbcTemplate.update(SQL_DELETE_FOTO_BYID_PRODUK,id);
+    public void DeleteFotoByidProduk(Integer idProduk) {
+        jdbcTemplate.update(SQL_DELETE_FOTO_BYID_PRODUK,idProduk);
     }
 }

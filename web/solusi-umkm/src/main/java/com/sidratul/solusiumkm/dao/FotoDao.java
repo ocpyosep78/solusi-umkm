@@ -6,7 +6,7 @@ import java.util.List;
 public interface FotoDao {
     public List<Foto> getAllFotoByIdProduk(Integer idProduk);
     
-    public void saveFoto(Foto foto);
+    public void saveFoto(Foto foto, Integer idProduk);
     
     public Foto getFotoByid(Integer id);
     
@@ -14,7 +14,6 @@ public interface FotoDao {
     
     public Foto getFotoByNamaFile(String namaFile);
     
-    public void saveDistribusiFoto(Integer idProduk, Integer idFoto);
+    public void DeleteFotoByidProduk(Integer idProduk);
     
-    public void DeleteDistribusiFotoByIdProduk(Integer id);
 }

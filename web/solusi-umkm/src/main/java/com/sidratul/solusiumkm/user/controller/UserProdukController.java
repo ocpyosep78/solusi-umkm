@@ -169,9 +169,7 @@ public class UserProdukController {
                     out.write(multipartFile.getBytes());
                     out.close();
 
-                    fotoDao.saveFoto(foto);
-                    foto = fotoDao.getFotoByNamaFile(namaFile);
-                    fotoDao.saveDistribusiFoto(produk.getId(), foto.getId());
+                    fotoDao.saveFoto(foto,produk.getId());
                 }
                 
             }
@@ -193,7 +191,7 @@ public class UserProdukController {
         
         List<Foto> fotos = fotoDao.getAllFotoByIdProduk(id);
         
-        fotoDao.DeleteDistribusiFotoByIdProduk(id);
+        fotoDao.DeleteFotoByidProduk(id);
         
         for (Foto foto : fotos) {
             fotoDao.DeleteFotoByid(foto.getId());
