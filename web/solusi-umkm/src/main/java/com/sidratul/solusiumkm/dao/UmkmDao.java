@@ -13,6 +13,8 @@ public interface UmkmDao {
     
     public Umkm getUmkmById(Integer id);
     
+    public Umkm getUmkmTerakhir();
+    
     public Umkm getUmkmByUsername(String username);
     
     public Umkm getUmkmByKodeUmkm(String kodeUmkm);

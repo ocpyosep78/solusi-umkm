@@ -134,7 +134,7 @@
                     <div class="panel-heading capital"><a href="<%= request.getContextPath() %>/view/produk/detail?id=${p.id}"><strong>${p.nama_produk}</strong></a></div>
                     <div class="panel-body" align="center">
                         <sql:query dataSource="${ds}" var="hasilFoto">
-                            select f.* from foto f,distribusi_foto d where id_produk= ${p.id} and f.id = d.id_foto;
+                            select f.* from foto f where id_produk= ${p.id};
                         </sql:query>
                         <c:choose>
                             <c:when test="${empty hasilFoto.rows[0].id}">

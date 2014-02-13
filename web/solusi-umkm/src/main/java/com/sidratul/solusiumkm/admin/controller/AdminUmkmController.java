@@ -58,6 +58,16 @@ public class AdminUmkmController {
         
         modelMap.addAttribute("umkm", umkm);
         modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
+        
+        Umkm umkm1 = umkmDao.getUmkmTerakhir();
+        String kodeUmkm;
+        if(umkm1==null){
+            kodeUmkm="umkm0001";
+        }else{
+            Integer angka= new Integer((umkm1.getKodeUmkm().substring(4)).replace("0",""));
+            angka++;
+            System.out.println("angka:"+angka);
+        }
     }
     
     @RequestMapping(value = "/input-umkm",method = RequestMethod.POST)

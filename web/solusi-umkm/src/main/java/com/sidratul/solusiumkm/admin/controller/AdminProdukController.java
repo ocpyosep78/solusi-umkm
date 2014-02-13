@@ -84,7 +84,7 @@ public class AdminProdukController {
         produk.setTglUpdateProduk(new Date());
         
         if(produk.getKodeProduk()==""){
-            setPesanGagal("Nama produk harus diisi");
+            setPesanGagal("Kode produk harus diisi");
         }
         
         if(produk.getNamaProduk()==""){

@@ -39,7 +39,8 @@
       </form>  
         <hr>-->
         <c:forEach items="${listProduk}" var="lp">
-            <div class="col-md-12 p-padd breadcrumb" >
+            <div class="row">
+            <div class="col-lg-12 p-padd breadcrumb" >
                 <div class="col-lg-4">
                     <c:choose>
                         <c:when test="${empty lp.fotos}">
@@ -50,7 +51,7 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div class="">
+                <div class="col-lg-8">
                     <table class="capital">
                         <tr>
                             <td>Kode Produk</td>
@@ -114,7 +115,7 @@
                     </table>
                 </div>
             </div>
-            <hr>
+            </div>
         </c:forEach>    
         <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery.js"></script>
         <script>

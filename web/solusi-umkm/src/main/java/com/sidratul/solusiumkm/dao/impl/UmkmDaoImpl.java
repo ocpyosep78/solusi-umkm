@@ -22,6 +22,7 @@ public class UmkmDaoImpl implements UmkmDao{
             + "ON um.id = us.id_umkm "
             + "WHERE us.id_umkm is null";
     private static final String SQL_GETUMKM_BYID="SELECT * FROM umkm where id=?";
+    private static final String SQL_GETUMKM_TERAKHIR="SELECT * FROM umkm ORDER BY id DESC LIMIT 1";
     private static final String SQL_GETUMKM_BYKODEUMKM="SELECT * FROM umkm where kode_umkm=?";
     private static final String SQL_GETUMKM_BYKODEUMKM_BUKANID="SELECT * FROM umkm where kode_umkm=? AND id != ?";
     
@@ -85,6 +86,15 @@ public class UmkmDaoImpl implements UmkmDao{
     public List<Umkm> getAllUmkmTidakMemilikiUser() {
         List<Umkm> umkms = jdbcTemplate.query(SQL_GETALL_UMKM_BELUM_ADAUSER, new UmkmParameterizedRowMapper());
         return umkms;
+    }
+    
+    public Umkm getUmkmTerakhir(){
+        try{
+            Umkm umkm = jdbcTemplate.queryForObject(SQL_GETUMKM_TERAKHIR, new UmkmParameterizedRowMapper());
+            return umkm;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
     }
     
     public Umkm getUmkmByKodeUmkm(String kodeUmkm)  {
