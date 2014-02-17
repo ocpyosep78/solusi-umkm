@@ -19,6 +19,8 @@ public interface ProdukDao {
     
     public Produk getProdukByKodeIdUmkmDanBukanIdProduk(String kodeProduk, Integer idUmkm, Integer id);
     
+    public Produk getProdukTerakhirByIdUmkmDanKategoriProduk(Integer idUmkm, Integer idKategoriProduk);
+    
     public void deleteProduk(Integer id);
     
     public void deleteFotoById(Integer id);

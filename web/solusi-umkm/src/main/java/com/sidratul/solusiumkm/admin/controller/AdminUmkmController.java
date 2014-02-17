@@ -1,8 +1,6 @@
 package com.sidratul.solusiumkm.admin.controller;
 
-import com.sidratul.solusiumkm.dao.KategoriUmkmDao;
 import com.sidratul.solusiumkm.dao.UmkmDao;
-import com.sidratul.solusiumkm.model.KategoriUmkm;
 import com.sidratul.solusiumkm.model.Pesan;
 import com.sidratul.solusiumkm.model.Umkm;
 import java.util.ArrayList;
@@ -26,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/umkm")
 public class AdminUmkmController {
     @Autowired private UmkmDao umkmDao;
-    @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
     private List<Pesan> pesans;
     private Boolean error;
@@ -50,24 +47,26 @@ public class AdminUmkmController {
         Umkm umkm = umkmDao.getUmkmById(id);
         if(umkm==null){
             umkm= new Umkm();
+            
+            Umkm umkm1 = umkmDao.getUmkmTerakhir();
+            String kodeUmkm="umkm";
+            if(umkm1==null){
+                kodeUmkm="umkm0001";
+            }else{
+                Integer angka= new Integer((umkm1.getKodeUmkm().substring(4)).replace("0",""));
+                angka++;
+                for(int i=0;i<(4-angka.toString().length());i++){
+                    kodeUmkm=kodeUmkm+"0";
+                }
+
+                kodeUmkm= kodeUmkm+angka.toString();
+            }
+            
+            umkm.setKodeUmkm(kodeUmkm);
         }
         
         umkm.setPasswordCek(umkm.getPassword());
-        
-        List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
-        
         modelMap.addAttribute("umkm", umkm);
-        modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
-        
-        Umkm umkm1 = umkmDao.getUmkmTerakhir();
-        String kodeUmkm;
-        if(umkm1==null){
-            kodeUmkm="umkm0001";
-        }else{
-            Integer angka= new Integer((umkm1.getKodeUmkm().substring(4)).replace("0",""));
-            angka++;
-            System.out.println("angka:"+angka);
-        }
     }
     
     @RequestMapping(value = "/input-umkm",method = RequestMethod.POST)
@@ -113,15 +112,8 @@ public class AdminUmkmController {
             
         }
         
-        if(umkm.getKategoriUmkm().getId() == null){
-            setPesanGagal("Kategori UMKM harus dipilih");
-        }
-        
         if(error){
             
-            List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
-        
-            modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
             modelMap.addAttribute("listPesan", pesans);
             return "umkm/input-umkm";
         }
@@ -176,7 +168,7 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsername(umkm.getUsername());
              
             if(!matcher.matches()){
-                setPesanGagal("Username harus di mengandung 3 sampai 15 karakter yang terdiri dari huruf, angka, - atau _ ");
+                setPesanGagal("Username harus di mengandung 3 sampai 15 karakter yang terdiri dari huruf kecil, angka, - atau _ ");
             }else if(umkm1!=null){
                 setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
@@ -194,7 +186,7 @@ public class AdminUmkmController {
             Umkm umkm1 = umkmDao.getUmkmByUsernameDanBukanId(umkm.getUsername(),umkm.getId());
              
             if(!matcher.matches()){
-                setPesanGagal("Username harus di mengandung 3 sampai 15 karakter yang terdiri dari huruf, angka, - atau _ ");
+                setPesanGagal("Username harus mengandung 3 sampai 15 karakter yang terdiri dari huruf kecil, angka, - atau _ ");
             }if(umkm1!=null){
                 setPesanGagal("Username sudah dimiliki oleh UMKM yang lain");
             }
@@ -230,76 +222,4 @@ public class AdminUmkmController {
         return "redirect:index";
     }
     
-    
-//    untuk kategori umkm
-    @RequestMapping("/kategori")
-    public void tampilKategoriUmkm(ModelMap modelMap){
-        List<KategoriUmkm> kategoriUmkms = kategoriUmkmDao.getAllKategoriUmkm();
-        modelMap.addAttribute("listKategoriUmkm", kategoriUmkms);
-    }
-    
-    @RequestMapping(value = "/input-kategori",method = RequestMethod.GET)
-    public void formInputKategoriUmkm(@RequestParam(value = "id",required = false) Integer id,
-    ModelMap modelMap){
-        KategoriUmkm kategoriUmkm = kategoriUmkmDao.getKategoriUmkmById(id);
-        if(kategoriUmkm== null){
-            kategoriUmkm = new KategoriUmkm();
-        }
-        
-        modelMap.addAttribute("kategoriUmkm",kategoriUmkm);
-    }
-    
-    @RequestMapping(value = "/input-kategori",method = RequestMethod.POST)
-    public String prosesInputKategoriUmkm(@ModelAttribute KategoriUmkm kategoriUmkm,
-    ModelMap modelMap,
-    RedirectAttributes redirectAttributes){
-        error=false;
-        pesans = new ArrayList<Pesan>();
-        
-        if(kategoriUmkm.getJenisUmkm()==""){
-            setPesanGagal("Kategori UMKM harus diisi");
-        }else{
-            KategoriUmkm kategoriUmkm1;
-            
-            if(kategoriUmkm.getId()!=null){
-                kategoriUmkm1 = kategoriUmkmDao.getKategoriUmkmByJenisUmkmEdit(kategoriUmkm.getJenisUmkm(), kategoriUmkm.getId());
-            }else{
-                kategoriUmkm1 = kategoriUmkmDao.getKategoriUmkmByJenisUmkm(kategoriUmkm.getJenisUmkm());
-            }
-            
-            if(kategoriUmkm1 != null){
-                setPesanGagal("Jenis UMKM sudah ada");
-            }
-        }
-        
-        if(error){            
-            modelMap.addAttribute("listPesan", pesans);
-            return "umkm/input-kategori";
-        }else{
-            kategoriUmkmDao.saveKategoriUmkm(kategoriUmkm);
-
-            setPesanBerhasil("berhasil menghapus kategori UMKM");
-            redirectAttributes.addFlashAttribute("listPesan",pesans);
-            return "redirect:kategori";
-        }
-        
-        
-    }
-    
-    @RequestMapping("/hapus-kategori")
-    public String hapusKategoriUmkm(@RequestParam("id") Integer id,
-    ModelMap modelMap, RedirectAttributes redirectAttributes){
-        error=false;
-        pesans = new ArrayList<Pesan>();
-        try{
-            kategoriUmkmDao.deleteKategoriUmkm(id);
-            setPesanBerhasil("berhasil menghapus kategori UMKM");
-        }catch(DataIntegrityViolationException dive){
-            System.out.println("gagal");
-            setPesanGagal("gagal menghapus kategori UMKM. Kategori sedang digunakan");
-        }
-        
-        redirectAttributes.addFlashAttribute("listPesan",pesans);
-        return "redirect:kategori";
-    }
 }

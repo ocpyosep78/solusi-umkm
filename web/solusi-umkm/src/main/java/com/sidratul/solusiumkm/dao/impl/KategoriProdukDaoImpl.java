@@ -16,12 +16,12 @@ import org.springframework.stereotype.Repository;
 public class KategoriProdukDaoImpl implements KategoriProdukDao{
     private static final String SQL_GETALL_KATEGORI_PRODUK = "SELECT * FROM `kategori_produk`";
     private static final String SQL_GETKATEGORI_PRODUK_BYID = "SELECT * FROM `kategori_produk` where id=?";
-    private static final String SQL_GETKATEGORI_PRODUK_BYJENIS_PRODUK = "SELECT * FROM `kategori_produk` where jenis_produk=?";
-    private static final String SQL_GETKATEGORI_PRODUK_BYJENIS_PRODUK_EDIT = "SELECT * FROM `kategori_produk` where jenis_produk=? and id != ?";
+    private static final String SQL_GETKATEGORI_PRODUK_CEK = "SELECT * FROM `kategori_produk` where ?=?";
+    private static final String SQL_GETKATEGORI_PRODUK_CEK_EDIT = "SELECT * FROM `kategori_produk` where ?=? and id != ?";
     private static final String SQL_DELETE_KATEGORI_PRODUK_BYID = "DELETE FROM `kategori_produk` where id=?";
-    private static final String SQL_UPDATE_KATEGORI_PRODUK = "UPDATE `kategori_produk` SET `jenis_produk` = ? "
+    private static final String SQL_UPDATE_KATEGORI_PRODUK = "UPDATE `kategori_produk` SET `jenis_produk` = ?, kode=? "
             + "WHERE id = ?";
-    private static final String SQL_INSERT_KATEGORI_PRODUK = "INSERT INTO `kategori_produk`(`jenis_produk`)VALUES(?)";
+    private static final String SQL_INSERT_KATEGORI_PRODUK = "INSERT INTO `kategori_produk`(`jenis_produk`,kode)VALUES(?,?)";
     
     private JdbcTemplate jdbcTemplate;
     
@@ -32,6 +32,7 @@ public class KategoriProdukDaoImpl implements KategoriProdukDao{
             KategoriProduk kategoriProduk= new KategoriProduk();
             kategoriProduk.setId(rs.getInt("id"));
             kategoriProduk.setJenisProduk(rs.getString("jenis_produk"));
+            kategoriProduk.setKode(rs.getString("kode"));
             
             return kategoriProduk;
         }
@@ -51,10 +52,11 @@ public class KategoriProdukDaoImpl implements KategoriProdukDao{
         if(kategoriProduk.getId()!=null){
             jdbcTemplate.update(SQL_UPDATE_KATEGORI_PRODUK, new Object[]{
                 kategoriProduk.getJenisProduk(),
+                kategoriProduk.getKode(),
                 kategoriProduk.getId()
             });
         }else{
-            jdbcTemplate.update(SQL_INSERT_KATEGORI_PRODUK, kategoriProduk.getJenisProduk());
+            jdbcTemplate.update(SQL_INSERT_KATEGORI_PRODUK, kategoriProduk.getJenisProduk(),kategoriProduk.getKode());
         }
     }
 
@@ -67,18 +69,18 @@ public class KategoriProdukDaoImpl implements KategoriProdukDao{
         }
     }
     
-    public KategoriProduk getKategoriProdukByJenisKategoriProduk(String jenisKategoriProduk) {
+    public KategoriProduk getKategoriProdukByCek(String isiField,String namaField){
         try{
-            KategoriProduk kategoriProduk= jdbcTemplate.queryForObject(SQL_GETKATEGORI_PRODUK_BYJENIS_PRODUK,new KategoriProdukParameterizedRowMapper(),jenisKategoriProduk);
+            KategoriProduk kategoriProduk= jdbcTemplate.queryForObject(SQL_GETKATEGORI_PRODUK_CEK,new KategoriProdukParameterizedRowMapper(),namaField,isiField);
             return kategoriProduk;
         }catch(EmptyResultDataAccessException erdae ){
             return null;
         }
     }
     
-    public KategoriProduk getKategoriProdukByJenisKategoriProdukEdit(String jenisKategoriProduk, Integer id) {
+    public KategoriProduk getKategoriProdukByCekEdit(String isiField,String namaField , Integer id){
         try{
-            KategoriProduk kategoriProduk= jdbcTemplate.queryForObject(SQL_GETKATEGORI_PRODUK_BYJENIS_PRODUK_EDIT,new KategoriProdukParameterizedRowMapper(),jenisKategoriProduk, id);
+            KategoriProduk kategoriProduk= jdbcTemplate.queryForObject(SQL_GETKATEGORI_PRODUK_CEK_EDIT,new KategoriProdukParameterizedRowMapper(),namaField,isiField, id);
             return kategoriProduk;
         }catch(EmptyResultDataAccessException erdae ){
             return null;

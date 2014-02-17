@@ -42,7 +42,6 @@
                                   <th>Kode</th>
                                   <th>Nama</th>
                                   <th>Pemilik</th>
-                                  <td>Kategori</td>
                                   <th>Keterangan</th>
                                   <th>Alamat</th>
                                   <th>Telepon</th>
@@ -56,7 +55,6 @@
                                       <td>${lu.kodeUmkm}</td>
                                       <td>${lu.namaUmkm}</td>
                                       <td>${lu.pemilikUmkm}</td>
-                                      <td>${lu.kategoriUmkm.jenisUmkm}</td>
                                       <td>${lu.keteranganUmkm}</td>                                      
                                       <td>${lu.alamat}</td>
                                       <td>${lu.noTelp}</td>

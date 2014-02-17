@@ -74,15 +74,12 @@
                         <ul class="nav nav-second-level">
                             <li><a href="<%= request.getContextPath() %>/admin/umkm/index">Index UMKM</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/umkm/input-umkm">Input UMKM</a></li>
-                            <li><a href="<%= request.getContextPath() %>/admin/umkm/kategori">Kategori UMKM</a></li>
-                            <li><a href="<%= request.getContextPath() %>/admin/umkm/input-kategori">Input Kategori</a></li>
                         </ul>                       
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Produk<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%= request.getContextPath() %>/admin/produk/index">Index Produk</a></li>
-                            <li><a href="<%= request.getContextPath() %>/admin/produk/input-produk">Input Produk</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/produk/kategori">Kategori Produk</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/produk/input-kategori">Input Produk</a></li>
                         </ul>                       

@@ -60,7 +60,6 @@
                                   <th>Nama</th>
                                   <th>Pemilik</th>
                                   <th>Username</th>
-                                  <th>Kategori</th>
                                   <th>Keterangan</th>
                                   <th>Visi</th>
                                   <th>Misi</th>
@@ -80,7 +79,6 @@
                                       <td>${lu.namaUmkm}</td>
                                       <td>${lu.pemilikUmkm}</td>
                                       <td>${lu.username}</td>
-                                      <td>${lu.kategoriUmkm.jenisUmkm}</td>
                                       <td>${lu.keteranganUmkm}</td>
                                       <td>${lu.visi}</td>
                                       <td>${lu.misi}</td>

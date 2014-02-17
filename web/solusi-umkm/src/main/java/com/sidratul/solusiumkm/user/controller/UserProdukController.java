@@ -81,6 +81,8 @@ public class UserProdukController {
             }
         }
         
+        produk.setUmkm(umkmDao.getUmkmByUsername(principal.getName()));
+        
         List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
         List<Umkm> umkms = umkmDao.getAllUmkm();
         

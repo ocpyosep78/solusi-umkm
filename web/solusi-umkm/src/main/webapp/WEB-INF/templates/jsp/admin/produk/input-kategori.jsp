@@ -60,6 +60,13 @@
                       <sf:input type="text" class="form-control" path="jenisProduk" placeholder="jenis kategori" required="required"/>
                   </div>
                 </div>
+                  
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kode</label>
+                  <div class="col-xs-4">
+                      <sf:input type="text" class="form-control" path="kode" placeholder="jenis kategori" required="required"/>
+                  </div>
+                </div>
 
                 <!--button-->
                 <div class="form-group">

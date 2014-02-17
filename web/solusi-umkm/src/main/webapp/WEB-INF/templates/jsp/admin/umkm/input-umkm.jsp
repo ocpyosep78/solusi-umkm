@@ -58,7 +58,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Kode UMKM</label>
                       <div class="col-xs-4">
-                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required"/>
+                          <sf:input type="text" class="form-control" path="kodeUmkm" placeholder="kode UMKM" required="required" READONLY="READONLY"/>
                       </div>
                     </div>
                     <div class="form-group">
@@ -89,17 +89,6 @@
                       <label class="col-sm-2 control-label">Tulis Ulang Password</label>
                       <div class="col-xs-4">
                           <sf:input type="password" class="form-control" path="passwordCek" placeholder="Tulis Ulang Password" required="required"/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">Kategori UMKM</label>
-                      <div class="col-xs-4">
-                          <sf:select path="kategoriUmkm.id" class="form-control" required="required" >
-                            <sf:option value="">Pilih Kategori</sf:option>
-                            <c:forEach items="${listKategoriUmkm}" var="lku">
-                                <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>
-                            </c:forEach>
-                          </sf:select>
                       </div>
                     </div>
                     <div class="form-group">

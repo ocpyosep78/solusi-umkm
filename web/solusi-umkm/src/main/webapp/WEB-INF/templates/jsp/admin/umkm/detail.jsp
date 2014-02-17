@@ -55,11 +55,6 @@
                           <td>${umkm.username}</td>
                         </tr>
                         <tr>
-                          <td>Kategori</td>
-                          <td>:</td>
-                          <td>${umkm.kategoriUmkm.jenisUmkm}</td>
-                        </tr>
-                        <tr>
                           <td>Keterangan</td>
                           <td>:</td>
                           <td>

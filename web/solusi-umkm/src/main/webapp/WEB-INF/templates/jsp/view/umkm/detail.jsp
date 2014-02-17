@@ -28,11 +28,6 @@
                 <div class="table-responsive">
                     <table class="table table-responsive breadcrumb capital">
                         <tr>
-                          <td>Kode</td>
-                          <td>:</td>
-                          <td>${umkm.kodeUmkm}</td>
-                        </tr>
-                        <tr>
                           <td>Nama</td>
                           <td>:</td>
                           <td>${umkm.namaUmkm}</td>
@@ -41,11 +36,6 @@
                           <td>Pemilik</td>
                           <td>:</td>
                           <td>${umkm.pemilikUmkm}</td>
-                        </tr>
-                        <tr>
-                          <td>Kategori</td>
-                          <td>:</td>
-                          <td>${umkm.kategoriUmkm.jenisUmkm}</td>
                         </tr>
                         <tr>
                           <td>Keterangan</td>

@@ -13,10 +13,10 @@ public interface KategoriProdukDao {
     public KategoriProduk getKategoriProdukById(Integer id);
     
     //input
-    public KategoriProduk getKategoriProdukByJenisKategoriProduk(String jenisKategoriProduk);
+    public KategoriProduk getKategoriProdukByCek(String isiField, String namaField);
     
     //edit
-    public KategoriProduk getKategoriProdukByJenisKategoriProdukEdit(String jenisKategoriProduk, Integer id);
+    public KategoriProduk getKategoriProdukByCekEdit(String isiField,String namaField , Integer id);
     
     public void deleteKategoriProduk(Integer id) throws DataIntegrityViolationException;
 }

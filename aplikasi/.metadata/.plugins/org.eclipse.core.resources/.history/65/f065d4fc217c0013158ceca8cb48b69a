@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:text="Login"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/blogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pfPassword"
+        android:layout_alignRight="@+id/tfUsername"
+        android:layout_below="@+id/pfPassword"
+        android:layout_marginTop="40dp"
+        android:text="Login" 
+        android:onClick="cekLogin"/>
+
+    <Button
+        android:id="@+id/bexit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/blogin"
+        android:layout_alignRight="@+id/blogin"
+        android:layout_below="@+id/blogin"
+        android:layout_marginTop="27dp"
+        android:text="Keluar"
+        android:onClick="keluar" />
+
+    <EditText
+        android:id="@+id/tfUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName" >
+    	<requestFocus />
+    </EditText>
+    
+
+    <EditText
+        android:id="@+id/pfPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tfUsername"
+        android:layout_below="@+id/tfUsername"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+</RelativeLayout>

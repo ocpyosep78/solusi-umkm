@@ -5,7 +5,6 @@ public class Umkm {
     private String kodeUmkm;
     private String namaUmkm;
     private String pemilikUmkm;
-    private KategoriUmkm kategoriUmkm;
     private String keteranganUmkm;
     private String visi;
     private String misi;
@@ -80,14 +79,6 @@ public class Umkm {
 
     public void setPemilikUmkm(String pemilikUmkm) {
         this.pemilikUmkm = pemilikUmkm;
-    }
-
-    public KategoriUmkm getKategoriUmkm() {
-        return kategoriUmkm;
-    }
-
-    public void setKategoriUmkm(KategoriUmkm kategoriUmkm) {
-        this.kategoriUmkm = kategoriUmkm;
     }
 
     public String getKeteranganUmkm() {

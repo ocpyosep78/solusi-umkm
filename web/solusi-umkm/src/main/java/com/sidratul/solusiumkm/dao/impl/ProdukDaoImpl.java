@@ -38,6 +38,8 @@ public class ProdukDaoImpl implements ProdukDao{
     private static final String SQL_GETPRODUK_BYKODEIDUMKM_DAN_ID="SELECT * FROM produk "
             + "WHERE kode_produk=? and id_umkm = ? and id != ?";
     
+    private static final String SQL_GETPRODUKTERAKHIR_BYIDUMKMDAN_IDKATEGORIPRODUK="SELECT * FROM produk "
+            + "WHERE id_umkm=? AND id_kategori_produk=? ORDER BY id DESC LIMIT 1";
     
     private static final String SQL_DELETE_PRODUK="DELETE FROM produk WHERE id=?";
     private static final String SQL_UPDATE_PRODUK="UPDATE `produk` SET `id_umkm` = ?,`id_kategori_produk` = ?,"
@@ -160,6 +162,19 @@ public class ProdukDaoImpl implements ProdukDao{
                 kodeProduk,
                 idUmkm,
                 id
+            });
+            
+            return  produk;
+        }catch(EmptyResultDataAccessException erdae ){
+            return null;
+        }
+    }
+    
+    public Produk getProdukTerakhirByIdUmkmDanKategoriProduk(Integer idUmkm, Integer idKategoriProduk){
+        try{
+            Produk produk = jdbcTemplate.queryForObject(SQL_GETPRODUKTERAKHIR_BYIDUMKMDAN_IDKATEGORIPRODUK, new ProdukParameterizedRowMapper(), new Object[]{
+                idUmkm,
+                idKategoriProduk
             });
             
             return  produk;

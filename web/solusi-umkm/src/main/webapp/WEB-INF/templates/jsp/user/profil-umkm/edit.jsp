@@ -82,17 +82,6 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-2 control-label">Kategori UMKM</label>
-                      <div class="col-xs-4">
-                          <sf:select path="kategoriUmkm.id" class="form-control" required="required" >
-                            <sf:option value="">Pilih Kategori</sf:option>
-                            <c:forEach items="${listKategoriUmkm}" var="lku">
-                                <sf:option value="${lku.id}">${lku.jenisUmkm}</sf:option>
-                            </c:forEach>
-                          </sf:select>
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label class="col-sm-2 control-label">Keterangan UMKM</label>
                       <div class="col-xs-4">
                           <sf:textarea class="form-control" rows="2" path="keteranganUmkm" placeholder="keterangan UMKM"/>

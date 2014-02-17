@@ -1,7 +1,6 @@
 package com.sidratul.solusiumkm.json.controller;
 
 import com.sidratul.solusiumkm.dao.UmkmDao;
-import com.sidratul.solusiumkm.model.KategoriUmkm;
 import com.sidratul.solusiumkm.model.Umkm;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,6 @@ public class JsonUmkmController {
     @RequestParam("kodeUmkm") String kodeUmkm,
     @RequestParam("namaUmkm") String namaUmkm,
     @RequestParam("pemilikUmkm") String pemilikUmkm,
-    @RequestParam("kategoriUmkm") Integer idKategoriUmkm,
     @RequestParam("keteranganUmkm") String keteranganUmkm,
     @RequestParam("visi") String visi,
     @RequestParam("misi") String misi,
@@ -53,10 +51,6 @@ public class JsonUmkmController {
         umkm.setNamaUmkm(namaUmkm);
         umkm.setPemilikUmkm(pemilikUmkm);
         
-        KategoriUmkm kategoriUmkm = new KategoriUmkm();
-        kategoriUmkm.setId(idKategoriUmkm);
-        
-        umkm.setKategoriUmkm(kategoriUmkm);
         umkm.setKeteranganUmkm(keteranganUmkm);
         umkm.setVisi(visi);
         umkm.setMisi(misi);

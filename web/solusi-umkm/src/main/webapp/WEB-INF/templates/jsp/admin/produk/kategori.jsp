@@ -57,6 +57,7 @@
                         <tr>
                           <th>#</th>
                           <th>Kategori</th>
+                          <th>Kode</th>
                           <th>Edit</th>
                           <th>Hapus</th>
                         </tr>
@@ -66,6 +67,7 @@
                           <tr>
                               <td>${i.count}</td>
                               <td>${lk.jenisProduk}</td>
+                              <td>${lk.kode}</td>
                               <td><a title="edit" alt="edit" href="input-kategori?id=${lk.id}"><i class="fa fa-edit"></i></a></td>
                               <td><a title="hapus" alt="hapus" href="hapus-kategori?id=${lk.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>

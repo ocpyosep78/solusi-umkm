@@ -4,9 +4,7 @@
  */
 package com.sidratul.solusiumkm.user.controller;
 
-import com.sidratul.solusiumkm.dao.KategoriUmkmDao;
 import com.sidratul.solusiumkm.dao.UmkmDao;
-import com.sidratul.solusiumkm.model.KategoriUmkm;
 import com.sidratul.solusiumkm.model.Pesan;
 import com.sidratul.solusiumkm.model.Umkm;
 import java.security.Principal;
@@ -27,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/profil-umkm")
 public class UserUmkmController {
     @Autowired private UmkmDao umkmDao;
-    @Autowired private KategoriUmkmDao kategoriUmkmDao;
     
     private List<Pesan> pesans;
     private Boolean error;
@@ -43,10 +40,8 @@ public class UserUmkmController {
     public void FormEditProfilUmkm(Principal principal, 
     ModelMap modelMap){
         Umkm umkm= umkmDao.getUmkmByUsername(principal.getName());
-        List<KategoriUmkm> kategoriUmkms = kategoriUmkmDao.getAllKategoriUmkm();
         
         modelMap.addAttribute("umkm", umkm);
-        modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
     }
     
     @RequestMapping(value = "/edit",method = RequestMethod.POST )
@@ -107,15 +102,8 @@ public class UserUmkmController {
             }
         }
         
-        if(umkm.getKategoriUmkm().getId() == null){
-            setPesanGagal("Kategori UMKM harus dipilih");
-        }
-        
         if(error){
         
-            List<KategoriUmkm> kategoriUmkms =  kategoriUmkmDao.getAllKategoriUmkm();
-        
-            modelMap.addAttribute("listKategoriUmkm",kategoriUmkms);
             modelMap.addAttribute("listPesan", pesans);
             return "profil-umkm/edit";
         }

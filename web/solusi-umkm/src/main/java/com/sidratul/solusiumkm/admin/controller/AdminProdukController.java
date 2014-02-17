@@ -56,108 +56,6 @@ public class AdminProdukController {
         modelMap.addAttribute("produk", produk);
     }
     
-    @RequestMapping(value = "/input-produk",method = RequestMethod.GET)
-    public void formInputProduk(@RequestParam(value = "id", required = false) Integer id,
-    ModelMap modelMap){
-        Produk produk = produkDao.getProdukById(id);
-        if(produk==null){
-            produk = new Produk();
-        }
-        
-        List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
-        List<Umkm> umkms = umkmDao.getAllUmkm();
-        
-        modelMap.addAttribute("produk", produk);
-        
-        modelMap.addAttribute("listUmkm", umkms);
-        modelMap.addAttribute("listKategoriProduk", kategoriProduks);
-    }
-    
-    @RequestMapping(value = "/input-produk",method = RequestMethod.POST)
-    public String prosesInputProduk(@ModelAttribute Produk produk,
-    ModelMap modelMap,
-    HttpServletRequest request,
-    RedirectAttributes redirectAttributes) throws FileNotFoundException, IOException{
-        error = false;
-        pesans = new ArrayList<Pesan>();
-        
-        produk.setTglUpdateProduk(new Date());
-        
-        if(produk.getKodeProduk()==""){
-            setPesanGagal("Kode produk harus diisi");
-        }
-        
-        if(produk.getNamaProduk()==""){
-            setPesanGagal("Nama produk harus diisi");
-        }
-        
-        if(produk.getKategoriProduk().getId()==null){
-            setPesanGagal("Kategori produk harus dipilih");
-        }
-        
-        if(produk.getUmkm().getId()==null){
-            setPesanGagal("UMKM harus dipilih");
-        }
-        
-        if(produk.getUmkm().getId() != null && produk.getKodeProduk()!=""){
-            if(produk.getId()!=null){
-                cekKodeProdukEdit(produk);
-            }else{
-                cekKodeProdukInput(produk);
-            }
-        }
-       
-        if(error){
-            List<Umkm> umkms = umkmDao.getAllUmkm();
-
-            List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
-        
-            modelMap.addAttribute("listKategoriProduk", kategoriProduks);
-            modelMap.addAttribute("listUmkm", umkms);
-            modelMap.addAttribute("listPesan", pesans);
-            return "produk/input-produk";
-        }
-        
-        List<MultipartFile> files = produk.getFiles();
-        
-        produkDao.saveProduk(produk);
-        produk = produkDao.getProdukByKode(produk.getKodeProduk(), produk.getUmkm().getId(), produk.getNamaProduk());
-        if(files!= null && files.size() > 0) {
-            for (MultipartFile multipartFile : files) {
-                
-                if(!multipartFile.isEmpty()){
-                    SimpleDateFormat format = new SimpleDateFormat("ddMMyyyyssmmHH");
-                    String s = format.format(new Date());
-
-                    String namaFile = StringUtils.trimAllWhitespace(s+produk.getNamaProduk()+files.indexOf(multipartFile)+multipartFile.getOriginalFilename());
-                    //System.out.println("file name : "+fileName);
-
-                    Foto foto = new Foto();
-                    foto.setNamaFile(namaFile);
-                    foto.setTglUpload(new Date());
-
-                    File localFile = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);
-                    OutputStream out = new FileOutputStream(localFile);
-                    out.write(multipartFile.getBytes());
-                    out.close();
-
-                    fotoDao.saveFoto(foto,produk.getId());
-                }
-                
-            }
-        }
-        
-        
-        if(produk.getId()!=null){
-            setPesanBerhasil("berhasil mengedit produk");
-        }else{        
-            setPesanBerhasil("berhasil menambahkan produk");
-        }
-        
-        redirectAttributes.addFlashAttribute("listPesan",pesans);
-        return "redirect:index";
-    }
-    
     @RequestMapping("/hapus-produk")
     public String hapusProduk(@RequestParam("id") Integer id,
     HttpServletRequest request,
@@ -215,13 +113,30 @@ public class AdminProdukController {
             KategoriProduk kategoriProduk1;
             
             if(kategoriProduk.getId()!=null){
-                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByJenisKategoriProdukEdit(kategoriProduk.getJenisProduk(), kategoriProduk.getId());
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByCekEdit(kategoriProduk.getJenisProduk(),"jenis_kategori", kategoriProduk.getId());
             }else{
-                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByJenisKategoriProduk(kategoriProduk.getJenisProduk());
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByCek(kategoriProduk.getJenisProduk(),"jenis_kategori");
             }
             
             if(kategoriProduk1 != null){
                 setPesanGagal("Jenis produk sudah ada");
+            }
+            
+        }
+        
+        if(kategoriProduk.getKode()==""){
+            setPesanGagal("Kode kategori produk harus diisi");
+        }else{
+            KategoriProduk kategoriProduk1;
+            
+            if(kategoriProduk.getId()!=null){
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByCekEdit(kategoriProduk.getJenisProduk(),"kode", kategoriProduk.getId());
+            }else{
+                kategoriProduk1 = kategoriProdukDao.getKategoriProdukByCek(kategoriProduk.getJenisProduk(),"kode");
+            }
+            
+            if(kategoriProduk1 != null){
+                setPesanGagal("Kode sudah ada");
             }
             
         }
@@ -294,22 +209,5 @@ public class AdminProdukController {
         pesan.setJenisPesan(jenisPesan);
         pesan.setIsiPesan(isiPesan);
         pesans.add(pesan);
-    }
-    
-    private void cekKodeProdukInput(Produk produk){
-        Produk produk1 =  produkDao.getProdukByKodeDanIdUMKM(produk.getKodeProduk(), produk.getUmkm().getId());
-        
-        if(produk1 != null){
-            setPesanGagal("Kode produk sudah digunakan");
-        }
-        
-    }
-    
-    private void cekKodeProdukEdit(Produk produk){
-        Produk produk1 =  produkDao.getProdukByKodeIdUmkmDanBukanIdProduk(produk.getKodeProduk(), produk.getUmkm().getId(), produk.getId());
-        
-        if(produk1 != null){
-            setPesanGagal("Kode produk sudah digunakan");
-        }
     }
 }

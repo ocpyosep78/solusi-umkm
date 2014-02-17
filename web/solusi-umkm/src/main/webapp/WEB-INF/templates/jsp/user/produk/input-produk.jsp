@@ -51,9 +51,20 @@
                 <sf:form class="form-horizontal" role="form" modelAttribute="produk" action="input-produk" enctype="multipart/form-data">
             <sf:hidden path="id"/>
             <div class="form-group">
+              <label class="col-sm-2 control-label">Kategori Produk</label>
+              <div class="col-xs-4">
+                  <sf:select path="kategoriProduk.id" id="katProduk" class="form-control" required="required">
+                    <sf:option value="">Pilih Kategori</sf:option>
+                    <c:forEach items="${listKategoriProduk}" var="lkp">
+                        <sf:option value="${lkp.id}">${lkp.jenisProduk}</sf:option>
+                    </c:forEach>
+                  </sf:select>
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-sm-2 control-label">Kode Produk</label>
               <div class="col-xs-4">
-                  <sf:input type="text" class="form-control" path="kodeProduk" placeholder="kode produk" required="required"/>
+                  <sf:input type="text" id="kodeProduk" class="form-control" path="kodeProduk" placeholder="kode produk" READONLY="READONLY"/>
               </div>
             </div>
             <div class="form-group">
@@ -63,22 +74,11 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label">Kategori Produk</label>
-              <div class="col-xs-4">
-                  <sf:select path="kategoriProduk.id" class="form-control" required="required">
-                    <sf:option value="">Pilih Kategori</sf:option>
-                    <c:forEach items="${listKategoriProduk}" var="lkp">
-                        <sf:option value="${lkp.id}">${lkp.jenisProduk}</sf:option>
-                    </c:forEach>
-                  </sf:select>
-              </div>
-            </div>
-            <div class="form-group">
               <label class="col-sm-2 control-label">Harga</label>
               <div class="col-xs-4">
                   <div class="input-group">
                     <span class="input-group-addon">Rp</span>
-                    <sf:input type="number" class="form-control" path="harga" placeholder="harga" min="100"/>
+                    <sf:input type="number" class="form-control" path="harga" placeholder="harga" min="100" max="99999999"/>
                   </div>
               </div>
             </div>
@@ -120,9 +120,23 @@
                 });
                 
                 
-                    $('.active').removeClass('active');
-                    $("#menu-produk-saya-input").addClass("active");
-                    $("#menu-produk-saya").addClass("active");
+                $('.active').removeClass('active');
+                $("#menu-produk-saya-input").addClass("active");
+                $("#menu-produk-saya").addClass("active");
+                
+                $("#katProduk").change(function(){
+                    
+                    if($(this).val()=="${produk.kategoriProduk.id}"){
+                        $("#kodeProduk").val("${produk.kodeProduk}");
+                    }else{
+                        $.get("<%= request.getContextPath() %>/json/kategori-produk/getkode-produk?id="+$(this).val()+"&&idUmkm=${produk.umkm.id}",function(data,status){
+                            //alert("Data: " + data + "\nStatus: " + status);
+                            var kode="${produk.umkm.kodeUmkm}-"+data;
+                            $("#kodeProduk").val(kode);
+                        });
+                    }
+                    
+                });
                 
             });
             
