@@ -92,6 +92,9 @@ public class AdminProdukController {
     @RequestMapping(value = "/input-kategori",method = RequestMethod.GET)
     public void formInputKategoriProduk(@RequestParam(value = "id",required = false) Integer id,
     ModelMap modelMap){
+        List<KategoriProduk> kategoriProduks = kategoriProdukDao.getAllKategoriProduk();
+        modelMap.addAttribute("listKategoriProduk", kategoriProduks);
+        
         KategoriProduk kategoriProduk = kategoriProdukDao.getKategoriProdukById(id);
         if(kategoriProduk==null){
             kategoriProduk = new KategoriProduk();

@@ -99,11 +99,11 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <sitemesh:write property='body'/>      
         </div>
         
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="panel panel-default" >
                 <div class="panel-heading capital">Waktu & Tangal</div>
                 <div class="panel-body" align="center">

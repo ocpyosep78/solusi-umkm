@@ -19,7 +19,7 @@
     <body>
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">UMKM <small>Index</small></h1>
+                <h1 class="page-header">UMKM <small>Tampil</small></h1>
             </div>
         </div>
         

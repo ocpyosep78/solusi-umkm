@@ -131,7 +131,6 @@
                     </div>
                         
                     <div class="">
-                        <a title="edit" class="btn btn-primary" alt="edit" href="input-produk?id=${produk.id}">Edit <i class="fa fa-edit"></i></a>
                         <a title="hapus" class="btn btn-danger" alt="hapus" href="hapus-produk?id=${produk.id}" onclick="return tampil_confirm()">Hapus <i class="fa fa-trash-o"></i></a>
                     </div>
 

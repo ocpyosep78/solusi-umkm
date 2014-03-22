@@ -78,6 +78,7 @@
               <div class="col-xs-4">
                   <div class="input-group">
                     <span class="input-group-addon">Rp</span>
+                    
                     <sf:input type="number" class="form-control" path="harga" placeholder="harga" min="100" max="99999999"/>
                   </div>
               </div>

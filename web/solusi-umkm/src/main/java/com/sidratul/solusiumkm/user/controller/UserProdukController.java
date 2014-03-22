@@ -213,7 +213,7 @@ public class UserProdukController {
     
     //foto
     @RequestMapping("/hapus-foto")
-    public String hapusKategoriProduk(@RequestParam("id") Integer id,
+    public String hapusFotoProduk(@RequestParam("id") Integer id,
     @RequestParam("idProduk") Integer idProduk,
     @RequestParam("namaFile") String namaFile,
     HttpServletRequest request,
@@ -222,7 +222,6 @@ public class UserProdukController {
         error=false;
         pesans = new ArrayList<Pesan>();
         
-        produkDao.deleteDistribusiFotoByIdFoto(id);
         produkDao.deleteFotoById(id);
         
         File file = new File(request.getSession().getServletContext().getRealPath("/upload-file")+"/foto/"+namaFile);

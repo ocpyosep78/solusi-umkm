@@ -20,7 +20,7 @@
     <body>
         <div class="row">
             <div class="col-lg-12 ">
-                <h1 class="page-header">Artikel <small>Index</small></h1>
+                <h1 class="page-header">Artikel <small>Tampil</small></h1>
             </div>
         </div>
         <c:forEach items="${listArtikel}" var="la">

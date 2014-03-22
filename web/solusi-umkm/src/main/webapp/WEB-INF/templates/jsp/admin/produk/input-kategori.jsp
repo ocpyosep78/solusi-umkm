@@ -50,6 +50,7 @@
             </div>
         </div> 
         
+        
         <div class="row">
             <div class="col-lg-12">                
             <sf:form class="form-horizontal" role="form" modelAttribute="kategoriProduk" action="input-kategori">
@@ -77,6 +78,35 @@
                 </div>
             </sf:form>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kategori</th>
+                  <th>Kode</th>
+                  <th>Edit</th>
+                  <th>Hapus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <c:forEach items="${listKategoriProduk}" var="lk" varStatus="i" >
+                  <tr>
+                      <td>${i.count}</td>
+                      <td>${lk.jenisProduk}</td>
+                      <td>${lk.kode}</td>
+                      <td><a title="edit" alt="edit" href="input-kategori?id=${lk.id}"><i class="fa fa-edit"></i></a></td>
+                      <td><a title="hapus" alt="hapus" href="hapus-kategori?id=${lk.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
+                  </tr>
+                </c:forEach>
+              </tbody>
+            </table>
+        </div>
+            </div>                    
         </div>
     </body>
 </html>

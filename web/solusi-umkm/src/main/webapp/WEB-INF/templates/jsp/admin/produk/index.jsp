@@ -18,7 +18,7 @@
     <body>
         <div class="row"> 
             <div class="col-lg-12">
-                <h1 class="page-header">Produk <small>Index</small></h1>
+                <h1 class="page-header">Produk <small>Tampil</small></h1>
                 <ol class="breadcrumb">
                   <li class="active"><i class="fa fa-users"></i> Daftar produk </li>
                 </ol>
@@ -68,7 +68,7 @@
                           <th>Tgl Update</th>
                           <th>Jumlah Foto</th>
                           <th>View</th>
-                          <th>Edit</th>
+                          
                           <th>Hapus</th>
                         </tr>
                       </thead>
@@ -85,7 +85,6 @@
                               <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${lp.tglUpdateProduk}" /></td>
                               <td>${f:length(lp.fotos)}</td>
                               <td><a title="detail" alt="edit" href="detail?id=${lp.id}"><i class="fa fa-eye"></i></a></td>
-                              <td><a title="edit" alt="edit" href="input-produk?id=${lp.id}"><i class="fa fa-edit"></i></a></td>
                               <td><a title="hapus" alt="hapus" href="hapus-produk?id=${lp.id}" onclick="return tampil_confirm()"><i class="fa fa-trash-o"></i></a></td>
                           </tr>
                         </c:forEach>

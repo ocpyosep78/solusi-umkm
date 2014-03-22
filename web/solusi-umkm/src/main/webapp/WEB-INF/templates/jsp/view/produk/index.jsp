@@ -17,7 +17,7 @@
         <title>UMKM</title>
     </head>
     <body>
-        <h1>Produk <small>Index</small></h1>
+        <h1>Produk <small>Tampil</small></h1>
         <hr>
 <!--    <form class="form-horizontal">
         <div class="form-group">

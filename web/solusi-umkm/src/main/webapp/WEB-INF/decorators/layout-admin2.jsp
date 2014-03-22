@@ -81,7 +81,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="<%= request.getContextPath() %>/admin/produk/index">Index Produk</a></li>
                             <li><a href="<%= request.getContextPath() %>/admin/produk/kategori">Kategori Produk</a></li>
-                            <li><a href="<%= request.getContextPath() %>/admin/produk/input-kategori">Input Produk</a></li>
+                            <li><a href="<%= request.getContextPath() %>/admin/produk/input-kategori">Input Kategori Produk</a></li>
                         </ul>                       
                     </li>
                     <li>
